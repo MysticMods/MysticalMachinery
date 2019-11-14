@@ -1,9 +1,7 @@
 package noobanidus.mods.mysticalmachinery;
 
 import noobanidus.mods.mysticalmachinery.config.ConfigManager;
-import noobanidus.mods.mysticalmachinery.init.ModBlocks;
-import noobanidus.mods.mysticalmachinery.init.ModEntities;
-import noobanidus.mods.mysticalmachinery.init.ModItems;
+import noobanidus.mods.mysticalmachinery.init.*;
 import noobanidus.mods.mysticalmachinery.setup.ClientSetup;
 import noobanidus.mods.mysticalmachinery.setup.ModSetup;
 import epicsquid.mysticallib.registry.ModRegistry;
@@ -46,6 +44,8 @@ public class MysticalMachinery {
     ModItems.load();
     ModBlocks.load();
     ModEntities.load();
+    ModTiles.load();
+    ModRecipes.load();
 
     modBus.addGenericListener(EntityType.class, ModEntities::registerEntities);
 

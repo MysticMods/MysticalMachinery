@@ -12,6 +12,7 @@ import net.minecraft.world.storage.loot.LootParameterSets;
 import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.ValidationResults;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
+import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class MMLootTableProvider extends LootTableProvider {
   public static class Blocks extends DeferredBlockLootTableProvider {
     @Override
     protected void addTables() {
+      self(ModBlocks.KILN);
     }
 
     @Override
