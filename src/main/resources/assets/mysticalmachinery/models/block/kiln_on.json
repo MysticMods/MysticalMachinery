@@ -1,9 +1,7 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "block/kiln",
+	"parent": "mysticalmachinery:block/kiln",
 	"textures": {
-		"7": "mysticalworld:block/terracotta_brick",
-		"9": "mysticalmachinery:blocks/kiln_burning",
-		"particle": "mysticalworld:block/terracotta_brick"
+		"2": "mysticalmachinery:block/kiln_on"
 	}
 }

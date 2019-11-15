@@ -1,0 +1,9 @@
+{
+  "type": "mysticalmachinery:kiln",
+  "ingredient": {
+    "item": "minecraft:sandstone_slab"
+  },
+  "result": "minecraft:smooth_sandstone_slab",
+  "experience": 0.35,
+  "cookingtime": 100
+}
