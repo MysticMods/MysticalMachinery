@@ -1,5 +1,6 @@
 {
   "block.mysticalmachinery.kiln": "Kiln",
   "itemGroup.mysticalmachinery": "Mystical Machinery",
-  "mysticalmachinery.container.kiln": "Kiln"
+  "mysticalmachinery.container.kiln": "Kiln",
+  "mysticalmachinery.jei.kiln": "Kiln Baking"
 }

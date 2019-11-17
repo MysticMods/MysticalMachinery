@@ -125,7 +125,7 @@ dependencies {
         })
     }
 
-    compileOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.18:api")
+    compileOnly fg.deobf("mezz.jei:jei-1.14.4:6.0.0.24")
 //    deobfCompile "info.tehnut.harvest:Harvest:1.12-1.2.7-20"
 }
 

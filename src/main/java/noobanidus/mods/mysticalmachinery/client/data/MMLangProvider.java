@@ -17,6 +17,7 @@ public class MMLangProvider extends DeferredLanguageProvider {
     addBlock(ModBlocks.KILN);
 
     add("mysticalmachinery.container.kiln", "Kiln");
+    add("mysticalmachinery.jei.kiln", "Kiln Baking");
     // TODO: Containers
   }
 }
