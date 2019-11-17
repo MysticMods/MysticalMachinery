@@ -1,11 +1,11 @@
 package noobanidus.mods.mysticalmachinery.blocks;
 
+import epicsquid.mysticallib.util.VoxelUtil;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HopperBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
@@ -28,12 +28,23 @@ import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class KilnBlock extends AbstractFurnaceBlock {
-  private static VoxelShape shape = VoxelShapes.create(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
+  private static VoxelShape SHAPE = null;
 
   @Override
   public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-    return VoxelShapes.create(0.0, 0.0, 0.0, 1.0, 1.4, 1.0);
-    //return shape;
+    if (SHAPE == null) {
+      VoxelShape shape1 = Block.makeCuboidShape(0.0, 0.0, 0.0, 16.0, 10.0, 16.0);
+      VoxelShape shape2 = Block.makeCuboidShape(1.0, 10.0, 1.0, 15.0, 12.0, 15.0);
+      VoxelShape shape3 = Block.makeCuboidShape(2.0, 12.0, 2.0, 14.0, 14.0, 14.0);
+      VoxelShape shape4 = Block.makeCuboidShape(5.0, 14.0, 5.0, 11.0, 18.0, 11.0);
+      VoxelShape shape5 = Block.makeCuboidShape(4.0, 18.0, 4.0, 12.0, 19.0, 12.0);
+      VoxelShape shape6 = Block.makeCuboidShape(4.0, 19.0, 11.0, 12.0, 20.0, 12.0);
+      VoxelShape shape7 = Block.makeCuboidShape(4.0, 19.0, 4.0, 12.0, 20.0, 5.0);
+      VoxelShape shape8 = Block.makeCuboidShape(4.0, 19.0, 5.0, 5.0, 20.0, 11.0);
+      VoxelShape shape9 = Block.makeCuboidShape(11.0, 19.0, 5.0, 12.0, 20.0, 11.0);
+      SHAPE = VoxelUtil.multiOr(shape1, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9);
+    }
+    return SHAPE;
   }
 
   @Override

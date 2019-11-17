@@ -5,7 +5,7 @@
 		"2": "mysticalmachinery:block/kiln_cold",
 		"3": "mysticalmachinery:block/kiln_stovepipe",
 		"7": "mysticalworld:block/terracotta_brick",
-		"particle": "mysticalmachinery:block/kiln_burning"
+		"particle": "mysticalmachinery:block/kiln_cold"
 	},
 	"elements": [
 		{
