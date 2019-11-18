@@ -38,7 +38,8 @@ public class MachineFrame extends Block {
     SILVER("silver", MWTags.Items.SILVER_INGOT),
     TERRACOTTA("terracotta", MWTags.Items.TERRACOTTA),
     TIN("tin", MWTags.Items.TIN_INGOT),
-    WOOD("wood", ItemTags.PLANKS)
+    WOOD("wood", ItemTags.PLANKS),
+    LAPIS("lapis", Tags.Items.GEMS_LAPIS)
     ;
 
     private String name;

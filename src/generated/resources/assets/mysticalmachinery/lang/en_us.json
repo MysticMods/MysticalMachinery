@@ -8,6 +8,7 @@
   "block.mysticalmachinery.gold_machine_frame": "Gold Machine Frame",
   "block.mysticalmachinery.iron_machine_frame": "Iron Machine Frame",
   "block.mysticalmachinery.kiln": "Kiln",
+  "block.mysticalmachinery.lapis_machine_frame": "Lapis Machine Frame",
   "block.mysticalmachinery.lead_machine_frame": "Lead Machine Frame",
   "block.mysticalmachinery.nether_machine_frame": "Nether Machine Frame",
   "block.mysticalmachinery.prismarine_machine_frame": "Prismarine Machine Frame",
@@ -19,5 +20,6 @@
   "block.mysticalmachinery.wood_machine_frame": "Wood Machine Frame",
   "itemGroup.mysticalmachinery": "Mystical Machinery",
   "mysticalmachinery.container.kiln": "Kiln",
-  "mysticalmachinery.jei.kiln": "Kiln Baking"
+  "mysticalmachinery.jei.kiln": "Kiln Baking",
+  "mysticalmachinery.tile.cookie_generator.contains": "Contains %s/%sFCE (Forge Cookie Energy)"
 }

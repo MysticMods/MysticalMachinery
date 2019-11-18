@@ -26,6 +26,7 @@ public class MMLangProvider extends DeferredLanguageProvider {
 
     add("mysticalmachinery.container.kiln", "Kiln");
     add("mysticalmachinery.jei.kiln", "Kiln Baking");
+    add("mysticalmachinery.tile.cookie_generator.contains", "Contains %s/%sFCE (Forge Cookie Energy)");
     // TODO: Containers
   }
 }

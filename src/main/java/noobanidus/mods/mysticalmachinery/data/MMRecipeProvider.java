@@ -1,6 +1,7 @@
 package noobanidus.mods.mysticalmachinery.data;
 
 import epicsquid.mysticallib.data.DeferredRecipeProvider;
+import epicsquid.mysticalworld.MWTags;
 import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
@@ -52,10 +53,15 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
           .build(consumer);
     }
 
-    /*ShapedRecipeBuilder.shapedRecipe(ModBlocks.COOKIE_GENERATOR.get(), 1)
-        .patternLine("LLL")
-        .patternLine(" M ")
-        .patternLine("   ");*/
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.COOKIE_GENERATOR.get(), 1)
+        .patternLine("TCT")
+        .patternLine("CMC")
+        .patternLine("TCT")
+        .key('T', MWTags.Items.TIN_INGOT)
+        .key('C', Items.COOKIE)
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.Type.LAPIS).get())
+        .addCriterion("has_cookie", this.hasItem(Items.COOKIE))
+        .build(consumer);
   }
 
   private void kilnRecipes (Consumer<IFinishedRecipe> consumer) {
