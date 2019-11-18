@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalmachinery:diamond_machine_frame"
+    ]
+  },
+  "criteria": {
+    "has_forge:gems/diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/diamond"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalmachinery:diamond_machine_frame"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_forge:gems/diamond",
+      "has_the_recipe"
+    ]
+  ]
+}

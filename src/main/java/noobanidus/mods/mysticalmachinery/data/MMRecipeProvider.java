@@ -9,11 +9,14 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
+import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 
 import java.util.function.Consumer;
@@ -35,6 +38,27 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_terracotta_bricks", this.hasItem(epicsquid.mysticalworld.init.ModBlocks.TERRACOTTA_BRICK.get()))
         .build(consumer);
 
+    kilnRecipes(consumer);
+
+    for (MachineFrame.Type type : MachineFrame.Type.values()) {
+      ShapedRecipeBuilder.shapedRecipe(ModBlocks.MACHINE_FRAMES.get(type).get(), 1)
+          .patternLine("IXI")
+          .patternLine("XGX")
+          .patternLine("IXI")
+          .key('X', type.getTag())
+          .key('G', Tags.Items.GLASS)
+          .key('I', Tags.Items.INGOTS_IRON)
+          .addCriterion("has_" + type.getTag().getId(), this.hasItem(type.getTag()))
+          .build(consumer);
+    }
+
+    /*ShapedRecipeBuilder.shapedRecipe(ModBlocks.COOKIE_GENERATOR.get(), 1)
+        .patternLine("LLL")
+        .patternLine(" M ")
+        .patternLine("   ");*/
+  }
+
+  private void kilnRecipes (Consumer<IFinishedRecipe> consumer) {
     kiln(Items.CLAY, Items.TERRACOTTA, consumer);
     kiln(Items.CLAY_BALL, Items.BRICK, consumer);
     kiln(Items.NETHERRACK, Items.NETHER_BRICK, consumer);

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IXI",
+    "XGX",
+    "IXI"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:gems/prismarine"
+    },
+    "G": {
+      "tag": "forge:glass"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "mysticalmachinery:prismarine_machine_frame"
+  }
+}

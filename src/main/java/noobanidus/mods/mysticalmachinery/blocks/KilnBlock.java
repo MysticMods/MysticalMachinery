@@ -71,6 +71,7 @@ public class KilnBlock extends AbstractFurnaceBlock {
     return new KilnTile();
   }
 
+  @Override
   @OnlyIn(Dist.CLIENT)
   public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
     if (stateIn.get(LIT)) {

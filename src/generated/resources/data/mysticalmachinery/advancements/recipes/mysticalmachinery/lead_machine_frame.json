@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalmachinery:lead_machine_frame"
+    ]
+  },
+  "criteria": {
+    "has_forge:ingots/lead": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/lead"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalmachinery:lead_machine_frame"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_forge:ingots/lead",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -88,6 +88,7 @@ public class KilnRecipeBuilder {
       this.advancementId = advResource;
     }
 
+    @Override
     public void serialize(JsonObject json) {
       if (!this.group.isEmpty()) {
         json.addProperty("group", this.group);
@@ -99,19 +100,23 @@ public class KilnRecipeBuilder {
       json.addProperty("cookingtime", this.cookingTime);
     }
 
+    @Override
     public IRecipeSerializer<?> getSerializer() {
       return ModRecipes.KILN_SERIALIZER.get();
     }
 
+    @Override
     public ResourceLocation getID() {
       return this.id;
     }
 
+    @Override
     @Nullable
     public JsonObject getAdvancementJson() {
       return this.advancementBuilder.serialize();
     }
 
+    @Override
     @Nullable
     public ResourceLocation getAdvancementID() {
       return this.advancementId;

@@ -5,13 +5,21 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
+import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 
 import javax.annotation.Nullable;
 
 public class MachineFrame extends Block {
-  public MachineFrame(Properties properties) {
+  private Type type;
+
+  public MachineFrame(Properties properties, MachineFrame.Type type) {
     super(properties);
+  }
+
+  public Type getType() {
+    return type;
   }
 
   public enum Type {
@@ -47,6 +55,10 @@ public class MachineFrame extends Block {
 
     public String getName() {
       return name;
+    }
+
+    public ResourceLocation model () {
+      return new ResourceLocation(MysticalMachinery.MODID, "block/" + name + "_machine_frame");
     }
 
     @Nullable
