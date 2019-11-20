@@ -2,7 +2,6 @@ package noobanidus.mods.mysticalmachinery.data;
 
 import epicsquid.mysticallib.data.DeferredRecipeProvider;
 import epicsquid.mysticalworld.MWTags;
-import epicsquid.mysticalworld.init.ModItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -19,6 +18,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
+import noobanidus.mods.mysticalmachinery.init.ModItems;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -61,6 +61,24 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .key('C', Items.COOKIE)
         .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.Type.LAPIS).get())
         .addCriterion("has_cookie", this.hasItem(Items.COOKIE))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.HEAT_CAPACITOR.get(), 1)
+        .patternLine("CCC")
+        .patternLine("CMC")
+        .patternLine("CCC")
+        .key('C', MWTags.Items.COPPER_INGOT)
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.Type.COPPER).get())
+        .addCriterion("has_copper", this.hasItem(MWTags.Items.COPPER_INGOT))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.HEAT_CONVERTER.get(), 1)
+        .patternLine("   ")
+        .patternLine(" M ")
+        .patternLine(" B ")
+        .key('B', Items.BLAST_FURNACE)
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.Type.REDSTONE).get())
+        .addCriterion("has_blast_furnace", this.hasItem(Items.BLAST_FURNACE))
         .build(consumer);
   }
 

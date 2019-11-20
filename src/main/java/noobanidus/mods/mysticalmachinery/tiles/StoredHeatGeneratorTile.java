@@ -17,7 +17,7 @@ import noobanidus.mods.mysticalmachinery.init.ModTiles;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class CookieGeneratorTile extends TileEntity implements ITickableTileEntity {
+public class StoredHeatGeneratorTile extends TileEntity implements ITickableTileEntity {
   public static final int MAX_RF = 500000;
   public static final int MAX_RF_XFER = 300;
   public static final int RF_PER_COOKIE = 50;
@@ -25,7 +25,7 @@ public class CookieGeneratorTile extends TileEntity implements ITickableTileEnti
   private LazyOptional<IEnergyStorage> energyHandler;
 
   @SuppressWarnings("ConstantConditions")
-  public CookieGeneratorTile() {
+  public StoredHeatGeneratorTile() {
     super(ModTiles.COOKIE_GENERATOR.get());
     this.energyStorage = new CookieEnergyStorage(MAX_RF, MAX_RF_XFER);
     this.energyHandler = LazyOptional.of(() -> this.energyStorage);

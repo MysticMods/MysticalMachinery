@@ -7,6 +7,7 @@ import net.minecraftforge.fml.RegistryObject;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
+import noobanidus.mods.mysticalmachinery.init.ModItems;
 
 public class MMItemModelProvider extends DeferredItemModelProvider {
   public MMItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
@@ -22,5 +23,7 @@ public class MMItemModelProvider extends DeferredItemModelProvider {
     }
 
     blockItem(ModBlocks.COOKIE_GENERATOR);
+    withExistingParent(name(ModItems.HEAT_CAPACITOR), modLoc("item/" + name(ModItems.HEAT_CAPACITOR)));
+    withExistingParent(name(ModItems.HEAT_CONVERTER), modLoc("item/" + name(ModItems.HEAT_CONVERTER)));
   }
 }

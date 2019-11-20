@@ -9,6 +9,7 @@ import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.blocks.CookieGeneratorBlock;
 import noobanidus.mods.mysticalmachinery.blocks.KilnBlock;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
+import noobanidus.mods.mysticalmachinery.blocks.StoredHeadGeneratorBlock;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,8 @@ public class ModBlocks {
   public static RegistryObject<KilnBlock> KILN = REGISTRY.registerBlock("kiln", REGISTRY.block(KilnBlock::new, () -> Block.Properties.create(Material.ROCK).hardnessAndResistance(3.5F).lightValue(13)), () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP));
 
   public static RegistryObject<CookieGeneratorBlock> COOKIE_GENERATOR = REGISTRY.registerBlock("cookie_generator", REGISTRY.block(CookieGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5f).sound(SoundType.METAL)), () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP));
+
+  public static RegistryObject<StoredHeadGeneratorBlock> STORED_HEAD_GENERATOR = REGISTRY.registerBlock("stored_head_generator", REGISTRY.block(StoredHeadGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5f).sound(SoundType.METAL)), () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP));
 
   public static Map<MachineFrame.Type, RegistryObject<MachineFrame>> MACHINE_FRAMES = new HashMap<>();
 
