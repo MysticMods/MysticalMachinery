@@ -6,9 +6,9 @@
 		"10": "mysticalworld:block/copper_block",
 		"15": "block/hopper_inside",
 		"16": "block/hopper_outside",
-		"18": "mysticalmachinery:block/stored_head_front_side",
+		"18": "mysticalmachinery:block/stored_heat_front_side",
 		"19": "mysticalmachinery:block/stored_heat_top",
-		"20": "mysticalmachinery:block/stored_head_capacitor_top",
+		"20": "mysticalmachinery:block/stored_heat_capacitor_top",
 		"21": "mysticalmachinery:block/stored_heat_hopper",
 		"24": "mysticalmachinery:block/stored_heat_capacitor_cold",
 		"26": "mysticalmachinery:block/stored_heat_front_side"

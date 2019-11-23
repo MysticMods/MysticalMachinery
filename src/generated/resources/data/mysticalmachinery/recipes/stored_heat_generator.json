@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "IMI",
+    "ISI"
+  ],
+  "key": {
+    "M": {
+      "item": "mysticalmachinery:redstone_machine_frame"
+    },
+    "C": {
+      "item": "mysticalmachinery:heat_capacitor"
+    },
+    "S": {
+      "item": "mysticalmachinery:solid_state_heat_converter"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "mysticalmachinery:stored_heat_generator"
+  }
+}

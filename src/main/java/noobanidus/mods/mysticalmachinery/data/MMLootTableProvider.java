@@ -13,7 +13,7 @@ import net.minecraft.world.storage.loot.LootTable;
 import net.minecraft.world.storage.loot.ValidationResults;
 import net.minecraftforge.fml.RegistryObject;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
-import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
+import noobanidus.mods.mysticalmachinery.blocks.MachineFrameBlock;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 
 import java.util.List;
@@ -49,11 +49,11 @@ public class MMLootTableProvider extends LootTableProvider {
       self(ModBlocks.KILN);
       self(ModBlocks.COOKIE_GENERATOR);
 
-      for (RegistryObject<MachineFrame> block : ModBlocks.MACHINE_FRAMES.values()) {
+      for (RegistryObject<MachineFrameBlock> block : ModBlocks.MACHINE_FRAMES.values()) {
         self(block);
       }
 
-      self(ModBlocks.COOKIE_GENERATOR);
+      self(ModBlocks.STORED_HEAT_GENERATOR);
     }
 
     @Override

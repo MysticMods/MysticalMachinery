@@ -5,6 +5,7 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
@@ -19,10 +20,12 @@ import javax.annotation.Nullable;
 
 public class StoredHeadGeneratorBlock extends Block {
   public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+  public static final BooleanProperty HEATED = BooleanProperty.create("heated");
+  public static final BooleanProperty POWERED = BooleanProperty.create("powered");
 
   public StoredHeadGeneratorBlock(Properties properties) {
     super(properties);
-    this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH));
+    this.setDefaultState(this.getStateContainer().getBaseState().with(FACING, Direction.NORTH).with(HEATED, false).with(POWERED, false));
   }
 
   @Override
@@ -47,7 +50,7 @@ public class StoredHeadGeneratorBlock extends Block {
 
   @Override
   protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-    builder.add(FACING);
+    builder.add(FACING, HEATED, POWERED);
   }
 
   @Override

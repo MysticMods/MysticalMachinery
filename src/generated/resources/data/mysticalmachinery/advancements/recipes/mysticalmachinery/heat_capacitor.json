@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mysticalmachinery:heat_capacitor"
+    ]
+  },
+  "criteria": {
+    "has_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/copper"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mysticalmachinery:heat_capacitor"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_copper",
+      "has_the_recipe"
+    ]
+  ]
+}

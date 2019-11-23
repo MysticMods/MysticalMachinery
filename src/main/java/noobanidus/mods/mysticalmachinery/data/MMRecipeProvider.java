@@ -9,8 +9,6 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
@@ -41,7 +39,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
 
     kilnRecipes(consumer);
 
-    for (MachineFrame.Type type : MachineFrame.Type.values()) {
+    for (MachineFrame type : MachineFrame.values()) {
       ShapedRecipeBuilder.shapedRecipe(ModBlocks.MACHINE_FRAMES.get(type).get(), 1)
           .patternLine("IXI")
           .patternLine("XGX")
@@ -59,25 +57,40 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .patternLine("TCT")
         .key('T', MWTags.Items.TIN_INGOT)
         .key('C', Items.COOKIE)
-        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.Type.LAPIS).get())
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.LAPIS).get())
         .addCriterion("has_cookie", this.hasItem(Items.COOKIE))
         .build(consumer);
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.HEAT_CAPACITOR.get(), 1)
-        .patternLine("CCC")
+        .patternLine("CRC")
         .patternLine("CMC")
-        .patternLine("CCC")
+        .patternLine("CBC")
         .key('C', MWTags.Items.COPPER_INGOT)
-        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.Type.COPPER).get())
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.COPPER).get())
+        .key('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+        .key('B', Items.BLAST_FURNACE)
         .addCriterion("has_copper", this.hasItem(MWTags.Items.COPPER_INGOT))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.HEAT_CONVERTER.get(), 1)
-        .patternLine("   ")
-        .patternLine(" M ")
-        .patternLine(" B ")
-        .key('B', Items.BLAST_FURNACE)
-        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.Type.REDSTONE).get())
+    ShapedRecipeBuilder.shapedRecipe(ModItems.SOLID_STATE_HEAT_CONVERTER.get(), 1)
+        .patternLine("IRI")
+        .patternLine("IMI")
+        .patternLine("ILI")
+        .key('L', MWTags.Items.LEAD_BLOCK)
+        .key('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.LEAD).get())
+        .key('I', MWTags.Items.LEAD_INGOT)
+        .addCriterion("has_blast_furnace", this.hasItem(Items.BLAST_FURNACE))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.STORED_HEAT_GENERATOR.get(), 1)
+        .patternLine("ICI")
+        .patternLine("IMI")
+        .patternLine("ISI")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.REDSTONE).get())
+        .key('C', ModItems.HEAT_CAPACITOR.get())
+        .key('S', ModItems.SOLID_STATE_HEAT_CONVERTER.get())
+        .key('I', Tags.Items.INGOTS_IRON)
         .addCriterion("has_blast_furnace", this.hasItem(Items.BLAST_FURNACE))
         .build(consumer);
   }

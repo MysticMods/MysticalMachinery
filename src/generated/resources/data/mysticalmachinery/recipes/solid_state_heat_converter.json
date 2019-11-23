@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IRI",
+    "IMI",
+    "ILI"
+  ],
+  "key": {
+    "L": {
+      "tag": "forge:storage_blocks/lead"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "M": {
+      "item": "mysticalmachinery:lead_machine_frame"
+    },
+    "I": {
+      "tag": "forge:ingots/lead"
+    }
+  },
+  "result": {
+    "item": "mysticalmachinery:solid_state_heat_converter"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CRC",
+    "CMC",
+    "CBC"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "M": {
+      "item": "mysticalmachinery:copper_machine_frame"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "B": {
+      "item": "minecraft:blast_furnace"
+    }
+  },
+  "result": {
+    "item": "mysticalmachinery:heat_capacitor"
+  }
+}
