@@ -12,7 +12,8 @@
 		"20": "mysticalmachinery:block/stored_heat_capacitor_top",
 		"21": "mysticalmachinery:block/stored_heat_hopper",
 		"24": "mysticalmachinery:block/stored_heat_capacitor_cold",
-		"26": "mysticalmachinery:block/stored_heat_front_side"
+		"26": "mysticalmachinery:block/stored_heat_front_side",
+		"particle": "#18"
 	},
 	"elements": [
 		{
