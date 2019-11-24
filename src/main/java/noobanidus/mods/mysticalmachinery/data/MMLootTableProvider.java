@@ -54,6 +54,7 @@ public class MMLootTableProvider extends LootTableProvider {
       }
 
       self(ModBlocks.STORED_HEAT_GENERATOR);
+      self(ModBlocks.END_STONE_GENERATOR);
     }
 
     @Override

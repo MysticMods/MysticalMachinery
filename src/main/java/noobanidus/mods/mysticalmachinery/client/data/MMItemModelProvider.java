@@ -26,5 +26,6 @@ public class MMItemModelProvider extends DeferredItemModelProvider {
     withExistingParent(name(ModItems.HEAT_CAPACITOR), modLoc("block/" + name(ModItems.HEAT_CAPACITOR)));
     withExistingParent(name(ModItems.SOLID_STATE_HEAT_CONVERTER), modLoc("block/" + name(ModItems.SOLID_STATE_HEAT_CONVERTER)));
     withExistingParent(name(ModBlocks.STORED_HEAT_GENERATOR), modLoc("block/stored_heat_generator_heat_on_rf_on"));
+    withExistingParent(name(ModBlocks.END_STONE_GENERATOR), modLoc("block/" + name(ModBlocks.END_STONE_GENERATOR)));
   }
 }

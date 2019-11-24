@@ -93,9 +93,20 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .key('I', Tags.Items.INGOTS_IRON)
         .addCriterion("has_blast_furnace", this.hasItem(Items.BLAST_FURNACE))
         .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.END_STONE_GENERATOR.get(), 1)
+        .patternLine("ECE")
+        .patternLine("EME")
+        .patternLine("PPP")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.CHORUS).get())
+        .key('C', Items.CHORUS_FLOWER)
+        .key('E', Tags.Items.END_STONES)
+        .key('P', Items.PURPUR_PILLAR)
+        .addCriterion("has_chorus_flower", this.hasItem(Items.CHORUS_FLOWER))
+        .build(consumer);
   }
 
-  private void kilnRecipes (Consumer<IFinishedRecipe> consumer) {
+  private void kilnRecipes(Consumer<IFinishedRecipe> consumer) {
     kiln(Items.CLAY, Items.TERRACOTTA, consumer);
     kiln(Items.CLAY_BALL, Items.BRICK, consumer);
     kiln(Items.NETHERRACK, Items.NETHER_BRICK, consumer);

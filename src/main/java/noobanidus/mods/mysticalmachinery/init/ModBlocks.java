@@ -20,6 +20,8 @@ public class ModBlocks {
 
   public static RegistryObject<StoredHeatGeneratorBlock> STORED_HEAT_GENERATOR = REGISTRY.registerBlock("stored_heat_generator", REGISTRY.block(StoredHeatGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5f).sound(SoundType.METAL)), () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP));
 
+  public static RegistryObject<EndStoneGeneratorBlock> END_STONE_GENERATOR = REGISTRY.registerBlock("end_stone_generator", REGISTRY.block(EndStoneGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(4.5f).sound(SoundType.METAL)), () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP));
+
   public static Map<MachineFrame, RegistryObject<MachineFrameBlock>> MACHINE_FRAMES = new HashMap<>();
 
   static {

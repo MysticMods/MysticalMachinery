@@ -5,6 +5,7 @@
   "block.mysticalmachinery.copper_machine_frame": "Copper Machine Frame",
   "block.mysticalmachinery.diamond_machine_frame": "Diamond Machine Frame",
   "block.mysticalmachinery.emerald_machine_frame": "Emerald Machine Frame",
+  "block.mysticalmachinery.end_stone_generator": "End Stone Generator",
   "block.mysticalmachinery.gold_machine_frame": "Gold Machine Frame",
   "block.mysticalmachinery.iron_machine_frame": "Iron Machine Frame",
   "block.mysticalmachinery.kiln": "Kiln",
@@ -27,5 +28,6 @@
   "itemGroup.mysticalmachinery": "Mystical Machinery",
   "mysticalmachinery.container.kiln": "Kiln",
   "mysticalmachinery.jei.kiln": "Kiln Baking",
-  "mysticalmachinery.tile.cookie_generator.contains": "Contains %s/%sFCE (Forge Cookie Energy)"
+  "mysticalmachinery.tile.cookie_generator.contains": "Contains %s/%sFCE (Forge Cookie Energy)",
+  "mysticalmachinery.tile.end_stone_generator.contains": "Contains %s End Stone (%s/%s FE)"
 }

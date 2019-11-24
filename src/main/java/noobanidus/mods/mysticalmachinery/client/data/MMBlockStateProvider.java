@@ -22,6 +22,7 @@ public class MMBlockStateProvider extends DeferredBlockStateProvider {
   @Override
   protected void registerStatesAndModels() {
     horizontalBlock(ModBlocks.COOKIE_GENERATOR.get(), (b) -> getExistingFile(new ResourceLocation(MysticalMachinery.MODID, "block/cookie_generator")));
+    getVariantBuilder(ModBlocks.END_STONE_GENERATOR.get()).partialState().addModels(new ConfiguredModel(getExistingFile(new ResourceLocation(MysticalMachinery.MODID, "block/end_stone_generator"))));
     horizontalBlock(ModBlocks.STORED_HEAT_GENERATOR.get(), (b) -> getExistingFile(new ResourceLocation(MysticalMachinery.MODID, String.format("stored_heat_generator_heat_%s_rf_%s", b.get(StoredHeatGeneratorBlock.HEATED) ? "on" : "off", b.get(StoredHeatGeneratorBlock.POWERED) ? "on" : "off"))));
 
     for (Map.Entry<MachineFrame, RegistryObject<MachineFrameBlock>> entry : ModBlocks.MACHINE_FRAMES.entrySet()) {

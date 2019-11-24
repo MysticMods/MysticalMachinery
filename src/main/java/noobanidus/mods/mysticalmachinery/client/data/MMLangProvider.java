@@ -28,10 +28,12 @@ public class MMLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.HEAT_CAPACITOR);
     addItem(ModItems.SOLID_STATE_HEAT_CONVERTER);
     addBlock(ModBlocks.STORED_HEAT_GENERATOR);
+    addBlock(ModBlocks.END_STONE_GENERATOR);
 
     add("mysticalmachinery.container.kiln", "Kiln");
     add("mysticalmachinery.jei.kiln", "Kiln Baking");
     add("mysticalmachinery.tile.cookie_generator.contains", "Contains %s/%sFCE (Forge Cookie Energy)");
+    add("mysticalmachinery.tile.end_stone_generator.contains", "Contains %s End Stone (%s/%s FE)");
     // TODO: Containers
   }
 }
