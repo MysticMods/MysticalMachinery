@@ -12,22 +12,23 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
+import noobanidus.mods.mysticalmachinery.capability.SettableEnergyStorage;
 import noobanidus.mods.mysticalmachinery.init.ModTiles;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class CookieGeneratorTile extends TileEntity implements ITickableTileEntity {
+public class CookieGeneratorTile extends TileEntity implements ITickableTileEntity, ITickingEnergyTileEntity {
   public static final int MAX_RF = 500000;
   public static final int MAX_RF_XFER = 300;
   public static final int RF_PER_COOKIE = 50;
-  private CookieEnergyStorage energyStorage;
+  private SettableEnergyStorage energyStorage;
   private LazyOptional<IEnergyStorage> energyHandler;
 
   @SuppressWarnings("ConstantConditions")
   public CookieGeneratorTile() {
     super(ModTiles.COOKIE_GENERATOR.get());
-    this.energyStorage = new CookieEnergyStorage(MAX_RF, MAX_RF_XFER);
+    this.energyStorage = new SettableEnergyStorage(MAX_RF, MAX_RF_XFER);
     this.energyHandler = LazyOptional.of(() -> this.energyStorage);
   }
 
@@ -82,28 +83,11 @@ public class CookieGeneratorTile extends TileEntity implements ITickableTileEnti
 
   @Override
   public void tick() {
-    for (Direction facing : Direction.values()) {
-      BlockPos checking = this.pos.offset(facing);
-      TileEntity checkingTile = this.world.getTileEntity(checking);
-      if (checkingTile != null) {
-        checkingTile.getCapability(CapabilityEnergy.ENERGY, facing.getOpposite()).ifPresent(storage -> {
-          int energy = storage.receiveEnergy(Math.min(this.energyStorage.getEnergyStored(), MAX_RF_XFER), false);
-          if (energy > 0) {
-            this.energyStorage.extractEnergy(energy, false);
-            return;
-          }
-        });
-      }
-    }
+    energyTick(MAX_RF_XFER, this.pos, this.world);
   }
 
-  public static class CookieEnergyStorage extends EnergyStorage {
-    public CookieEnergyStorage(int capacity, int maxTransfer) {
-      super(capacity, maxTransfer);
-    }
-
-    public void setEnergy(int amount) {
-      this.energy = amount;
-    }
+  @Override
+  public EnergyStorage getStorageInternal() {
+    return energyStorage;
   }
 }

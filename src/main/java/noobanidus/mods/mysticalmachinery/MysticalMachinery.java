@@ -26,7 +26,7 @@ public class MysticalMachinery {
   public static final ItemGroup ITEM_GROUP = new ItemGroup("mysticalmachinery") {
     @Override
     public ItemStack createIcon() {
-      return new ItemStack(Items.REDSTONE);
+      return new ItemStack(ModBlocks.KILN.get());
     }
   };
 
