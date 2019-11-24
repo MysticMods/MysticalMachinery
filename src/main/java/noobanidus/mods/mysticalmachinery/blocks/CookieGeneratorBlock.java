@@ -8,10 +8,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -21,19 +22,19 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.energy.CapabilityEnergy;
+import noobanidus.mods.mysticalmachinery.MMTags;
 import noobanidus.mods.mysticalmachinery.tiles.CookieGeneratorTile;
 
 import javax.annotation.Nullable;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "NullableProblems"})
 public class CookieGeneratorBlock extends Block {
-  public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-  public static final VoxelShape NORTH = Block.makeCuboidShape(0, 0, 2, 16, 16, 16);
-  public static final VoxelShape SOUTH = Block.makeCuboidShape(0, 0, 0, 16, 16, 14);
-  public static final VoxelShape EAST = Block.makeCuboidShape(0, 0, 0, 14, 16, 16);
-  public static final VoxelShape WEST = Block.makeCuboidShape(2, 0, 0, 16, 16, 16);
+  private static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+  private static final VoxelShape NORTH = Block.makeCuboidShape(0, 0, 2, 16, 16, 16);
+  private static final VoxelShape SOUTH = Block.makeCuboidShape(0, 0, 0, 16, 16, 14);
+  private static final VoxelShape EAST = Block.makeCuboidShape(0, 0, 0, 14, 16, 16);
+  private static final VoxelShape WEST = Block.makeCuboidShape(2, 0, 0, 16, 16, 16);
 
   public CookieGeneratorBlock(Properties properties) {
     super(properties);
@@ -116,14 +117,15 @@ public class CookieGeneratorBlock extends Block {
 
     if (!(entityIn instanceof ItemEntity)) return;
 
-    ItemEntity item = (ItemEntity) entityIn;
-    if (item.getItem().getItem() == Items.COOKIE) {
+    ItemStack itemstack = ((ItemEntity) entityIn).getItem();
+    Item item = itemstack.getItem();
+    if (MMTags.Items.GENERATOR_COOKIES.contains(item) || itemstack.hasDisplayName() && itemstack.getDisplayName().getString().toLowerCase().contains("cookie")) {
       TileEntity te = worldIn.getTileEntity(pos);
       if (te instanceof CookieGeneratorTile) {
-        for (int i = 0; i < item.getItem().getCount(); i++) {
+        for (int i = 0; i < itemstack.getCount(); i++) {
           ((CookieGeneratorTile) te).acceptCookie();
         }
-        worldIn.playSound(null, pos, SoundEvents.ENTITY_PANDA_EAT, SoundCategory.BLOCKS, 1f, 1f);
+        worldIn.playSound(null, pos, SoundEvents.ENTITY_PHANTOM_BITE, SoundCategory.BLOCKS, 1f, 1f);
         entityIn.remove();
       }
     }

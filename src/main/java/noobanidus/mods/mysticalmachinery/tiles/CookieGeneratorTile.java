@@ -6,9 +6,9 @@ import noobanidus.mods.mysticalmachinery.capability.SettableEnergyStorage;
 import noobanidus.mods.mysticalmachinery.init.ModTiles;
 
 public class CookieGeneratorTile extends EnergyTileEntity implements ITickableTileEntity, ITickingEnergyTileEntity {
-  public static final int MAX_FE = 500000;
+  public static final int MAX_FE = 1000000;
   public static final int MAX_FE_XFER = 300;
-  public static final int RF_PER_COOKIE = 50;
+  public static final int RF_PER_COOKIE = 250;
 
   @SuppressWarnings("ConstantConditions")
   public CookieGeneratorTile() {
