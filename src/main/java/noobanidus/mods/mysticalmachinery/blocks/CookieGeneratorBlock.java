@@ -24,6 +24,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.energy.CapabilityEnergy;
 import noobanidus.mods.mysticalmachinery.MMTags;
+import noobanidus.mods.mysticalmachinery.init.ModSounds;
 import noobanidus.mods.mysticalmachinery.tiles.CookieGeneratorTile;
 
 import javax.annotation.Nullable;
@@ -125,7 +126,7 @@ public class CookieGeneratorBlock extends Block {
         for (int i = 0; i < itemstack.getCount(); i++) {
           ((CookieGeneratorTile) te).acceptCookie();
         }
-        worldIn.playSound(null, pos, SoundEvents.ENTITY_PHANTOM_BITE, SoundCategory.BLOCKS, 1f, 1f);
+        worldIn.playSound(null, pos, ModSounds.COOKIE_MUNCH.get(), SoundCategory.BLOCKS, 0.1f, 0.9f);
         entityIn.remove();
       }
     }

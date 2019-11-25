@@ -6,6 +6,7 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import noobanidus.mods.mysticalmachinery.client.data.MMBlockStateProvider;
 import noobanidus.mods.mysticalmachinery.client.data.MMItemModelProvider;
 import noobanidus.mods.mysticalmachinery.client.data.MMLangProvider;
+import noobanidus.mods.mysticalmachinery.data.MMItemTagsProvider;
 import noobanidus.mods.mysticalmachinery.data.MMLootTableProvider;
 import noobanidus.mods.mysticalmachinery.data.MMRecipeProvider;
 
@@ -24,6 +25,7 @@ public class ModSetup {
       gen.addProvider(new MMLangProvider(gen));
     }
     if (event.includeServer()) {
+      gen.addProvider(new MMItemTagsProvider(gen));
       gen.addProvider(new MMLootTableProvider(gen));
       gen.addProvider(new MMRecipeProvider(gen));
     }

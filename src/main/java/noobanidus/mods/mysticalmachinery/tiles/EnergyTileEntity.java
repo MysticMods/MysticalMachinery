@@ -1,5 +1,6 @@
 package noobanidus.mods.mysticalmachinery.tiles;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -73,4 +74,5 @@ public abstract class EnergyTileEntity extends TileEntity implements IEnergyTile
   public SettableEnergyStorage getEnergyStorage() {
     return energyStorage;
   }
+
 }

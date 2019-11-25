@@ -41,9 +41,6 @@ public interface ITickingEnergyTileEntity extends IEnergyTileEntity {
             energyStorage.extractEnergy(energy, false);
           }
         });
-        if (optional.isPresent()) {
-          break;
-        }
       }
     }
   }

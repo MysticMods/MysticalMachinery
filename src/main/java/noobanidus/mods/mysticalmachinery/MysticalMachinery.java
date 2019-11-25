@@ -47,6 +47,7 @@ public class MysticalMachinery {
     ModTiles.load();
     ModRecipes.load();
     ModContainers.load();
+    ModSounds.load();
 
     modBus.addGenericListener(EntityType.class, ModEntities::registerEntities);
 

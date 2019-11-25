@@ -21,6 +21,7 @@ import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import noobanidus.mods.mysticalmachinery.init.ModSounds;
 import noobanidus.mods.mysticalmachinery.tiles.KilnTile;
 
 import javax.annotation.Nullable;
@@ -79,7 +80,7 @@ public class KilnBlock extends AbstractFurnaceBlock {
       double d1 = (double) pos.getY();
       double d2 = (double) pos.getZ() + 0.5D;
       if (rand.nextDouble() < 0.1D) {
-        worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+        worldIn.playSound(d0, d1, d2, ModSounds.KILN_CRACKLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F, false);
       }
 
       Direction direction = stateIn.get(FACING);

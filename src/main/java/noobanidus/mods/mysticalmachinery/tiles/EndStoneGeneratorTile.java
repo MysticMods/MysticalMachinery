@@ -6,28 +6,34 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import noobanidus.mods.mysticalmachinery.capability.SettableEnergyStorage;
+import noobanidus.mods.mysticalmachinery.init.ModSounds;
 import noobanidus.mods.mysticalmachinery.init.ModTiles;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class EndStoneGeneratorTile extends EnergyTileEntity implements ITickableTileEntity {
-  public static final int MAX_FE = 666666;
-  public static final int MAX_FE_XFER = 300;
-  public static final int FE_PER_ENDSTONE = 50;
+  public static final int MAX_FE = 1000000;
+  public static final int MAX_FE_XFER = 200;
+  public static final int FE_PER_ENDSTONE = 100;
   public static final int ENDSTONE_FREQUENCY = 25;
+
+  public static final long PLAY_THRESHOLD = 12000;
+
+  private long lastPlayed = 0;
 
   private int stoneAmount;
   private EndStoneHandler stoneHandler = new EndStoneHandler();
   private LazyOptional<IItemHandler> stoneCapability = LazyOptional.of(() -> stoneHandler);
 
   public EndStoneGeneratorTile() {
-    super(ModTiles.END_STONE_GENERATOR.get());
+    super(ModTiles.END_STONE_FABRICATOR.get());
     this.energyStorage = new SettableEnergyStorage(MAX_FE, MAX_FE_XFER);
     this.energyHandler = LazyOptional.of(() -> this.energyStorage);
   }
@@ -74,6 +80,10 @@ public class EndStoneGeneratorTile extends EnergyTileEntity implements ITickable
       if (energyStorage.extractEnergy(FE_PER_ENDSTONE, true) == FE_PER_ENDSTONE) {
         stoneAmount++;
         energyStorage.extractEnergy(FE_PER_ENDSTONE, false);
+        if (System.currentTimeMillis() - lastPlayed > PLAY_THRESHOLD) {
+          world.playSound(null, pos, ModSounds.END_STONE_GENERATE.get(), SoundCategory.BLOCKS, 0.1f, 1f);
+          lastPlayed = System.currentTimeMillis();
+        }
       }
     }
   }

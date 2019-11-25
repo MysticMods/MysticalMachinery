@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalmachinery:end_stone_generator"
+      "mysticalmachinery:sand_fabricator"
     ]
   },
   "criteria": {
-    "has_chorus_flower": {
+    "has_sand": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:chorus_flower"
+            "item": "minecraft:sand"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalmachinery:end_stone_generator"
+        "recipe": "mysticalmachinery:sand_fabricator"
       }
     }
   },
   "requirements": [
     [
-      "has_chorus_flower",
+      "has_sand",
       "has_the_recipe"
     ]
   ]

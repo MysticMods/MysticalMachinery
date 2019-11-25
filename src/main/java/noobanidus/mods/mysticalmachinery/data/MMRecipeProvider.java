@@ -9,6 +9,8 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
@@ -94,7 +96,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_blast_furnace", this.hasItem(Items.BLAST_FURNACE))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModBlocks.END_STONE_GENERATOR.get(), 1)
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.END_STONE_FABRICATOR.get(), 1)
         .patternLine("ECE")
         .patternLine("EME")
         .patternLine("PPP")
@@ -103,6 +105,117 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .key('E', Tags.Items.END_STONES)
         .key('P', Items.PURPUR_PILLAR)
         .addCriterion("has_chorus_flower", this.hasItem(Items.CHORUS_FLOWER))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.SAND_FABRICATOR.get(), 1)
+        .patternLine("TST")
+        .patternLine("TMT")
+        .patternLine("CHC")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.TERRACOTTA).get())
+        .key('T', MWTags.Items.TIN_INGOT)
+        .key('S', ItemTags.SAND)
+        .key('C', Items.CUT_SANDSTONE)
+        .key('H', Items.CHISELED_SANDSTONE)
+        .addCriterion("has_sand", this.hasItem(Items.SAND))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.RED_SAND_FABRICATOR.get(), 1)
+        .patternLine("TST")
+        .patternLine("TMT")
+        .patternLine("CHC")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.TERRACOTTA).get())
+        .key('T', MWTags.Items.TIN_INGOT)
+        .key('S', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+        .key('C', Items.CUT_SANDSTONE)
+        .key('H', Items.CHISELED_SANDSTONE)
+        .addCriterion("has_sand", this.hasItem(Items.SAND))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.CLAY_FABRICATOR.get(), 1)
+        .patternLine("BCB")
+        .patternLine("BMB")
+        .patternLine("YYY")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.TERRACOTTA).get())
+        .key('B', Tags.Items.INGOTS_BRICK)
+        .key('C', Items.CLAY)
+        .key('Y', Items.BRICKS)
+        .addCriterion("has_clay", this.hasItem(Items.CLAY_BALL))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.NETHERRACK_FABRICATOR.get(), 1)
+        .patternLine("GNG")
+        .patternLine("GMG")
+        .patternLine("BBB")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.NETHER).get())
+        .key('G', Tags.Items.INGOTS_GOLD)
+        .key('N', Tags.Items.NETHERRACK)
+        .key('B', Items.NETHER_BRICKS)
+        .addCriterion("has_netherrack", this.hasItem(Items.NETHERRACK))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.SOUL_SAND_FABRICATOR.get(), 1)
+        .patternLine("GNG")
+        .patternLine("gMg")
+        .patternLine("BBB")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.RED_NETHER).get())
+        .key('G', Tags.Items.INGOTS_GOLD)
+        .key('g', Tags.Items.STORAGE_BLOCKS_GOLD)
+        .key('N', Items.SOUL_SAND)
+        .key('B', Items.RED_NETHER_BRICKS)
+        .addCriterion("has_soul_sand", this.hasItem(Items.SOUL_SAND))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.SLIME_FABRICATOR.get(), 1)
+        .patternLine("SCS")
+        .patternLine("SMS")
+        .patternLine("GGG")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.SLIME).get())
+        .key('S', Items.SLIME_BALL)
+        .key('C', MWTags.Items.COPPER_BLOCK)
+        .key('G', Items.GREEN_GLAZED_TERRACOTTA)
+        .addCriterion("has_slime", this.hasItem(Items.SLIME_BALL))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.ICE_FABRICATOR.get(), 1)
+        .patternLine("QWQ")
+        .patternLine("QMQ")
+        .patternLine("LLL")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.QUICKSILVER).get())
+        .key('Q', MWTags.Items.QUICKSILVER_INGOT)
+        .key('W', Items.WATER_BUCKET)
+        .key('L', Items.LIGHT_BLUE_WOOL)
+        .addCriterion("has_quicksilver", this.hasItem(MWTags.Items.QUICKSILVER_INGOT))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.SNOW_FABRICATOR.get(), 1)
+        .patternLine("QWQ")
+        .patternLine("QMQ")
+        .patternLine("LLL")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.QUICKSILVER).get())
+        .key('Q', MWTags.Items.QUICKSILVER_INGOT)
+        .key('W', Items.WATER_BUCKET)
+        .key('L', Items.WHITE_WOOL)
+        .addCriterion("has_quicksilver", this.hasItem(MWTags.Items.QUICKSILVER_INGOT))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.DIRT_FABRICATOR.get(), 1)
+        .patternLine("DDD")
+        .patternLine("DMD")
+        .patternLine("BBB")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.STONE).get())
+        .key('D', Items.DIRT)
+        .key('B', ItemTags.STONE_BRICKS)
+        .addCriterion("has_dirt", this.hasItem(Items.DIRT))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.GRAVEL_FABRICATOR.get(), 1)
+        .patternLine("DDD")
+        .patternLine("DMD")
+        .patternLine("BBB")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.STONE).get())
+        .key('D', Items.GRAVEL)
+        .key('B', ItemTags.STONE_BRICKS)
+        .addCriterion("has_gravel", this.hasItem(Items.GRAVEL))
         .build(consumer);
   }
 

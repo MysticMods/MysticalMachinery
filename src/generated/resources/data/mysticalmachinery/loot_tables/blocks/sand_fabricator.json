@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mysticalmachinery:end_stone_generator"
+          "name": "mysticalmachinery:sand_fabricator"
         }
       ],
       "conditions": [

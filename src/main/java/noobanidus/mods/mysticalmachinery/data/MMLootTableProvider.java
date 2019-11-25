@@ -54,7 +54,17 @@ public class MMLootTableProvider extends LootTableProvider {
       }
 
       self(ModBlocks.STORED_HEAT_GENERATOR);
-      self(ModBlocks.END_STONE_GENERATOR);
+      self(ModBlocks.END_STONE_FABRICATOR);
+      self(ModBlocks.SAND_FABRICATOR);
+      self(ModBlocks.RED_SAND_FABRICATOR);
+      self(ModBlocks.CLAY_FABRICATOR);
+      self(ModBlocks.NETHERRACK_FABRICATOR);
+      self(ModBlocks.SOUL_SAND_FABRICATOR);
+      self(ModBlocks.SLIME_FABRICATOR);
+      self(ModBlocks.ICE_FABRICATOR);
+      self(ModBlocks.SNOW_FABRICATOR);
+      self(ModBlocks.DIRT_FABRICATOR);
+      self(ModBlocks.GRAVEL_FABRICATOR);
     }
 
     @Override

@@ -2,6 +2,7 @@ package noobanidus.mods.mysticalmachinery.blocks;
 
 import epicsquid.mysticalworld.MWTags;
 import net.minecraft.item.Item;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
@@ -30,7 +31,8 @@ public enum MachineFrame {
   LAPIS("lapis", Tags.Items.GEMS_LAPIS),
   REDSTONE("redstone", Tags.Items.DUSTS_REDSTONE),
   STONE("stone", Tags.Items.STONE),
-  REINFORCED("reinforced", Tags.Items.STORAGE_BLOCKS_IRON)
+  REINFORCED("reinforced", Tags.Items.STORAGE_BLOCKS_IRON),
+  SLIME("slime", MWTags.Items.SLIME)
   ;
 
   private String name;
