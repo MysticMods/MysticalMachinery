@@ -53,6 +53,7 @@ public class MMLootTableProvider extends LootTableProvider {
         self(block);
       }
 
+      self(ModBlocks.DRAGONFIRE_FORGE);
       self(ModBlocks.STORED_HEAT_GENERATOR);
       self(ModBlocks.END_STONE_FABRICATOR);
       self(ModBlocks.SAND_FABRICATOR);

@@ -9,7 +9,9 @@ import net.minecraftforge.fml.RegistryObject;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.blocks.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -25,8 +27,9 @@ public class ModBlocks {
 
   public static RegistryObject<StoredHeatGeneratorBlock> STORED_HEAT_GENERATOR = REGISTRY.registerBlock("stored_heat_generator", REGISTRY.block(StoredHeatGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5f).sound(SoundType.METAL)), ITEM_PROPS);
 
-  public static RegistryObject<EndStoneGeneratorBlock> END_STONE_FABRICATOR = REGISTRY.registerBlock("end_stone_fabricator", REGISTRY.block(EndStoneGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(4.5f).sound(SoundType.METAL)), ITEM_PROPS);
+  public static RegistryObject<DragonfireForgeBlock> DRAGONFIRE_FORGE = REGISTRY.registerBlock("dragonfire_forge", REGISTRY.block(DragonfireForgeBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(6f).sound(SoundType.METAL)), ITEM_PROPS);
 
+  public static RegistryObject<EndStoneGeneratorBlock> END_STONE_FABRICATOR = REGISTRY.registerBlock("end_stone_fabricator", REGISTRY.block(EndStoneGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(4.5f).sound(SoundType.METAL)), ITEM_PROPS);
   public static RegistryObject<BlockGeneratorBlock> SAND_FABRICATOR = REGISTRY.registerBlock("sand_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.SAND, 1000000, 5000, 50, 25), FABRICATOR_PROPS), ITEM_PROPS);
   public static RegistryObject<BlockGeneratorBlock> RED_SAND_FABRICATOR = REGISTRY.registerBlock("red_sand_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.RED_SAND, 1000000, 5000, 250, 45), FABRICATOR_PROPS), ITEM_PROPS);
   public static RegistryObject<BlockGeneratorBlock> CLAY_FABRICATOR = REGISTRY.registerBlock("clay_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.CLAY, 1000000, 5000, 400, 65), FABRICATOR_PROPS), ITEM_PROPS);
@@ -48,6 +51,8 @@ public class ModBlocks {
       MACHINE_FRAMES.put(type, frameObject);
     }
   }
+
+  public static List<Supplier<? extends Block>> BLOCKS_WITH_MODELS = Arrays.asList(ModBlocks.SAND_FABRICATOR, ModBlocks.RED_SAND_FABRICATOR, ModBlocks.CLAY_FABRICATOR, ModBlocks.NETHERRACK_FABRICATOR, ModBlocks.SOUL_SAND_FABRICATOR, ModBlocks.SLIME_FABRICATOR, ModBlocks.ICE_FABRICATOR, ModBlocks.SNOW_FABRICATOR, ModBlocks.DIRT_FABRICATOR, ModBlocks.GRAVEL_FABRICATOR, ModBlocks.END_STONE_FABRICATOR);
 
   public static void load() {
 

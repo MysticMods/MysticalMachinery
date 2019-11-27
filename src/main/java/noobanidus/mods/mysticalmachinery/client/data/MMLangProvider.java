@@ -27,19 +27,11 @@ public class MMLangProvider extends DeferredLanguageProvider {
 
     addItem(ModItems.HEAT_CAPACITOR);
     addItem(ModItems.SOLID_STATE_HEAT_CONVERTER);
+    addItem(ModItems.ENCHANTMENT_DUST);
+    addBlock(ModBlocks.DRAGONFIRE_FORGE);
     addBlock(ModBlocks.STORED_HEAT_GENERATOR);
-    addBlock(ModBlocks.END_STONE_FABRICATOR);
 
-    addBlock(ModBlocks.SAND_FABRICATOR);
-    addBlock(ModBlocks.RED_SAND_FABRICATOR);
-    addBlock(ModBlocks.CLAY_FABRICATOR);
-    addBlock(ModBlocks.NETHERRACK_FABRICATOR);
-    addBlock(ModBlocks.SOUL_SAND_FABRICATOR);
-    addBlock(ModBlocks.SLIME_FABRICATOR);
-    addBlock(ModBlocks.ICE_FABRICATOR);
-    addBlock(ModBlocks.SNOW_FABRICATOR);
-    addBlock(ModBlocks.DIRT_FABRICATOR);
-    addBlock(ModBlocks.GRAVEL_FABRICATOR);
+    ModBlocks.BLOCKS_WITH_MODELS.forEach(this::addBlock);
 
     add("mysticalmachinery.container.kiln", "Kiln");
     add("mysticalmachinery.jei.kiln", "Kiln Baking");
