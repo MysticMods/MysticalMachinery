@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "mysticalmachinery:block/dragonfire_forge"
+    },
+    "facing=south": {
+      "model": "mysticalmachinery:block/dragonfire_forge",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mysticalmachinery:block/dragonfire_forge",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "mysticalmachinery:block/dragonfire_forge",
+      "y": 90
+    }
+  }
+}
