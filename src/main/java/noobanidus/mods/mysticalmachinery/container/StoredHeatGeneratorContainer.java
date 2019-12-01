@@ -12,10 +12,12 @@ public class StoredHeatGeneratorContainer extends Container {
   protected final StoredHeatGeneratorTile tile;
   protected final IIntArray furnaceData;
 
+
   protected StoredHeatGeneratorContainer(@Nullable ContainerType<?> type, int id, StoredHeatGeneratorTile tile, IIntArray furnaceData) {
     super(type, id);
     this.tile = tile;
     this.furnaceData = furnaceData;
+
   }
 
   @Override

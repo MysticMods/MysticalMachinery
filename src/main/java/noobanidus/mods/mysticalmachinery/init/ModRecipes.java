@@ -6,13 +6,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.recipes.KilnRecipe;
+import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipe;
+
 import static noobanidus.mods.mysticalmachinery.MysticalMachinery.REGISTRY;
 import java.util.function.Supplier;
 
 public class ModRecipes {
   public static final IRecipeType<KilnRecipe> KILN_TYPE = IRecipeType.register(new ResourceLocation(MysticalMachinery.MODID, "kiln").toString());
+  public static final IRecipeType<SawmillRecipe> SAWMILL_TYPE = IRecipeType.register(new ResourceLocation(MysticalMachinery.MODID, "sawmill").toString());
 
   public static final RegistryObject<IRecipeSerializer<KilnRecipe>> KILN_SERIALIZER = REGISTRY.registerRecipeSerializer("kiln", KilnRecipe.Serializer::new);
+  public static final RegistryObject<IRecipeSerializer<SawmillRecipe>> SAWMILL_SERIALIZER = REGISTRY.registerRecipeSerializer("sawmill", SawmillRecipe.Serializer::new);
 
   public static void load () {
 

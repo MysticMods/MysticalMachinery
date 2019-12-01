@@ -62,7 +62,6 @@ public class KilnBlock extends AbstractFurnaceBlock {
     TileEntity te = world.getTileEntity(blockPos);
     if (te instanceof KilnTile) {
       playerEntity.openContainer((INamedContainerProvider) te);
-      playerEntity.addStat(Stats.INTERACT_WITH_FURNACE);
     }
   }
 

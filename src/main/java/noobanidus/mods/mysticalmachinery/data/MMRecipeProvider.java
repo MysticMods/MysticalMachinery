@@ -20,6 +20,7 @@ import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 import noobanidus.mods.mysticalmachinery.init.ModItems;
 
+import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -216,6 +217,35 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .key('D', Items.GRAVEL)
         .key('B', ItemTags.STONE_BRICKS)
         .addCriterion("has_gravel", this.hasItem(Items.GRAVEL))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_LEAD.get(), 1)
+        .patternLine("LRL")
+        .patternLine("LBL")
+        .patternLine("LRL")
+        .key('L', MWTags.Items.LEAD_INGOT)
+        .key('R', Tags.Items.DUSTS_REDSTONE)
+        .key('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+        .addCriterion("has_lead", this.hasItem(MWTags.Items.LEAD_INGOT))
+        .addCriterion("has_redstone", this.hasItem(Tags.Items.DUSTS_REDSTONE))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_COPPER.get(), 1)
+        .patternLine("CLC")
+        .patternLine("CLC")
+        .patternLine("CLC")
+        .key('C', MWTags.Items.COPPER_INGOT)
+        .key('L', ModItems.POWERCELL_LEAD.get())
+        .addCriterion("has_lead", this.hasItem(ModItems.POWERCELL_LEAD.get()))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_SILVER.get(), 1)
+        .patternLine("CLC")
+        .patternLine("CLC")
+        .patternLine("CLC")
+        .key('C', MWTags.Items.SILVER_INGOT)
+        .key('L', ModItems.POWERCELL_COPPER.get())
+        .addCriterion("has_lead", this.hasItem(ModItems.POWERCELL_COPPER.get()))
         .build(consumer);
   }
 

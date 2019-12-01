@@ -18,6 +18,7 @@ public class MMLangProvider extends DeferredLanguageProvider {
     addItemGroup(MysticalMachinery.ITEM_GROUP, "Mystical Machinery");
 
     addBlock(ModBlocks.KILN);
+    addBlock(ModBlocks.SAWMILL);
 
     for (RegistryObject<MachineFrameBlock> type : ModBlocks.MACHINE_FRAMES.values()) {
       addBlock(type);
@@ -28,6 +29,10 @@ public class MMLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.HEAT_CAPACITOR);
     addItem(ModItems.SOLID_STATE_HEAT_CONVERTER);
     addItem(ModItems.ENCHANTMENT_DUST);
+    addItem(ModItems.POWERCELL_LEAD);
+    addItem(ModItems.POWERCELL_COPPER);
+    addItem(ModItems.POWERCELL_SILVER);
+
     addBlock(ModBlocks.DRAGONFIRE_FORGE);
     addBlock(ModBlocks.STORED_HEAT_GENERATOR);
 
@@ -41,6 +46,7 @@ public class MMLangProvider extends DeferredLanguageProvider {
     add("mysticalmachinery.subtitles.block.kiln.fire_crackle", "Kiln crackles");
     add("mysticalmachinery.subtitles.block.cookie_generator.munch", "Generator munches");
     add("mysticalmachinery.subtitles.block.end_stone_generator.generate", "End Stone Generator operates");
+    add("mysticalmachinery.energy_item.tooltip", "Energy: %s/%s FE");
     // TODO: Containers
   }
 }

@@ -48,6 +48,7 @@ public class MMLootTableProvider extends LootTableProvider {
     protected void addTables() {
       self(ModBlocks.KILN);
       self(ModBlocks.COOKIE_GENERATOR);
+      self(ModBlocks.SAWMILL);
 
       for (RegistryObject<MachineFrameBlock> block : ModBlocks.MACHINE_FRAMES.values()) {
         self(block);

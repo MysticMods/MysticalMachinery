@@ -13,6 +13,7 @@ import net.minecraftforge.fml.RegistryObject;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrameBlock;
+import noobanidus.mods.mysticalmachinery.blocks.SawmillBlock;
 import noobanidus.mods.mysticalmachinery.blocks.StoredHeatGeneratorBlock;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 
@@ -34,6 +35,8 @@ public class MMBlockStateProvider extends DeferredBlockStateProvider {
     horizontalModel(ModBlocks.DRAGONFIRE_FORGE);
 
     horizontalBooleanStateBlock(ModBlocks.STORED_HEAT_GENERATOR, booleanStateLoc("stored_heat_generator_heat_%s_rf_%s"), booleanStateDescriptor(StoredHeatGeneratorBlock.HEATED), booleanStateDescriptor(StoredHeatGeneratorBlock.POWERED));
+
+    horizontalBooleanStateBlock(ModBlocks.SAWMILL, booleanStateLoc("sawmill_%s"), booleanStateDescriptor(SawmillBlock.LIT));
 
     ModBlocks.BLOCKS_WITH_MODELS.forEach(this::simpleModel);
 
