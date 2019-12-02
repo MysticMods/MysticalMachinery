@@ -32,6 +32,8 @@ public class MMLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.POWERCELL_LEAD);
     addItem(ModItems.POWERCELL_COPPER);
     addItem(ModItems.POWERCELL_SILVER);
+    addItem(ModItems.POWERCELL_TIN);
+    addItem(ModItems.POWERCELL_QUICKSILVER);
 
     addBlock(ModBlocks.DRAGONFIRE_FORGE);
     addBlock(ModBlocks.STORED_HEAT_GENERATOR);

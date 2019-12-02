@@ -2,16 +2,26 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalmachinery:silver_power_cell"
+      "mysticalmachinery:tin_power_cell"
     ]
   },
   "criteria": {
-    "has_copper": {
+    "has_tin": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "mysticalmachinery:copper_power_cell"
+            "tag": "forge:ingots/tin"
+          }
+        ]
+      }
+    },
+    "has_redstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:dusts/redstone"
           }
         ]
       }
@@ -19,13 +29,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalmachinery:silver_power_cell"
+        "recipe": "mysticalmachinery:tin_power_cell"
       }
     }
   },
   "requirements": [
     [
-      "has_copper",
+      "has_tin",
+      "has_redstone",
       "has_the_recipe"
     ]
   ]

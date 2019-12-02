@@ -17,9 +17,11 @@ public class MMItemModelProvider extends DeferredItemModelProvider {
   @Override
   protected void registerModels() {
     generated(ModItems.ENCHANTMENT_DUST);
+    generated(ModItems.POWERCELL_TIN);
     generated(ModItems.POWERCELL_COPPER);
     generated(ModItems.POWERCELL_LEAD);
     generated(ModItems.POWERCELL_SILVER);
+    generated(ModItems.POWERCELL_QUICKSILVER);
 
     blockItem(ModBlocks.KILN);
 

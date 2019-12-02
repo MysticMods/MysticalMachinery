@@ -219,13 +219,24 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_gravel", this.hasItem(Items.GRAVEL))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_LEAD.get(), 1)
+    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_TIN.get(), 1)
         .patternLine("LRL")
         .patternLine("LBL")
         .patternLine("LRL")
         .key('L', MWTags.Items.LEAD_INGOT)
         .key('R', Tags.Items.DUSTS_REDSTONE)
         .key('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+        .addCriterion("has_tin", this.hasItem(MWTags.Items.TIN_INGOT))
+        .addCriterion("has_redstone", this.hasItem(Tags.Items.DUSTS_REDSTONE))
+        .build(consumer);
+
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_LEAD.get(), 1)
+        .patternLine("LRL")
+        .patternLine("LRL")
+        .patternLine("LRL")
+        .key('L', MWTags.Items.LEAD_INGOT)
+        .key('R', ModItems.POWERCELL_TIN.get())
         .addCriterion("has_lead", this.hasItem(MWTags.Items.LEAD_INGOT))
         .addCriterion("has_redstone", this.hasItem(Tags.Items.DUSTS_REDSTONE))
         .build(consumer);
@@ -245,7 +256,17 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .patternLine("CLC")
         .key('C', MWTags.Items.SILVER_INGOT)
         .key('L', ModItems.POWERCELL_COPPER.get())
-        .addCriterion("has_lead", this.hasItem(ModItems.POWERCELL_COPPER.get()))
+        .addCriterion("has_copper", this.hasItem(ModItems.POWERCELL_COPPER.get()))
+        .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_QUICKSILVER.get(), 1)
+        .patternLine("CCC")
+        .patternLine("LBL")
+        .patternLine("CLC")
+        .key('C', MWTags.Items.QUICKSILVER_INGOT)
+        .key('L', ModItems.POWERCELL_SILVER.get())
+        .key('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+        .addCriterion("has_silver", this.hasItem(ModItems.POWERCELL_COPPER.get()))
         .build(consumer);
   }
 

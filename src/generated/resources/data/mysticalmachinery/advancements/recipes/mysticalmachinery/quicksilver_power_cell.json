@@ -2,11 +2,11 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalmachinery:silver_power_cell"
+      "mysticalmachinery:quicksilver_power_cell"
     ]
   },
   "criteria": {
-    "has_copper": {
+    "has_silver": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalmachinery:silver_power_cell"
+        "recipe": "mysticalmachinery:quicksilver_power_cell"
       }
     }
   },
   "requirements": [
     [
-      "has_copper",
+      "has_silver",
       "has_the_recipe"
     ]
   ]

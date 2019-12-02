@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "LRL",
-    "LRL",
+    "LBL",
     "LRL"
   ],
   "key": {
@@ -10,10 +10,13 @@
       "tag": "forge:ingots/lead"
     },
     "R": {
-      "item": "mysticalmachinery:tin_power_cell"
+      "tag": "forge:dusts/redstone"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/redstone"
     }
   },
   "result": {
-    "item": "mysticalmachinery:lead_power_cell"
+    "item": "mysticalmachinery:tin_power_cell"
   }
 }
