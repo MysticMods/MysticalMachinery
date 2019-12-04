@@ -8,10 +8,13 @@ import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ICraftingRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
@@ -21,6 +24,7 @@ import noobanidus.mods.mysticalmachinery.container.KilnContainer;
 import noobanidus.mods.mysticalmachinery.container.SawmillContainer;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
+import noobanidus.mods.mysticalmachinery.recipes.FakeCraftingInventory;
 import noobanidus.mods.mysticalmachinery.recipes.KilnRecipe;
 import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipe;
 
@@ -66,8 +70,21 @@ public class MMJEIPlugin implements IModPlugin {
     List<KilnRecipe> recipes = new ArrayList<>();
     allRecipes.stream().filter(o -> o instanceof KilnRecipe).forEach(o -> recipes.add((KilnRecipe) o));
     List<SawmillRecipe> sawmillRecipes = new ArrayList<>();
-    allRecipes.stream().filter(o -> o instanceof SawmillRecipe).forEach(o -> sawmillRecipes.add((SawmillRecipe) o));
     registration.addRecipes(recipes, KilnCategory.UID);
+
+    FakeCraftingInventory fake = new FakeCraftingInventory();
+    for (Item item : ItemTags.LOGS.getAllElements()) {
+      fake.setInventorySlotContents(0, new ItemStack(item));
+      List<ICraftingRecipe> plankRecipes = manager.getRecipes(IRecipeType.CRAFTING, fake, world);
+      for (ICraftingRecipe recipe : plankRecipes) {
+        ItemStack output = recipe.getRecipeOutput();
+        if (output.getItem().isIn(ItemTags.PLANKS)) {
+          sawmillRecipes.add(SawmillRecipe.logRecipe(item, output.getItem()));
+        }
+      }
+    }
+
+    allRecipes.stream().filter(o -> o instanceof SawmillRecipe).forEach(o -> sawmillRecipes.add((SawmillRecipe) o));
     registration.addRecipes(sawmillRecipes, SawmillCategory.UID);
   }
 

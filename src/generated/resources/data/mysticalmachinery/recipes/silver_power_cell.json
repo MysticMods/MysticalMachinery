@@ -1,16 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "CLC",
-    "CLC",
-    "CLC"
+    "CPC",
+    "RPR",
+    "CPC"
   ],
   "key": {
     "C": {
       "tag": "forge:ingots/silver"
     },
-    "L": {
+    "P": {
       "item": "mysticalmachinery:copper_power_cell"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
     }
   },
   "result": {

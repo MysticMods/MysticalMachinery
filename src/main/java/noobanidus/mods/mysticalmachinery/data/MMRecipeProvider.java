@@ -9,18 +9,19 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+import noobanidus.mods.mysticalmachinery.MMTags;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 import noobanidus.mods.mysticalmachinery.init.ModItems;
+import noobanidus.mods.mysticalmachinery.recipes.KilnRecipeBuilder;
+import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipeBuilder;
 
-import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -41,6 +42,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .build(consumer);
 
     kilnRecipes(consumer);
+    sawmillRecipes(consumer);
 
     for (MachineFrame type : MachineFrame.values()) {
       ShapedRecipeBuilder.shapedRecipe(ModBlocks.MACHINE_FRAMES.get(type).get(), 1)
@@ -219,43 +221,56 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_gravel", this.hasItem(Items.GRAVEL))
         .build(consumer);
 
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.SAWMILL.get(), 1)
+        .patternLine(" S ")
+        .patternLine("LML")
+        .patternLine(" F ")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.WOOD).get())
+        .key('L', ItemTags.LOGS)
+        .key('S', Items.STONECUTTER)
+        .key('F', Items.FURNACE)
+        .addCriterion("has_wood", this.hasItem(ItemTags.PLANKS))
+        .build(consumer);
+
     ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_TIN.get(), 1)
         .patternLine("LRL")
-        .patternLine("LBL")
+        .patternLine("RBR")
         .patternLine("LRL")
-        .key('L', MWTags.Items.LEAD_INGOT)
+        .key('L', MWTags.Items.TIN_INGOT)
         .key('R', Tags.Items.DUSTS_REDSTONE)
         .key('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
         .addCriterion("has_tin", this.hasItem(MWTags.Items.TIN_INGOT))
         .addCriterion("has_redstone", this.hasItem(Tags.Items.DUSTS_REDSTONE))
         .build(consumer);
 
-
     ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_LEAD.get(), 1)
         .patternLine("LRL")
-        .patternLine("LRL")
+        .patternLine("RBR")
         .patternLine("LRL")
         .key('L', MWTags.Items.LEAD_INGOT)
-        .key('R', ModItems.POWERCELL_TIN.get())
+        .key('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+        .key('R', Tags.Items.DUSTS_REDSTONE)
         .addCriterion("has_lead", this.hasItem(MWTags.Items.LEAD_INGOT))
         .addCriterion("has_redstone", this.hasItem(Tags.Items.DUSTS_REDSTONE))
         .build(consumer);
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_COPPER.get(), 1)
-        .patternLine("CLC")
-        .patternLine("CLC")
-        .patternLine("CLC")
+        .patternLine("CPC")
+        .patternLine("RPR")
+        .patternLine("CPC")
         .key('C', MWTags.Items.COPPER_INGOT)
-        .key('L', ModItems.POWERCELL_LEAD.get())
+        .key('P', MMTags.Items.BASE_POWERCELL)
+        .key('R', Tags.Items.DUSTS_REDSTONE)
         .addCriterion("has_lead", this.hasItem(ModItems.POWERCELL_LEAD.get()))
         .build(consumer);
 
     ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_SILVER.get(), 1)
-        .patternLine("CLC")
-        .patternLine("CLC")
-        .patternLine("CLC")
+        .patternLine("CPC")
+        .patternLine("RPR")
+        .patternLine("CPC")
         .key('C', MWTags.Items.SILVER_INGOT)
-        .key('L', ModItems.POWERCELL_COPPER.get())
+        .key('P', ModItems.POWERCELL_COPPER.get())
+        .key('R', Tags.Items.DUSTS_REDSTONE)
         .addCriterion("has_copper", this.hasItem(ModItems.POWERCELL_COPPER.get()))
         .build(consumer);
 
@@ -268,6 +283,24 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .key('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
         .addCriterion("has_silver", this.hasItem(ModItems.POWERCELL_COPPER.get()))
         .build(consumer);
+  }
+
+  private void sawmillRecipes (Consumer<IFinishedRecipe> consumer) {
+    int stick = 2;
+    sawmill(Tags.Items.RODS_WOODEN, ModItems.SAWDUST, stick, consumer);
+    sawmill(ItemTags.PLANKS, Items.STICK, 3, consumer);
+
+    sawmill(ItemTags.WOODEN_BUTTONS, ModItems.SAWDUST, stick * 3, consumer);
+    sawmill(ItemTags.WOODEN_SLABS, ModItems.SAWDUST, stick, consumer);
+    sawmill(ItemTags.WOODEN_DOORS, ModItems.SAWDUST, stick * 6, consumer);
+    sawmill(ItemTags.WOODEN_FENCES, ModItems.SAWDUST, stick * 5, consumer);
+    sawmill(ItemTags.WOODEN_STAIRS, ModItems.SAWDUST, stick * 5, consumer);
+    sawmill(ItemTags.WOODEN_TRAPDOORS, ModItems.SAWDUST, stick * 9, consumer);
+    sawmill(ItemTags.WOODEN_PRESSURE_PLATES, ModItems.SAWDUST, stick * 6, consumer);
+    sawmill(Tags.Items.CHESTS_WOODEN, ModItems.SAWDUST, stick * 24, consumer);
+    sawmill(Tags.Items.FENCES_WOODEN, ModItems.SAWDUST, stick * 5, consumer);
+    sawmill(Tags.Items.FENCE_GATES_WOODEN, ModItems.SAWDUST, stick * 10, consumer);
+    // Other recipes are handled at registration for log-specific stuff
   }
 
   private void kilnRecipes(Consumer<IFinishedRecipe> consumer) {
@@ -307,7 +340,6 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
     kiln(Items.RED_TERRACOTTA, Items.RED_GLAZED_TERRACOTTA, consumer);
     kiln(Items.WHITE_TERRACOTTA, Items.WHITE_GLAZED_TERRACOTTA, consumer);
     kiln(Items.YELLOW_TERRACOTTA, Items.YELLOW_GLAZED_TERRACOTTA, consumer);
-
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(Supplier<? extends T> source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
@@ -333,4 +365,29 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(T source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
     KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source), result.get(), 0.35f, 100).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_kiln");
   }
+
+  protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Supplier<? extends T> source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source.get()), result.get(), 0.35f, 100).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source.get()));
+  }
+
+  protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(T source, T result, int count, Consumer<IFinishedRecipe> consumer) {
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source), result, count, 0.35f, 100).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source));
+  }
+
+  protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Tag<Item> source, T result, int count, Consumer<IFinishedRecipe> consumer) {
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result, count, 0.35f, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source.getId()));
+  }
+
+  protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Tag<Item> source, Supplier<? extends T> result, int count, Consumer<IFinishedRecipe> consumer) {
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result.get(), count, 0.35f, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source.getId()));
+  }
+
+  protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Supplier<? extends T> source, T result, int count, Consumer<IFinishedRecipe> consumer) {
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source.get()), result, count, 0.35f, 100).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source.get()));
+  }
+
+  protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(T source, Supplier<? extends T> result, int count, Consumer<IFinishedRecipe> consumer) {
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source), result.get(), count, 0.35f, 100).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source));
+  }
+
 }

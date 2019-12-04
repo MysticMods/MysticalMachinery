@@ -2,12 +2,12 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "LRL",
-    "LBL",
+    "RBR",
     "LRL"
   ],
   "key": {
     "L": {
-      "tag": "forge:ingots/lead"
+      "tag": "forge:ingots/tin"
     },
     "R": {
       "tag": "forge:dusts/redstone"

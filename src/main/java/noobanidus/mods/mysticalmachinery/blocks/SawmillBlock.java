@@ -33,7 +33,7 @@ public class SawmillBlock extends AbstractFurnaceBlock {
   @Override
   protected void interactWith(World world, BlockPos pos, PlayerEntity player) {
     TileEntity te = world.getTileEntity(pos);
-    if (te instanceof KilnTile) {
+    if (te instanceof SawmillTile) {
       player.openContainer((INamedContainerProvider) te);
     }
   }

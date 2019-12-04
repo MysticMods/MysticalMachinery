@@ -18,6 +18,7 @@ public class StoredHeatGeneratorScreen extends ContainerScreen<StoredHeatGenerat
     super(screenContainer, inv, titleIn);
   }
 
+  @Override
   public void render(int p_render_1_, int p_render_2_, float p_render_3_) {
     this.renderHoveredToolTip(p_render_1_, p_render_2_);
   }
@@ -25,6 +26,7 @@ public class StoredHeatGeneratorScreen extends ContainerScreen<StoredHeatGenerat
   /**
    * Draw the foreground layer for the GuiContainer (everything in front of the items)
    */
+  @Override
   protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
     String s = this.title.getFormattedText();
     this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 4210752);
@@ -34,6 +36,7 @@ public class StoredHeatGeneratorScreen extends ContainerScreen<StoredHeatGenerat
   /**
    * Draws the background layer of this container (behind the items).
    */
+  @Override
   protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
     GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
     this.minecraft.getTextureManager().bindTexture(guiTexture);

@@ -3,9 +3,9 @@ package noobanidus.mods.mysticalmachinery.data;
 import epicsquid.mysticallib.data.DeferredItemTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Items;
+import noobanidus.mods.mysticalmachinery.init.ModItems;
 
-import static noobanidus.mods.mysticalmachinery.MMTags.Items.COOKIES;
-import static noobanidus.mods.mysticalmachinery.MMTags.Items.GENERATOR_COOKIES;
+import static noobanidus.mods.mysticalmachinery.MMTags.Items.*;
 
 public class MMItemTagsProvider extends DeferredItemTagsProvider {
   public MMItemTagsProvider(DataGenerator generatorIn) {
@@ -16,5 +16,6 @@ public class MMItemTagsProvider extends DeferredItemTagsProvider {
   protected void registerTags() {
     addItemsToTag(COOKIES, () -> Items.COOKIE);
     appendToTag(GENERATOR_COOKIES, COOKIES);
+    addItemsToTag(BASE_POWERCELL, ModItems.POWERCELL_LEAD, ModItems.POWERCELL_TIN);
   }
 }

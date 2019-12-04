@@ -41,7 +41,9 @@ public class MMLangProvider extends DeferredLanguageProvider {
     ModBlocks.BLOCKS_WITH_MODELS.forEach(this::addBlock);
 
     add("mysticalmachinery.container.kiln", "Kiln");
+    add("mysticalmachinery.container.sawmill", "Sawmill");
     add("mysticalmachinery.jei.kiln", "Kiln Baking");
+    add("mysticalmachinery.jei.sawmill", "Sawing");
     add("mysticalmachinery.tile.cookie_generator.contains", "Contains %s/%sFCE (Forge Cookie Energy)");
     add("mysticalmachinery.tile.end_stone_generator.contains", "Contains %s End Stone (%s/%s FE)");
     add("mysticalmachinery.tile.block_generator.contains", "Contains %s %s (%s/%s FE)");

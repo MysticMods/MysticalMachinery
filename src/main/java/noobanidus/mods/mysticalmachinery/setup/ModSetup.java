@@ -17,7 +17,7 @@ public class ModSetup {
   public void init(FMLCommonSetupEvent event) {
   }
 
-  public void gatherData (GatherDataEvent event) {
+  public void gatherData(GatherDataEvent event) {
     DataGenerator gen = event.getGenerator();
     if (event.includeClient()) {
       gen.addProvider(new MMBlockStateProvider(gen, event.getExistingFileHelper()));

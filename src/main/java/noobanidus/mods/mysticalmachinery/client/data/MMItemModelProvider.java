@@ -22,6 +22,7 @@ public class MMItemModelProvider extends DeferredItemModelProvider {
     generated(ModItems.POWERCELL_LEAD);
     generated(ModItems.POWERCELL_SILVER);
     generated(ModItems.POWERCELL_QUICKSILVER);
+    generated(ModItems.SAWDUST);
 
     blockItem(ModBlocks.KILN);
 
