@@ -5,7 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -17,11 +19,18 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.mods.mysticalmachinery.tiles.DragonfireForgeTile;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class DragonfireForgeBlock extends Block {
@@ -125,5 +134,13 @@ public class DragonfireForgeBlock extends Block {
     if (rand.nextInt(3) == 0) {
       worldIn.addParticle(ParticleTypes.DRAGON_BREATH, d0 + d3 + d12, d1 + 0.05, d2 + d4 + d13, 0.0D, 0.0D, 0.0D);
     }
+  }
+
+  @Override
+  @OnlyIn(Dist.CLIENT)
+  public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    super.addInformation(stack, worldIn, tooltip, flagIn);
+    tooltip.add(new StringTextComponent(""));
+    tooltip.add(new StringTextComponent("DOES NOTHING RIGHT NOW").setStyle(new Style().setColor(TextFormatting.RED).setBold(true)));
   }
 }

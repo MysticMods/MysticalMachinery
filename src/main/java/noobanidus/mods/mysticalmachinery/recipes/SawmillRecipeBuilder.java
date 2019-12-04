@@ -101,7 +101,7 @@ public class SawmillRecipeBuilder extends RecipeBuilder<SawmillRecipe> {
       json.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
       json.addProperty("experience", this.experience);
       json.addProperty("cookingtime", this.cookingTime);
-      json.addProperty("count", this.count);
+      json.addProperty("itemcount", this.count);
     }
 
     @Override
