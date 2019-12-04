@@ -1,0 +1,10 @@
+{
+  "type": "mysticalmachinery:sawmill",
+  "ingredient": {
+    "tag": "forge:fences/wooden"
+  },
+  "result": "mysticalmachinery:sawdust",
+  "experience": 0.35,
+  "cookingtime": 100,
+  "itemcount": 10
+}
