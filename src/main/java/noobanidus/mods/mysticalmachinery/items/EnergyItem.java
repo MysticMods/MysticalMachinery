@@ -1,13 +1,15 @@
 package noobanidus.mods.mysticalmachinery.items;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -94,6 +96,44 @@ public class EnergyItem extends Item {
     return MathHelper.hsvToRGB((1 + charge(stack)) / 3.0f, 1.0f, 1.0f);
   }
 
+  @Override
+  public ActionResultType onItemUse(ItemUseContext context) {
+    /*PlayerEntity player = context.getPlayer();
+    if (player == null) {
+      return ActionResultType.PASS;
+    }
+    World world = context.getWorld();
+    Hand hand = context.getHand();
+    ItemStack stack = player.getHeldItem(hand);
+    if (stack.getItem() == this) {
+      IEnergyStorage storage = stack.getCapability(CapabilityEnergy.ENERGY).orElseThrow(IllegalStateException::new);
+      final int amount = storage.extractEnergy(output, true);
+      if (amount == 0) {
+        return ActionResultType.PASS;
+      }
+      BlockPos pos = context.getPos();
+      TileEntity te = world.getTileEntity(pos);
+      if (te != null) {
+        te.getCapability(CapabilityEnergy.ENERGY).ifPresent((cap) -> {
+          int tally = 0;
+          int count = 0;
+          while (count < 10) {
+            tally += cap.receiveEnergy(amount - tally, false);
+            count++;
+            if (tally == amount) {
+              break;
+            }
+          }
+          storage.extractEnergy(tally, false);
+        });
+        if (te.getCapability(CapabilityEnergy.ENERGY).isPresent()) {
+          return ActionResultType.SUCCESS;
+        }
+      }
+    }*/
+    return super.onItemUse(context);
+  }
+
   public static class EnergyItemCapability extends EnergyStorage {
     private final ItemStack stack;
 
@@ -103,29 +143,27 @@ public class EnergyItem extends Item {
     }
 
     @Override
-    public int receiveEnergy(int maxReceive, boolean simulate)
-    {
-        if (!canReceive())
-            return 0;
+    public int receiveEnergy(int maxReceive, boolean simulate) {
+      if (!canReceive())
+        return 0;
 
-        int energy = getEnergyStored();
-        int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
-        if (!simulate)
-          setEnergy(getEnergyStored() + energyReceived);
-        return energyReceived;
+      int energy = getEnergyStored();
+      int energyReceived = Math.min(capacity - energy, Math.min(this.maxReceive, maxReceive));
+      if (!simulate)
+        setEnergy(getEnergyStored() + energyReceived);
+      return energyReceived;
     }
 
     @Override
-    public int extractEnergy(int maxExtract, boolean simulate)
-    {
-        if (!canExtract())
-            return 0;
+    public int extractEnergy(int maxExtract, boolean simulate) {
+      if (!canExtract())
+        return 0;
 
-        int energy = getEnergyStored();
-        int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
-        if (!simulate)
-            setEnergy(getEnergyStored() - energyExtracted);
-        return energyExtracted;
+      int energy = getEnergyStored();
+      int energyExtracted = Math.min(energy, Math.min(this.maxExtract, maxExtract));
+      if (!simulate)
+        setEnergy(getEnergyStored() - energyExtracted);
+      return energyExtracted;
     }
 
     @Override
@@ -133,7 +171,7 @@ public class EnergyItem extends Item {
       return stack.getOrCreateTag().getInt("Energy");
     }
 
-    private void setEnergy (int amount) {
+    private void setEnergy(int amount) {
       stack.getOrCreateTag().putInt("Energy", amount);
     }
   }

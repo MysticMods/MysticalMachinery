@@ -17,7 +17,7 @@ public class ModItems {
   public static final RegistryObject<Item> SAWDUST = REGISTRY.registerItem("sawdust", REGISTRY.item((b) -> new Item(b) {
     @Override
     public int getBurnTime(ItemStack itemStack) {
-      return 10;
+      return 34;
     }
   }, () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP)));
 

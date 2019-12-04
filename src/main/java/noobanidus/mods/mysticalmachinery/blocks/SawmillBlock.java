@@ -15,7 +15,7 @@ import noobanidus.mods.mysticalmachinery.tiles.SawmillTile;
 
 import javax.annotation.Nullable;
 
-public class SawmillBlock extends AbstractFurnaceBlock {
+public class SawmillBlock extends AbstractFastFurnaceBlock {
   public SawmillBlock(Properties properties) {
     super(properties);
   }

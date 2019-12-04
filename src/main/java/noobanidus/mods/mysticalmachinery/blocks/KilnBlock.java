@@ -28,23 +28,19 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class KilnBlock extends AbstractFurnaceBlock {
-  private static VoxelShape SHAPE = null;
+public class KilnBlock extends AbstractFastFurnaceBlock {
+  private static VoxelShape SHAPE = VoxelUtil.multiOr(Block.makeCuboidShape(0.0, 0.0, 0.0, 16.0, 10.0, 16.0),
+      Block.makeCuboidShape(1.0, 10.0, 1.0, 15.0, 12.0, 15.0),
+      Block.makeCuboidShape(2.0, 12.0, 2.0, 14.0, 14.0, 14.0),
+      Block.makeCuboidShape(5.0, 14.0, 5.0, 11.0, 18.0, 11.0),
+      Block.makeCuboidShape(4.0, 18.0, 4.0, 12.0, 19.0, 12.0),
+      Block.makeCuboidShape(4.0, 19.0, 11.0, 12.0, 20.0, 12.0),
+      Block.makeCuboidShape(4.0, 19.0, 4.0, 12.0, 20.0, 5.0),
+      Block.makeCuboidShape(4.0, 19.0, 5.0, 5.0, 20.0, 11.0),
+      Block.makeCuboidShape(11.0, 19.0, 5.0, 12.0, 20.0, 11.0));
 
   @Override
   public VoxelShape getShape(BlockState p_220053_1_, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-    if (SHAPE == null) {
-      VoxelShape shape1 = Block.makeCuboidShape(0.0, 0.0, 0.0, 16.0, 10.0, 16.0);
-      VoxelShape shape2 = Block.makeCuboidShape(1.0, 10.0, 1.0, 15.0, 12.0, 15.0);
-      VoxelShape shape3 = Block.makeCuboidShape(2.0, 12.0, 2.0, 14.0, 14.0, 14.0);
-      VoxelShape shape4 = Block.makeCuboidShape(5.0, 14.0, 5.0, 11.0, 18.0, 11.0);
-      VoxelShape shape5 = Block.makeCuboidShape(4.0, 18.0, 4.0, 12.0, 19.0, 12.0);
-      VoxelShape shape6 = Block.makeCuboidShape(4.0, 19.0, 11.0, 12.0, 20.0, 12.0);
-      VoxelShape shape7 = Block.makeCuboidShape(4.0, 19.0, 4.0, 12.0, 20.0, 5.0);
-      VoxelShape shape8 = Block.makeCuboidShape(4.0, 19.0, 5.0, 5.0, 20.0, 11.0);
-      VoxelShape shape9 = Block.makeCuboidShape(11.0, 19.0, 5.0, 12.0, 20.0, 11.0);
-      SHAPE = VoxelUtil.multiOr(shape1, shape2, shape3, shape4, shape5, shape6, shape7, shape8, shape9);
-    }
     return SHAPE;
   }
 
@@ -95,10 +91,5 @@ public class KilnBlock extends AbstractFurnaceBlock {
         worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5D, pos.getY() + 1.6D, pos.getZ() + 0.5, 0.0D, 0.03D, 0.0D);
       }
     }
-  }
-
-  @Override
-  public boolean isSolid(BlockState p_200124_1_) {
-    return super.isSolid(p_200124_1_);
   }
 }
