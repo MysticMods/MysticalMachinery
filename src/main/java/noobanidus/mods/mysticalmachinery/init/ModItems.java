@@ -9,10 +9,10 @@ import noobanidus.mods.mysticalmachinery.items.EnergyItem;
 import static noobanidus.mods.mysticalmachinery.MysticalMachinery.REGISTRY;
 
 public class ModItems {
-  public static final RegistryObject<Item> HEAT_CAPACITOR = REGISTRY.registerItem("heat_capacitor", REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP)));
-  public static final RegistryObject<Item> SOLID_STATE_HEAT_CONVERTER = REGISTRY.registerItem("solid_state_heat_converter", REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP)));
+  /*public static final RegistryObject<Item> HEAT_CAPACITOR = REGISTRY.registerItem("heat_capacitor", REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP)));
+  public static final RegistryObject<Item> SOLID_STATE_HEAT_CONVERTER = REGISTRY.registerItem("solid_state_heat_converter", REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP)));*/
 
-  public static final RegistryObject<Item> ENCHANTMENT_DUST = REGISTRY.registerItem("enchantment_dust", REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP)));
+  //public static final RegistryObject<Item> ENCHANTMENT_DUST = REGISTRY.registerItem("enchantment_dust", REGISTRY.item(Item::new, () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP)));
 
   public static final RegistryObject<Item> SAWDUST = REGISTRY.registerItem("sawdust", REGISTRY.item((b) -> new Item(b) {
     @Override
@@ -31,7 +31,7 @@ public class ModItems {
 
   public static final RegistryObject<EnergyItem> POWERCELL_QUICKSILVER = REGISTRY.registerItem("quicksilver_power_cell", REGISTRY.item((b) -> new EnergyItem(b, 6750000, 25000, 25000), () -> new Item.Properties().group(MysticalMachinery.ITEM_GROUP)));
 
-  public static void load () {
+  public static void load() {
 
   }
 }

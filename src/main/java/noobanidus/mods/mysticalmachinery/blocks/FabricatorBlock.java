@@ -18,20 +18,23 @@ import noobanidus.mods.mysticalmachinery.tiles.BlockGeneratorTile;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-public class BlockGeneratorBlock extends Block {
+public class FabricatorBlock extends Block {
   private final Supplier<? extends Block> block;
   private final int MAX_FE;
   private final int MAX_FE_TRANSFER;
   private final int FE_OPERATION;
   private final int FREQUENCY;
 
-  public BlockGeneratorBlock(Properties properties, Supplier<? extends Block> block, int MAX_FE, int MAX_FE_TRANSFER, int FE_OPERATION, int FREQUENCY) {
+  public FabricatorBlock(Properties properties, Supplier<? extends Block> block, int ... values) {
     super(properties);
     this.block = block;
-    this.MAX_FE = MAX_FE;
-    this.MAX_FE_TRANSFER = MAX_FE_TRANSFER;
-    this.FE_OPERATION = FE_OPERATION;
-    this.FREQUENCY = FREQUENCY;
+    if (values.length != 4) {
+      throw new IllegalArgumentException("Required 4 integer values for FabricatorBlock, got " + values.length);
+    }
+    this.MAX_FE = values[0];
+    this.MAX_FE_TRANSFER = values[1];
+    this.FE_OPERATION = values[2];
+    this.FREQUENCY = values[3];
   }
 
   @Override
@@ -54,19 +57,20 @@ public class BlockGeneratorBlock extends Block {
 
   @Override
   public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-    if (!worldIn.isRemote) {
-      TileEntity te = worldIn.getTileEntity(pos);
-      if (te instanceof BlockGeneratorTile) {
+    TileEntity te = worldIn.getTileEntity(pos);
+    if (te instanceof BlockGeneratorTile) {
+      if (!worldIn.isRemote) {
         if (System.currentTimeMillis() - lastSentMessage > 10) {
           SettableEnergyStorage energy = ((BlockGeneratorTile) te).getEnergyStorage();
           ItemStack type = ((BlockGeneratorTile) te).getItemType();
           int amount = ((BlockGeneratorTile) te).getAmount();
           player.sendMessage(new TranslationTextComponent("mysticalmachinery.tile.block_generator.contains", amount, type.getDisplayName(), energy.getEnergyStored(), energy.getMaxEnergyStored()));
           lastSentMessage = System.currentTimeMillis();
-          return true;
         }
       }
+      return true;
+    } else {
+      return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
-    return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
   }
 }

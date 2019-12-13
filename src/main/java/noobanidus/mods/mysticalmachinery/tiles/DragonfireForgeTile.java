@@ -18,7 +18,7 @@ import noobanidus.mods.mysticalmachinery.init.ModTiles;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class DragonfireForgeTile extends EnergyTileEntity implements ITickableTileEntity {
+/*public class DragonfireForgeTile extends EnergyTileEntity implements ITickableTileEntity {
   public static final int MAX_FE = 1000000;
   public static final int MAX_FE_XFER = 200;
 
@@ -48,4 +48,4 @@ public class DragonfireForgeTile extends EnergyTileEntity implements ITickableTi
   @Override
   public void tick() {
   }
-}
+}*/

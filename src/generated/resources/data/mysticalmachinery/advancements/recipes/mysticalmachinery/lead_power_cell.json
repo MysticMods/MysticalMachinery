@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_tin": {
+    "has_lead": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/tin"
+            "tag": "forge:ingots/lead"
           }
         ]
       }
@@ -35,7 +35,7 @@
   },
   "requirements": [
     [
-      "has_tin",
+      "has_lead",
       "has_redstone",
       "has_the_recipe"
     ]

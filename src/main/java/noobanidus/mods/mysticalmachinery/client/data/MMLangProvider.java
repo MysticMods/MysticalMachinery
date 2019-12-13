@@ -26,9 +26,9 @@ public class MMLangProvider extends DeferredLanguageProvider {
 
     addBlock(ModBlocks.COOKIE_GENERATOR);
 
-    addItem(ModItems.HEAT_CAPACITOR);
-    addItem(ModItems.SOLID_STATE_HEAT_CONVERTER);
-    addItem(ModItems.ENCHANTMENT_DUST);
+//    addItem(ModItems.HEAT_CAPACITOR);
+//    addItem(ModItems.SOLID_STATE_HEAT_CONVERTER);
+//    addItem(ModItems.ENCHANTMENT_DUST);
     addItem(ModItems.POWERCELL_LEAD);
     addItem(ModItems.POWERCELL_COPPER);
     addItem(ModItems.POWERCELL_SILVER);
@@ -36,8 +36,10 @@ public class MMLangProvider extends DeferredLanguageProvider {
     addItem(ModItems.POWERCELL_QUICKSILVER);
     addItem(ModItems.SAWDUST);
 
-    addBlock(ModBlocks.DRAGONFIRE_FORGE);
-    addBlock(ModBlocks.STORED_HEAT_GENERATOR);
+/*    addBlock(ModBlocks.DRAGONFIRE_FORGE);
+    addBlock(ModBlocks.STORED_HEAT_GENERATOR);*/
+
+    addBlock(ModBlocks.WATER_FABRICATOR);
 
     ModBlocks.BLOCKS_WITH_MODELS.forEach(this::addBlock);
 
@@ -52,6 +54,7 @@ public class MMLangProvider extends DeferredLanguageProvider {
     add("mysticalmachinery.subtitles.block.cookie_generator.munch", "Generator munches");
     add("mysticalmachinery.subtitles.block.end_stone_generator.generate", "End Stone Generator operates");
     add("mysticalmachinery.energy_item.tooltip", "Energy: %s/%s FE");
+    add("mysticalmachinery.water_fabricator.tooltip", "Acts as an infinite water source. Does not require power.");
     // TODO: Containers
   }
 }

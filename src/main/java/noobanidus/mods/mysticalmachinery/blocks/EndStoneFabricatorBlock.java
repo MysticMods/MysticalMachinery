@@ -18,15 +18,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.mods.mysticalmachinery.capability.SettableEnergyStorage;
-import noobanidus.mods.mysticalmachinery.tiles.EndStoneGeneratorTile;
+import noobanidus.mods.mysticalmachinery.tiles.EndStoneFabricatorTile;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class EndStoneGeneratorBlock extends Block {
+public class EndStoneFabricatorBlock extends Block {
   public static VoxelShape SHAPE = VoxelUtil.multiOr(Block.makeCuboidShape(0, 0, 13, 16, 3, 16), Block.makeCuboidShape(0, 0, 0, 16, 3, 3), Block.makeCuboidShape(0, 13, 13, 16, 16, 16), Block.makeCuboidShape(0, 13, 0, 16, 16, 3), Block.makeCuboidShape(13, 0, 3, 16, 3, 13), Block.makeCuboidShape(0, 0, 3, 3, 3, 13), Block.makeCuboidShape(0, 13, 3, 3, 16, 13), Block.makeCuboidShape(13, 13, 3, 16, 16, 13), Block.makeCuboidShape(0, 3, 0, 3, 13, 3), Block.makeCuboidShape(0, 3, 13, 3, 13, 16), Block.makeCuboidShape(13, 3, 13, 16, 13, 16), Block.makeCuboidShape(13, 3, 0, 16, 13, 3), Block.makeCuboidShape(1, 3, 3, 1, 13, 13), Block.makeCuboidShape(15, 3, 3, 15, 13, 13), Block.makeCuboidShape(3, 3, 15, 13, 13, 15), Block.makeCuboidShape(3, 3, 1, 13, 13, 1), Block.makeCuboidShape(3, 15, 3, 13, 15, 13), Block.makeCuboidShape(3, 1, 3, 13, 1, 13), Block.makeCuboidShape(5, 4, 5, 11, 5, 11), Block.makeCuboidShape(11, 5, 5, 12, 11, 11), Block.makeCuboidShape(5, 5, 4, 11, 11, 5), Block.makeCuboidShape(4, 5, 5, 5, 11, 11), Block.makeCuboidShape(5, 11, 5, 11, 12, 11), Block.makeCuboidShape(5, 5, 11, 11, 11, 12));
 
-  public EndStoneGeneratorBlock(Properties properties) {
+  public EndStoneFabricatorBlock(Properties properties) {
     super(properties);
   }
 
@@ -38,7 +38,7 @@ public class EndStoneGeneratorBlock extends Block {
   @Nullable
   @Override
   public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return new EndStoneGeneratorTile();
+    return new EndStoneFabricatorTile();
   }
 
   @Override
@@ -50,19 +50,20 @@ public class EndStoneGeneratorBlock extends Block {
 
   @Override
   public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-    if (!worldIn.isRemote) {
-      TileEntity te = worldIn.getTileEntity(pos);
-      if (te instanceof EndStoneGeneratorTile) {
+    TileEntity te = worldIn.getTileEntity(pos);
+    if (te instanceof EndStoneFabricatorTile) {
+      if (!worldIn.isRemote) {
         if (System.currentTimeMillis() - lastSentMessage > 10) {
-          SettableEnergyStorage energy = ((EndStoneGeneratorTile) te).getEnergyStorage();
-          int amount = ((EndStoneGeneratorTile) te).getAmount();
+          SettableEnergyStorage energy = ((EndStoneFabricatorTile) te).getEnergyStorage();
+          int amount = ((EndStoneFabricatorTile) te).getAmount();
           player.sendMessage(new TranslationTextComponent("mysticalmachinery.tile.end_stone_generator.contains", amount, energy.getEnergyStored(), energy.getMaxEnergyStored()));
           lastSentMessage = System.currentTimeMillis();
-          return true;
         }
       }
+      return true;
+    } else {
+      return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
-    return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
   }
 
   @Override

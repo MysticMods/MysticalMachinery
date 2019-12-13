@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mysticalmachinery:dragonfire_forge"
+          "name": "mysticalmachinery:water_fabricator"
         }
       ],
       "conditions": [

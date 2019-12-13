@@ -16,7 +16,7 @@ public class MMItemModelProvider extends DeferredItemModelProvider {
 
   @Override
   protected void registerModels() {
-    generated(ModItems.ENCHANTMENT_DUST);
+    //generated(ModItems.ENCHANTMENT_DUST);
     generated(ModItems.POWERCELL_TIN);
     generated(ModItems.POWERCELL_COPPER);
     generated(ModItems.POWERCELL_LEAD);
@@ -31,10 +31,11 @@ public class MMItemModelProvider extends DeferredItemModelProvider {
     }
 
     blockItem(ModBlocks.COOKIE_GENERATOR);
-    blockItem(ModBlocks.DRAGONFIRE_FORGE);
+    blockItem(ModBlocks.WATER_FABRICATOR);
+    /*blockItem(ModBlocks.DRAGONFIRE_FORGE);
     withExistingParent(name(ModItems.HEAT_CAPACITOR), modLoc("block/" + name(ModItems.HEAT_CAPACITOR)));
     withExistingParent(name(ModItems.SOLID_STATE_HEAT_CONVERTER), modLoc("block/" + name(ModItems.SOLID_STATE_HEAT_CONVERTER)));
-    withExistingParent(name(ModBlocks.STORED_HEAT_GENERATOR), modLoc("block/stored_heat_generator_heat_on_rf_on"));
+    withExistingParent(name(ModBlocks.STORED_HEAT_GENERATOR), modLoc("block/stored_heat_generator_heat_on_rf_on"));*/
     withExistingParent(name(ModBlocks.SAWMILL), modLoc("block/sawmill_off"));
 
     ModBlocks.BLOCKS_WITH_MODELS.forEach(this::blockItem);

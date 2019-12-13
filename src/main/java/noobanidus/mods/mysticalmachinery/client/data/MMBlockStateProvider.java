@@ -32,16 +32,19 @@ public class MMBlockStateProvider extends DeferredBlockStateProvider {
   @Override
   protected void registerStatesAndModels() {
     horizontalModel(ModBlocks.COOKIE_GENERATOR);
-    horizontalModel(ModBlocks.DRAGONFIRE_FORGE);
+    //horizontalModel(ModBlocks.DRAGONFIRE_FORGE);
 
-    horizontalBooleanStateBlock(ModBlocks.STORED_HEAT_GENERATOR, booleanStateLoc("stored_heat_generator_heat_%s_rf_%s"), booleanStateDescriptor(StoredHeatGeneratorBlock.HEATED), booleanStateDescriptor(StoredHeatGeneratorBlock.POWERED));
+    //horizontalBooleanStateBlock(ModBlocks.STORED_HEAT_GENERATOR, booleanStateLoc("stored_heat_generator_heat_%s_rf_%s"), booleanStateDescriptor(StoredHeatGeneratorBlock.HEATED), booleanStateDescriptor(StoredHeatGeneratorBlock.POWERED));
 
     horizontalBooleanStateBlock(ModBlocks.SAWMILL, booleanStateLoc("sawmill_%s"), booleanStateDescriptor(SawmillBlock.LIT));
 
     ModBlocks.BLOCKS_WITH_MODELS.forEach(this::simpleModel);
 
+    simpleBlock(ModBlocks.WATER_FABRICATOR, getExistingFile(blockModel(ModBlocks.WATER_FABRICATOR)));
+
     for (Map.Entry<MachineFrame, RegistryObject<MachineFrameBlock>> entry : ModBlocks.MACHINE_FRAMES.entrySet()) {
-      getVariantBuilder(entry.getValue().get()).partialState().addModels(new ConfiguredModel(getExistingFile(entry.getKey().model())));
+      simpleBlock(entry.getValue(), getExistingFile(entry.getKey().model()));
+      //getVariantBuilder(entry.getValue().get()).partialState().addModels(new ConfiguredModel(getExistingFile(entry.getKey().model())));
     }
   }
 }

@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalmachinery:solid_state_heat_converter"
+      "mysticalmachinery:paper_from_sawdust"
     ]
   },
   "criteria": {
-    "has_blast_furnace": {
+    "has_sawdust": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:blast_furnace"
+            "tag": "forge:dusts/wooden"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalmachinery:solid_state_heat_converter"
+        "recipe": "mysticalmachinery:paper_from_sawdust"
       }
     }
   },
   "requirements": [
     [
-      "has_blast_furnace",
+      "has_sawdust",
       "has_the_recipe"
     ]
   ]

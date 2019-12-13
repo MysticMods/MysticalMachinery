@@ -96,19 +96,20 @@ public class CookieGeneratorBlock extends Block {
 
   @Override
   public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-    if (!worldIn.isRemote) {
-      TileEntity te = worldIn.getTileEntity(pos);
-      if (te != null) {
-        te.getCapability(CapabilityEnergy.ENERGY).ifPresent((energy) -> {
+    TileEntity te = worldIn.getTileEntity(pos);
+    if (te != null) {
+      te.getCapability(CapabilityEnergy.ENERGY).ifPresent((energy) -> {
+        if (!worldIn.isRemote) {
           if (System.currentTimeMillis() - lastSentMessage > 10) {
             player.sendMessage(new TranslationTextComponent("mysticalmachinery.tile.cookie_generator.contains", energy.getEnergyStored(), energy.getMaxEnergyStored()));
             lastSentMessage = System.currentTimeMillis();
           }
-        });
-        return true;
-      }
+        }
+      });
+      return true;
+    } else {
+      return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
-    return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
   }
 
   @Override

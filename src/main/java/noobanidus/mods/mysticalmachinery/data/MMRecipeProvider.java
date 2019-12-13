@@ -12,6 +12,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import noobanidus.mods.mysticalmachinery.MMTags;
@@ -66,7 +67,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_cookie", this.hasItem(Items.COOKIE))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.HEAT_CAPACITOR.get(), 1)
+    /*ShapedRecipeBuilder.shapedRecipe(ModItems.HEAT_CAPACITOR.get(), 1)
         .patternLine("CRC")
         .patternLine("CMC")
         .patternLine("CBC")
@@ -97,6 +98,15 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .key('S', ModItems.SOLID_STATE_HEAT_CONVERTER.get())
         .key('I', Tags.Items.INGOTS_IRON)
         .addCriterion("has_blast_furnace", this.hasItem(Items.BLAST_FURNACE))
+        .build(consumer);*/
+
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.WATER_FABRICATOR.get(), 1)
+        .patternLine(" B ")
+        .patternLine("BMB")
+        .patternLine(" B ")
+        .key('M', ModBlocks.MACHINE_FRAMES.get(MachineFrame.REINFORCED).get())
+        .key('B', Items.WATER_BUCKET)
+        .addCriterion("has_water_bucket", this.hasItem(Items.WATER_BUCKET))
         .build(consumer);
 
     ShapedRecipeBuilder.shapedRecipe(ModBlocks.END_STONE_FABRICATOR.get(), 1)
@@ -283,6 +293,14 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .key('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
         .addCriterion("has_silver", this.hasItem(ModItems.POWERCELL_COPPER.get()))
         .build(consumer);
+
+    ShapedRecipeBuilder.shapedRecipe(Items.PAPER, 2)
+        .patternLine("SSS")
+        .patternLine("S S")
+        .patternLine("SSS")
+        .key('S', MMTags.Items.SAWDUST)
+        .addCriterion("has_sawdust", this.hasItem(MMTags.Items.SAWDUST))
+        .build(consumer, new ResourceLocation(MysticalMachinery.MODID, "paper_from_sawdust"));
   }
 
   private void sawmillRecipes (Consumer<IFinishedRecipe> consumer) {

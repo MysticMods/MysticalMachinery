@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.blocks.*;
+import noobanidus.mods.mysticalmachinery.config.ConfigManager;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,21 +28,23 @@ public class ModBlocks {
 
   public static RegistryObject<CookieGeneratorBlock> COOKIE_GENERATOR = REGISTRY.registerBlock("cookie_generator", REGISTRY.block(CookieGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5f).sound(SoundType.METAL)), ITEM_PROPS);
 
-  public static RegistryObject<StoredHeatGeneratorBlock> STORED_HEAT_GENERATOR = REGISTRY.registerBlock("stored_heat_generator", REGISTRY.block(StoredHeatGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5f).sound(SoundType.METAL)), ITEM_PROPS);
+  public static RegistryObject<InfiniteWaterFabricatorBlock> WATER_FABRICATOR = REGISTRY.registerBlock("water_fabricator", REGISTRY.block(InfiniteWaterFabricatorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(4f).sound(SoundType.METAL)), ITEM_PROPS);
 
-  public static RegistryObject<DragonfireForgeBlock> DRAGONFIRE_FORGE = REGISTRY.registerBlock("dragonfire_forge", REGISTRY.block(DragonfireForgeBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(6f).sound(SoundType.METAL)), ITEM_PROPS);
+  //public static RegistryObject<StoredHeatGeneratorBlock> STORED_HEAT_GENERATOR = REGISTRY.registerBlock("stored_heat_generator", REGISTRY.block(StoredHeatGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5f).sound(SoundType.METAL)), ITEM_PROPS);
 
-  public static RegistryObject<EndStoneGeneratorBlock> END_STONE_FABRICATOR = REGISTRY.registerBlock("end_stone_fabricator", REGISTRY.block(EndStoneGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(4.5f).sound(SoundType.METAL)), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> SAND_FABRICATOR = REGISTRY.registerBlock("sand_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.SAND, 1000000, 5000, 50, 25), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> RED_SAND_FABRICATOR = REGISTRY.registerBlock("red_sand_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.RED_SAND, 1000000, 5000, 250, 45), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> CLAY_FABRICATOR = REGISTRY.registerBlock("clay_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.CLAY, 1000000, 5000, 400, 65), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> NETHERRACK_FABRICATOR = REGISTRY.registerBlock("netherrack_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.NETHERRACK, 1000000, 5000, 50, 25), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> SOUL_SAND_FABRICATOR = REGISTRY.registerBlock("soul_sand_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.SOUL_SAND, 1000000, 5000, 400, 120), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> SLIME_FABRICATOR = REGISTRY.registerBlock("slime_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.SLIME_BLOCK, 1000000, 5000, 5000, 600), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> ICE_FABRICATOR = REGISTRY.registerBlock("ice_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.ICE, 1000000, 5000, 250, 95), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> SNOW_FABRICATOR = REGISTRY.registerBlock("snow_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.SNOW_BLOCK, 1000000, 5000, 250, 95), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> DIRT_FABRICATOR = REGISTRY.registerBlock("dirt_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.DIRT, 1000000, 5000, 50, 25), FABRICATOR_PROPS), ITEM_PROPS);
-  public static RegistryObject<BlockGeneratorBlock> GRAVEL_FABRICATOR = REGISTRY.registerBlock("gravel_fabricator", REGISTRY.block((b) -> new BlockGeneratorBlock(b, () -> Blocks.GRAVEL, 1000000, 5000, 50, 25), FABRICATOR_PROPS), ITEM_PROPS);
+  //public static RegistryObject<DragonfireForgeBlock> DRAGONFIRE_FORGE = REGISTRY.registerBlock("dragonfire_forge", REGISTRY.block(DragonfireForgeBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(6f).sound(SoundType.METAL)), ITEM_PROPS);
+
+  public static RegistryObject<EndStoneFabricatorBlock> END_STONE_FABRICATOR = REGISTRY.registerBlock("end_stone_fabricator", REGISTRY.block(EndStoneFabricatorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(4.5f).sound(SoundType.METAL)), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> SAND_FABRICATOR = REGISTRY.registerBlock("sand_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.SAND, ConfigManager.get("sand").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> RED_SAND_FABRICATOR = REGISTRY.registerBlock("red_sand_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.RED_SAND, ConfigManager.get("red_sand").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> CLAY_FABRICATOR = REGISTRY.registerBlock("clay_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.CLAY, ConfigManager.get("clay").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> NETHERRACK_FABRICATOR = REGISTRY.registerBlock("netherrack_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.NETHERRACK, ConfigManager.get("netherrack").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> SOUL_SAND_FABRICATOR = REGISTRY.registerBlock("soul_sand_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.SOUL_SAND, ConfigManager.get("soul_sand").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> SLIME_FABRICATOR = REGISTRY.registerBlock("slime_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.SLIME_BLOCK, ConfigManager.get("slime").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> ICE_FABRICATOR = REGISTRY.registerBlock("ice_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.ICE, ConfigManager.get("ice").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> SNOW_FABRICATOR = REGISTRY.registerBlock("snow_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.SNOW_BLOCK, ConfigManager.get("snow").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> DIRT_FABRICATOR = REGISTRY.registerBlock("dirt_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.DIRT, ConfigManager.get("dirt").values()), FABRICATOR_PROPS), ITEM_PROPS);
+  public static RegistryObject<FabricatorBlock> GRAVEL_FABRICATOR = REGISTRY.registerBlock("gravel_fabricator", REGISTRY.block((b) -> new FabricatorBlock(b, () -> Blocks.GRAVEL, ConfigManager.get("gravel").values()), FABRICATOR_PROPS), ITEM_PROPS);
 
   public static Map<MachineFrame, RegistryObject<MachineFrameBlock>> MACHINE_FRAMES = new HashMap<>();
 

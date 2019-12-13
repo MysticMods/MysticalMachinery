@@ -17,5 +17,6 @@ public class MMItemTagsProvider extends DeferredItemTagsProvider {
     addItemsToTag(COOKIES, () -> Items.COOKIE);
     appendToTag(GENERATOR_COOKIES, COOKIES);
     addItemsToTag(BASE_POWERCELL, ModItems.POWERCELL_LEAD, ModItems.POWERCELL_TIN);
+    addItemsToTag(SAWDUST, ModItems.SAWDUST);
   }
 }

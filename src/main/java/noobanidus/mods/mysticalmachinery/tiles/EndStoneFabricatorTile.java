@@ -12,18 +12,14 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import noobanidus.mods.mysticalmachinery.capability.SettableEnergyStorage;
+import noobanidus.mods.mysticalmachinery.config.ConfigManager;
 import noobanidus.mods.mysticalmachinery.init.ModSounds;
 import noobanidus.mods.mysticalmachinery.init.ModTiles;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class EndStoneGeneratorTile extends EnergyTileEntity implements ITickableTileEntity {
-  public static final int MAX_FE = 1000000;
-  public static final int MAX_FE_XFER = 200;
-  public static final int FE_PER_ENDSTONE = 100;
-  public static final int ENDSTONE_FREQUENCY = 25;
-
+public class EndStoneFabricatorTile extends EnergyTileEntity implements ITickableTileEntity {
   public static final long PLAY_THRESHOLD = 12000;
 
   private long lastPlayed = 0;
@@ -32,9 +28,9 @@ public class EndStoneGeneratorTile extends EnergyTileEntity implements ITickable
   private EndStoneHandler stoneHandler = new EndStoneHandler();
   private LazyOptional<IItemHandler> stoneCapability = LazyOptional.of(() -> stoneHandler);
 
-  public EndStoneGeneratorTile() {
+  public EndStoneFabricatorTile() {
     super(ModTiles.END_STONE_FABRICATOR.get());
-    this.energyStorage = new SettableEnergyStorage(MAX_FE, MAX_FE_XFER);
+    this.energyStorage = new SettableEnergyStorage(ConfigManager.END_STONE.getMaxFE(), ConfigManager.END_STONE.getMaxTransfer());
     this.energyHandler = LazyOptional.of(() -> this.energyStorage);
   }
 
@@ -76,7 +72,8 @@ public class EndStoneGeneratorTile extends EnergyTileEntity implements ITickable
       return;
     }
 
-    if (server.getTickCounter() % ENDSTONE_FREQUENCY == 0) {
+    if (server.getTickCounter() % ConfigManager.END_STONE.getFrequency() == 0) {
+      int FE_PER_ENDSTONE = ConfigManager.END_STONE.getOperationCost();
       if (energyStorage.extractEnergy(FE_PER_ENDSTONE, true) == FE_PER_ENDSTONE) {
         stoneAmount++;
         energyStorage.extractEnergy(FE_PER_ENDSTONE, false);
