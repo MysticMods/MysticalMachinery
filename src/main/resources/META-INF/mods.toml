@@ -59,6 +59,6 @@ A Small set of vanllia-esque features to liven up your world..
 [[dependencies.mysticalmachinery]]
     modId="mysticalworld"
     mandatory=true
-    versionRange="[1.6.12,)"
+    versionRange="[1.6.13,)"
     ordering="NONE"
     side="BOTH"
