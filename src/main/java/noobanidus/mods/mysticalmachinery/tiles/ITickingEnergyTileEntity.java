@@ -1,6 +1,6 @@
 package noobanidus.mods.mysticalmachinery.tiles;
 
-import mezz.jei.util.MathUtil;
+import epicsquid.mysticallib.util.MathUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;

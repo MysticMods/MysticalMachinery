@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
-public class BlockGeneratorTile extends EnergyTileEntity implements ITickableTileEntity {
+public class FabricatorTile extends EnergyTileEntity implements ITickableTileEntity {
   private int FE_OPERATION = 50;
   private int FREQUENCY = 250;
   private Supplier<? extends Block> block;
@@ -29,11 +29,11 @@ public class BlockGeneratorTile extends EnergyTileEntity implements ITickableTil
   private StoneHandler stoneHandler;
   private LazyOptional<IItemHandler> stoneCapability;
 
-  public BlockGeneratorTile() {
+  public FabricatorTile() {
     super(ModTiles.BLOCK_FABRICATOR.get());
   }
 
-  public BlockGeneratorTile(Supplier<? extends Block> block, int MAX_FE, int MAX_FE_TRANSFER, int FE_OPERATION, int FREQUENCY) {
+  public FabricatorTile(Supplier<? extends Block> block, int MAX_FE, int MAX_FE_TRANSFER, int FE_OPERATION, int FREQUENCY) {
     this();
     this.energyStorage = new SettableEnergyStorage(MAX_FE, MAX_FE_TRANSFER);
     this.energyHandler = LazyOptional.of(() -> this.energyStorage);

@@ -294,7 +294,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_silver", this.hasItem(ModItems.POWERCELL_COPPER.get()))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(Items.PAPER, 2)
+    ShapedRecipeBuilder.shapedRecipe(Items.PAPER, 4)
         .patternLine("SSS")
         .patternLine("S S")
         .patternLine("SSS")
@@ -361,51 +361,51 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(Supplier<? extends T> source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
-    KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source.get()), result.get(), 0.35f, 100).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result.get()) + "_from_kiln");
+    KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source.get()), result.get(), 0.35f, 80).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result.get()) + "_from_kiln");
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(T source, T result, Consumer<IFinishedRecipe> consumer) {
-    KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source), result, 0.35f, 100).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result) + "_from_kiln");
+    KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source), result, 0.35f, 80).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result) + "_from_kiln");
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(Tag<Item> source, T result, Consumer<IFinishedRecipe> consumer) {
-    KilnRecipeBuilder.kilnRecipe(Ingredient.fromTag(source), result, 0.35f, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result) + "_from_kiln");
+    KilnRecipeBuilder.kilnRecipe(Ingredient.fromTag(source), result, 0.35f, 80).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result) + "_from_kiln");
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(Tag<Item> source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
-    KilnRecipeBuilder.kilnRecipe(Ingredient.fromTag(source), result.get(), 0.35f, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_kiln");
+    KilnRecipeBuilder.kilnRecipe(Ingredient.fromTag(source), result.get(), 0.35f, 80).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_kiln");
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(Supplier<? extends T> source, T result, Consumer<IFinishedRecipe> consumer) {
-    KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source.get()), result, 0.35f, 100).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result) + "_from_kiln");
+    KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source.get()), result, 0.35f, 80).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result) + "_from_kiln");
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(T source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
-    KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source), result.get(), 0.35f, 100).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_kiln");
+    KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source), result.get(), 0.35f, 80).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_kiln");
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Supplier<? extends T> source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
-    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source.get()), result.get(), 0.35f, 100).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source.get()));
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source.get()), result.get(), 0.35f, 30).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source.get()));
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(T source, T result, int count, Consumer<IFinishedRecipe> consumer) {
-    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source), result, count, 0.35f, 100).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source));
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source), result, count, 0.35f, 30).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source));
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Tag<Item> source, T result, int count, Consumer<IFinishedRecipe> consumer) {
-    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result, count, 0.35f, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source.getId()));
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result, count, 0.35f, 30).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source.getId()));
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Tag<Item> source, Supplier<? extends T> result, int count, Consumer<IFinishedRecipe> consumer) {
-    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result.get(), count, 0.35f, 100).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source.getId()));
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result.get(), count, 0.35f, 30).addCriterion("has_" + safeName(source.getId()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source.getId()));
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Supplier<? extends T> source, T result, int count, Consumer<IFinishedRecipe> consumer) {
-    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source.get()), result, count, 0.35f, 100).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source.get()));
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source.get()), result, count, 0.35f, 30).addCriterion("has_" + safeName(source.get().getRegistryName()), this.hasItem(source.get())).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source.get()));
   }
 
   protected <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(T source, Supplier<? extends T> result, int count, Consumer<IFinishedRecipe> consumer) {
-    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source), result.get(), count, 0.35f, 100).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source));
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromItems(source), result.get(), count, 0.35f, 30).addCriterion("has_" + safeName(source.getRegistryName()), this.hasItem(source)).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source));
   }
 
 }

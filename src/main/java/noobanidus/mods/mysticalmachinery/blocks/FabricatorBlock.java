@@ -13,7 +13,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import noobanidus.mods.mysticalmachinery.capability.SettableEnergyStorage;
-import noobanidus.mods.mysticalmachinery.tiles.BlockGeneratorTile;
+import noobanidus.mods.mysticalmachinery.tiles.FabricatorTile;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -45,7 +45,7 @@ public class FabricatorBlock extends Block {
   @Nullable
   @Override
   public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return new BlockGeneratorTile(block, MAX_FE, MAX_FE_TRANSFER, FE_OPERATION, FREQUENCY);
+    return new FabricatorTile(block, MAX_FE, MAX_FE_TRANSFER, FE_OPERATION, FREQUENCY);
   }
 
   @Override
@@ -58,12 +58,12 @@ public class FabricatorBlock extends Block {
   @Override
   public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
     TileEntity te = worldIn.getTileEntity(pos);
-    if (te instanceof BlockGeneratorTile) {
+    if (te instanceof FabricatorTile) {
       if (!worldIn.isRemote) {
         if (System.currentTimeMillis() - lastSentMessage > 10) {
-          SettableEnergyStorage energy = ((BlockGeneratorTile) te).getEnergyStorage();
-          ItemStack type = ((BlockGeneratorTile) te).getItemType();
-          int amount = ((BlockGeneratorTile) te).getAmount();
+          SettableEnergyStorage energy = ((FabricatorTile) te).getEnergyStorage();
+          ItemStack type = ((FabricatorTile) te).getItemType();
+          int amount = ((FabricatorTile) te).getAmount();
           player.sendMessage(new TranslationTextComponent("mysticalmachinery.tile.block_generator.contains", amount, type.getDisplayName(), energy.getEnergyStored(), energy.getMaxEnergyStored()));
           lastSentMessage = System.currentTimeMillis();
         }

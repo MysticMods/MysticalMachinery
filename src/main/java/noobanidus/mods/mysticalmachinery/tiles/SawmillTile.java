@@ -135,7 +135,7 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
   @Override
   protected int getCookTime() {
     AbstractCookingRecipe rec = getRecipe();
-    if (rec == null) return 200;
+    if (rec == null) return 30;
     return rec.getCookTime();
   }
 
