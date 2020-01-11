@@ -1,6 +1,5 @@
 package noobanidus.mods.mysticalmachinery.tiles;
 
-import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -9,8 +8,6 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import noobanidus.mods.mysticalmachinery.container.KilnContainer;
@@ -76,7 +73,7 @@ public class KilnTile extends AbstractFastFurnaceTileEntity {
   }
 
   @Override
-  protected int getCookTime () {
+  protected int getCookTime() {
     AbstractCookingRecipe rec = getRecipe();
     if (rec == null) return 200;
     return rec.getCookTime();

@@ -1,0 +1,7 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "mysticalmachinery:block/kiln",
+	"textures": {
+		"2": "mysticalmachinery:block/kiln_on"
+	}
+}

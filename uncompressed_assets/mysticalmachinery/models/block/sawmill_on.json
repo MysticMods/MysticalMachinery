@@ -1,0 +1,14 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "mysticalmachinery:block/sawmill_off",
+	"textures": {
+		"5": "block/observer_side",
+		"6": "mysticalmachinery:block/sawmill_side_west",
+		"7": "mysticalmachinery:block/sawmill_side_east",
+		"8": "block/barrel_side",
+		"10": "block/iron_bars",
+		"12": "mysticalmachinery:block/sawmill_side_hot",
+		"saw": "block/stonecutter_saw",
+		"particle": "mysticalmachinery:block/sawmill_side_west"
+	}
+}
