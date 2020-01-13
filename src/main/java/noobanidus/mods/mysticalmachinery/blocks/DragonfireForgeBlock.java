@@ -1,6 +1,39 @@
 package noobanidus.mods.mysticalmachinery.blocks;
 
-/*public class DragonfireForgeBlock extends Block {
+import epicsquid.mysticallib.util.VoxelUtil;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
+
+@SuppressWarnings({"deprecation", "Duplicates"})
+public class DragonfireForgeBlock extends Block {
   public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
   public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
@@ -62,7 +95,8 @@ package noobanidus.mods.mysticalmachinery.blocks;
   @Nullable
   @Override
   public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-    return new DragonfireForgeTile();
+    //return new DragonfireForgeTile();
+    return null;
   }
 
   @Override
@@ -104,10 +138,10 @@ package noobanidus.mods.mysticalmachinery.blocks;
   }
 
   @Override
-  @OnlyIn(Dist.CLIENT)
+  @OnlyIn(value = Dist.CLIENT)
   public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
     super.addInformation(stack, worldIn, tooltip, flagIn);
     tooltip.add(new StringTextComponent(""));
     tooltip.add(new StringTextComponent("DOES NOTHING RIGHT NOW").setStyle(new Style().setColor(TextFormatting.RED).setBold(true)));
   }
-}*/
+}

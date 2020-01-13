@@ -18,12 +18,12 @@ import noobanidus.mods.mysticalmachinery.init.ModTiles;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/*public class DragonfireForgeTile extends EnergyTileEntity implements ITickableTileEntity {
+public class DragonfireForgeTile extends EnergyTileEntity implements ITickableTileEntity {
   public static final int MAX_FE = 1000000;
   public static final int MAX_FE_XFER = 200;
 
   public DragonfireForgeTile() {
-    super(ModTiles.DRAGONFIRE_FORGE.get());
+    super(null); // ModTiles.DRAGONFIRE_FORGE.get());
     this.energyStorage = new SettableEnergyStorage(MAX_FE, MAX_FE_XFER);
     this.energyHandler = LazyOptional.of(() -> this.energyStorage);
   }
@@ -48,4 +48,4 @@ import javax.annotation.Nullable;
   @Override
   public void tick() {
   }
-}*/
+}

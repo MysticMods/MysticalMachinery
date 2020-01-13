@@ -10,10 +10,10 @@ public class FabricatorConfig {
   private int operationCost;
   private int frequency;
 
-  private ForgeConfigSpec.ConfigValue<Integer> configMaxFE;
-  private ForgeConfigSpec.ConfigValue<Integer> configMaxTransfer;
-  private ForgeConfigSpec.ConfigValue<Integer> configOperationCost;
-  private ForgeConfigSpec.ConfigValue<Integer> configFrequency;
+  private ForgeConfigSpec.IntValue configMaxFE;
+  private ForgeConfigSpec.IntValue configMaxTransfer;
+  private ForgeConfigSpec.IntValue configOperationCost;
+  private ForgeConfigSpec.IntValue configFrequency;
 
   public FabricatorConfig(String name, int maxFE, int maxTransfer, int operationCost, int frequency) {
     this.name = name;
@@ -49,10 +49,10 @@ public class FabricatorConfig {
 
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment(name + " fabricator").push(name + "_fabricator");
-    configMaxFE = builder.comment("Maximum amount of FE that can be stored in the block").define("maxFE", maxFE);
-    configMaxTransfer = builder.comment("Maximum amount of FE that can be transferred into the block per tick").define("maxTransfer", maxTransfer);
-    configOperationCost = builder.comment("Cost to create one " + name + " per operation").define("operationCost", operationCost);
-    configFrequency = builder.comment("Frequency (in ticks) that " + name + " is produced").define("frequency", frequency);
+    configMaxFE = builder.comment("Maximum amount of FE that can be stored in the block").defineInRange("maxFE", 0, Integer.MAX_VALUE, maxFE);
+    configMaxTransfer = builder.comment("Maximum amount of FE that can be transferred into the block per tick").defineInRange("maxTransfer", 0, Integer.MAX_VALUE, maxTransfer);
+    configOperationCost = builder.comment("Cost to create one " + name + " per operation").defineInRange("operationCost", 0, Integer.MAX_VALUE, operationCost);
+    configFrequency = builder.comment("Frequency (in ticks) that " + name + " is produced").defineInRange("frequency", 0, Integer.MAX_VALUE, frequency);
     builder.pop();
   }
 }

@@ -26,10 +26,6 @@ public class MMTags {
     static Tag<Item> compatTag(String name) {
       return tag("forge", name);
     }
-
-    static Tag<Item> simpleFarming(String name) {
-      return tag("simplefarming", name);
-    }
   }
 
   static <T extends Tag<?>> T tag(Function<ResourceLocation, T> creator, String modid, String name) {
