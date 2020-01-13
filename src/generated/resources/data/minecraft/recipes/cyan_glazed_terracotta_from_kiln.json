@@ -1,9 +1,0 @@
-{
-  "type": "mysticalmachinery:kiln",
-  "ingredient": {
-    "item": "minecraft:cyan_terracotta"
-  },
-  "result": "minecraft:cyan_glazed_terracotta",
-  "experience": 0.35,
-  "cookingtime": 100
-}

@@ -1,9 +1,0 @@
-{
-  "type": "mysticalmachinery:kiln",
-  "ingredient": {
-    "item": "mysticalworld:wet_mud_block"
-  },
-  "result": "mysticalworld:mud_block",
-  "experience": 0.35,
-  "cookingtime": 100
-}

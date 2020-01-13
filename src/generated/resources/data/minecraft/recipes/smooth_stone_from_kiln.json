@@ -1,9 +1,0 @@
-{
-  "type": "mysticalmachinery:kiln",
-  "ingredient": {
-    "item": "minecraft:stone"
-  },
-  "result": "minecraft:smooth_stone",
-  "experience": 0.35,
-  "cookingtime": 100
-}

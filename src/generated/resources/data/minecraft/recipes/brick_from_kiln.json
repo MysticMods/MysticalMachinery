@@ -1,9 +1,0 @@
-{
-  "type": "mysticalmachinery:kiln",
-  "ingredient": {
-    "item": "minecraft:clay_ball"
-  },
-  "result": "minecraft:brick",
-  "experience": 0.35,
-  "cookingtime": 100
-}

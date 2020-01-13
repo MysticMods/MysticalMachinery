@@ -1,9 +1,0 @@
-{
-  "type": "mysticalmachinery:kiln",
-  "ingredient": {
-    "item": "minecraft:stone_bricks"
-  },
-  "result": "minecraft:cracked_stone_bricks",
-  "experience": 0.35,
-  "cookingtime": 100
-}
