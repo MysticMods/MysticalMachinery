@@ -1,0 +1,9 @@
+{
+  "type": "mysticalmachinery:kiln",
+  "ingredient": {
+    "item": "minecraft:cobblestone_slab"
+  },
+  "result": "minecraft:stone_slab",
+  "experience": 0.35,
+  "cookingtime": 80
+}

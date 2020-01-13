@@ -70,10 +70,10 @@ public class FabricatorConfig {
 
   public void apply(ForgeConfigSpec.Builder builder) {
     builder.comment(name + " fabricator").push(name + "_fabricator");
-    configMaxFE = builder.comment("Maximum amount of FE that can be stored in the block").defineInRange("maxFE", 0, Integer.MAX_VALUE, maxFE);
-    configMaxTransfer = builder.comment("Maximum amount of FE that can be transferred into the block per tick").defineInRange("maxTransfer", 0, Integer.MAX_VALUE, maxTransfer);
-    configOperationCost = builder.comment("Cost to create one " + name + " per operation").defineInRange("operationCost", 0, Integer.MAX_VALUE, operationCost);
-    configFrequency = builder.comment("Frequency (in ticks) that " + name + " is produced").defineInRange("frequency", 0, Integer.MAX_VALUE, frequency);
+    configMaxFE = builder.comment("Maximum amount of FE that can be stored in the block").defineInRange("maxFE", maxFE, 0, Integer.MAX_VALUE);
+    configMaxTransfer = builder.comment("Maximum amount of FE that can be transferred into the block per tick").defineInRange("maxTransfer", maxTransfer, 0, Integer.MAX_VALUE);
+    configOperationCost = builder.comment("Cost to create one " + name + " per operation").defineInRange("operationCost", operationCost, 0, Integer.MAX_VALUE);
+    configFrequency = builder.comment("Frequency (in ticks) that " + name + " is produced").defineInRange("frequency", frequency, 0, Integer.MAX_VALUE);
     builder.pop();
   }
 }

@@ -171,7 +171,7 @@ public class EnergyItem extends Item {
       return stack.getOrCreateTag().getInt("Energy");
     }
 
-    private void setEnergy(int amount) {
+    public void setEnergy(int amount) {
       stack.getOrCreateTag().putInt("Energy", amount);
     }
   }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TCT",
+    "CMC",
+    "TCT"
+  ],
+  "key": {
+    "T": {
+      "tag": "forge:ingots/tin"
+    },
+    "C": {
+      "item": "minecraft:cookie"
+    },
+    "M": {
+      "item": "mysticalmachinery:lapis_machine_frame"
+    }
+  },
+  "result": {
+    "item": "mysticalmachinery:cookie_generator"
+  }
+}

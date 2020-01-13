@@ -20,6 +20,7 @@ import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 import noobanidus.mods.mysticalmachinery.init.ModItems;
+import noobanidus.mods.mysticalmachinery.recipes.BatteryRecipeBuilder;
 import noobanidus.mods.mysticalmachinery.recipes.KilnRecipeBuilder;
 import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipeBuilder;
 
@@ -242,7 +243,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_wood", this.hasItem(ItemTags.PLANKS))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_TIN.get(), 1)
+    BatteryRecipeBuilder.shapedRecipe(ModItems.POWERCELL_TIN.get(), 1)
         .patternLine("LRL")
         .patternLine("RBR")
         .patternLine("LRL")
@@ -253,7 +254,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_redstone", this.hasItem(Tags.Items.DUSTS_REDSTONE))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_LEAD.get(), 1)
+    BatteryRecipeBuilder.shapedRecipe(ModItems.POWERCELL_LEAD.get(), 1)
         .patternLine("LRL")
         .patternLine("RBR")
         .patternLine("LRL")
@@ -264,7 +265,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_redstone", this.hasItem(Tags.Items.DUSTS_REDSTONE))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_COPPER.get(), 1)
+    BatteryRecipeBuilder.shapedRecipe(ModItems.POWERCELL_COPPER.get(), 1)
         .patternLine("CPC")
         .patternLine("RPR")
         .patternLine("CPC")
@@ -274,7 +275,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_lead", this.hasItem(ModItems.POWERCELL_LEAD.get()))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_SILVER.get(), 1)
+    BatteryRecipeBuilder.shapedRecipe(ModItems.POWERCELL_SILVER.get(), 1)
         .patternLine("CPC")
         .patternLine("RPR")
         .patternLine("CPC")
@@ -284,7 +285,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_copper", this.hasItem(ModItems.POWERCELL_COPPER.get()))
         .build(consumer);
 
-    ShapedRecipeBuilder.shapedRecipe(ModItems.POWERCELL_QUICKSILVER.get(), 1)
+    BatteryRecipeBuilder.shapedRecipe(ModItems.POWERCELL_QUICKSILVER.get(), 1)
         .patternLine("CCC")
         .patternLine("LBL")
         .patternLine("CLC")

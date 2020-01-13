@@ -1,0 +1,10 @@
+{
+  "type": "mysticalmachinery:sawmill",
+  "ingredient": {
+    "tag": "minecraft:wooden_doors"
+  },
+  "result": "mysticalmachinery:sawdust",
+  "experience": 0.35,
+  "cookingtime": 30,
+  "itemcount": 12
+}

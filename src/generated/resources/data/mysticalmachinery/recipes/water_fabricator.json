@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    "BMB",
+    " B "
+  ],
+  "key": {
+    "M": {
+      "item": "mysticalmachinery:reinforced_machine_frame"
+    },
+    "B": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "mysticalmachinery:water_fabricator"
+  }
+}
