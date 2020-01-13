@@ -187,6 +187,7 @@ public class BatteryRecipeBuilder {
       this.advancementId = advancementIdIn;
     }
 
+    @Override
     public void serialize(JsonObject json) {
       if (!this.group.isEmpty()) {
         json.addProperty("group", this.group);
@@ -215,6 +216,7 @@ public class BatteryRecipeBuilder {
       json.add("result", jsonobject1);
     }
 
+    @Override
     public IRecipeSerializer<?> getSerializer() {
       return ModRecipes.BATTERY_SERIALIZER.get();
     }
@@ -222,6 +224,7 @@ public class BatteryRecipeBuilder {
     /**
      * Gets the ID for the recipe.
      */
+    @Override
     public ResourceLocation getID() {
       return this.id;
     }
@@ -229,6 +232,7 @@ public class BatteryRecipeBuilder {
     /**
      * Gets the JSON for the advancement that unlocks this recipe. Null if there is no advancement.
      */
+    @Override
     @Nullable
     public JsonObject getAdvancementJson() {
       return this.advancementBuilder.serialize();
@@ -238,6 +242,7 @@ public class BatteryRecipeBuilder {
      * Gets the ID for the advancement associated with this recipe. Should not be null if {@link #getAdvancementJson}
      * is non-null.
      */
+    @Override
     @Nullable
     public ResourceLocation getAdvancementID() {
       return this.advancementId;

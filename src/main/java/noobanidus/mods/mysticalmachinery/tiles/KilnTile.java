@@ -49,6 +49,7 @@ public class KilnTile extends AbstractFastFurnaceTileEntity {
     return false;
   }
 
+  @Override
   protected void smeltItem(@Nullable IRecipe<?> recipe) {
     if (recipe != null && this.canSmelt(recipe)) {
       ItemStack itemstack = this.items.get(0);
@@ -79,6 +80,7 @@ public class KilnTile extends AbstractFastFurnaceTileEntity {
     return rec.getCookTime();
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   protected AbstractCookingRecipe getRecipe() {
     ItemStack input = this.getStackInSlot(INPUT);

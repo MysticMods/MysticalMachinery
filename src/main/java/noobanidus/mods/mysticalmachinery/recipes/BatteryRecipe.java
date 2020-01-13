@@ -190,6 +190,7 @@ public class BatteryRecipe extends ShapedRecipe {
   }
 
   public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<BatteryRecipe> {
+    @Override
     public BatteryRecipe read(ResourceLocation recipeId, JsonObject json) {
       String s = JSONUtils.getString(json, "group", "");
       Map<String, Ingredient> map = deserializeKey(JSONUtils.getJsonObject(json, "key"));
@@ -201,6 +202,7 @@ public class BatteryRecipe extends ShapedRecipe {
       return new BatteryRecipe(recipeId, s, i, j, nonnulllist, itemstack);
     }
 
+    @Override
     public BatteryRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
       int i = buffer.readVarInt();
       int j = buffer.readVarInt();
@@ -215,6 +217,7 @@ public class BatteryRecipe extends ShapedRecipe {
       return new BatteryRecipe(recipeId, s, i, j, nonnulllist, itemstack);
     }
 
+    @Override
     public void write(PacketBuffer buffer, BatteryRecipe recipe) {
       buffer.writeVarInt(recipe.getWidth());
       buffer.writeVarInt(recipe.getHeight());

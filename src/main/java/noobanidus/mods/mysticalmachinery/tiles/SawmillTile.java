@@ -109,6 +109,7 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
     return false;
   }
 
+  @Override
   protected void smeltItem(@Nullable IRecipe<?> recipe) {
     if (isLog() || (recipe != null && this.canSmelt(recipe))) {
       ItemStack itemstack = this.items.get(0);
@@ -139,6 +140,7 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
     return rec.getCookTime();
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   protected AbstractCookingRecipe getRecipe() {
     ItemStack input = this.getStackInSlot(INPUT);

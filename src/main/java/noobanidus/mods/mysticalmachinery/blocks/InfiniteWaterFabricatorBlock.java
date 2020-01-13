@@ -27,7 +27,7 @@ public class InfiniteWaterFabricatorBlock extends Block {
 
   @Override
   public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-    if (worldIn.isRemote) {
+    if (!worldIn.isRemote) {
       return FluidUtil.interactWithFluidHandler(player, handIn, WaterFabricatorTile.WATER);
     }
 
