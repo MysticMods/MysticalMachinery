@@ -3,7 +3,6 @@ package noobanidus.mods.mysticalmachinery.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class FabricatorConfig {
-
   private String name;
   private int maxFE;
   private int maxTransfer;
@@ -14,6 +13,11 @@ public class FabricatorConfig {
   private ForgeConfigSpec.IntValue configMaxTransfer;
   private ForgeConfigSpec.IntValue configOperationCost;
   private ForgeConfigSpec.IntValue configFrequency;
+
+  private int curMaxFE = -1;
+  private int curMaxTransfer = -1;
+  private int curOperationCost = -1;
+  private int curFrequency = -1;
 
   public FabricatorConfig(String name, int maxFE, int maxTransfer, int operationCost, int frequency) {
     this.name = name;
@@ -28,23 +32,40 @@ public class FabricatorConfig {
   }
 
   public int getMaxFE() {
-    return configMaxFE.get();
+    if (curMaxFE == -1) {
+      curMaxFE = configMaxFE.get();
+    }
+    return curMaxFE;
   }
 
   public int getMaxTransfer() {
-    return configMaxTransfer.get();
+    if (curMaxTransfer == -1) {
+      curMaxTransfer = configMaxTransfer.get();
+    }
+    return curMaxTransfer;
   }
 
   public int getOperationCost() {
-    return configOperationCost.get();
+    if (curOperationCost == -1) {
+      curOperationCost = configOperationCost.get();
+    }
+    return curOperationCost;
   }
 
   public int getFrequency() {
-    return configFrequency.get();
+    if (curFrequency == -1) {
+      curFrequency = configFrequency.get();
+    }
+    return curFrequency;
   }
 
+  private int[] curValues = null;
+
   public int[] values () {
-    return new int[]{getMaxFE(), getMaxTransfer(), getOperationCost(), getFrequency()};
+    if (curValues == null) {
+      curValues = new int[]{getMaxFE(), getMaxTransfer(), getOperationCost(), getFrequency()};
+    }
+    return curValues;
   }
 
   public void apply(ForgeConfigSpec.Builder builder) {
