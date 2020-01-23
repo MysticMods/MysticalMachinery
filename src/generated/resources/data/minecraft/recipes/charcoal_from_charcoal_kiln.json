@@ -1,0 +1,14 @@
+{
+  "type": "mysticalmachinery:charcoal_kiln",
+  "ingredient": {
+    "tag": "minecraft:logs"
+  },
+  "ingredientCount": 10,
+  "maxAdditional": 5,
+  "result": {
+    "item": "minecraft:charcoal",
+    "count": 15
+  },
+  "experience": 3.5,
+  "cookingtime": 20000
+}

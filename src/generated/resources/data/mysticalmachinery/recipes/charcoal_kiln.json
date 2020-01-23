@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XFX",
+    " X "
+  ],
+  "key": {
+    "F": {
+      "item": "mysticalmachinery:kiln"
+    },
+    "X": {
+      "item": "mysticalworld:iron_brick"
+    }
+  },
+  "result": {
+    "item": "mysticalmachinery:charcoal_kiln"
+  }
+}
