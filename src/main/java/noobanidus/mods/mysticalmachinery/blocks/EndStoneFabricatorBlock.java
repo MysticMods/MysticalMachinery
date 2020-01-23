@@ -23,6 +23,7 @@ import noobanidus.mods.mysticalmachinery.tiles.EndStoneFabricatorTile;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
 public class EndStoneFabricatorBlock extends Block {
   public static VoxelShape SHAPE = VoxelUtil.multiOr(Block.makeCuboidShape(0, 0, 13, 16, 3, 16), Block.makeCuboidShape(0, 0, 0, 16, 3, 3), Block.makeCuboidShape(0, 13, 13, 16, 16, 16), Block.makeCuboidShape(0, 13, 0, 16, 16, 3), Block.makeCuboidShape(13, 0, 3, 16, 3, 13), Block.makeCuboidShape(0, 0, 3, 3, 3, 13), Block.makeCuboidShape(0, 13, 3, 3, 16, 13), Block.makeCuboidShape(13, 13, 3, 16, 16, 13), Block.makeCuboidShape(0, 3, 0, 3, 13, 3), Block.makeCuboidShape(0, 3, 13, 3, 13, 16), Block.makeCuboidShape(13, 3, 13, 16, 13, 16), Block.makeCuboidShape(13, 3, 0, 16, 13, 3), Block.makeCuboidShape(1, 3, 3, 1, 13, 13), Block.makeCuboidShape(15, 3, 3, 15, 13, 13), Block.makeCuboidShape(3, 3, 15, 13, 13, 15), Block.makeCuboidShape(3, 3, 1, 13, 13, 1), Block.makeCuboidShape(3, 15, 3, 13, 15, 13), Block.makeCuboidShape(3, 1, 3, 13, 1, 13), Block.makeCuboidShape(5, 4, 5, 11, 5, 11), Block.makeCuboidShape(11, 5, 5, 12, 11, 11), Block.makeCuboidShape(5, 5, 4, 11, 11, 5), Block.makeCuboidShape(4, 5, 5, 5, 11, 11), Block.makeCuboidShape(5, 11, 5, 11, 12, 11), Block.makeCuboidShape(5, 5, 11, 11, 11, 12));
 

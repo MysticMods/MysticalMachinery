@@ -20,6 +20,7 @@ import noobanidus.mods.mysticalmachinery.tiles.WaterFabricatorTile;
 import javax.annotation.Nullable;
 import java.util.List;
 
+@SuppressWarnings("deprecation")
 public class InfiniteWaterFabricatorBlock extends Block {
   public InfiniteWaterFabricatorBlock(Properties properties) {
     super(properties);

@@ -18,6 +18,7 @@ import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistries;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +26,7 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -110,7 +112,7 @@ public class BatteryRecipeBuilder {
    * Builds this recipe into an {@link IFinishedRecipe}.
    */
   public void build(Consumer<IFinishedRecipe> consumerIn) {
-    this.build(consumerIn, Registry.ITEM.getKey(this.result));
+    this.build(consumerIn, ForgeRegistries.ITEMS.getKey(this.result));
   }
 
   /**
@@ -118,7 +120,7 @@ public class BatteryRecipeBuilder {
    * the result.
    */
   public void build(Consumer<IFinishedRecipe> consumerIn, String save) {
-    ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
+    ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result);
     if ((new ResourceLocation(save)).equals(resourcelocation)) {
       throw new IllegalStateException("Shaped Recipe " + save + " should remove its 'save' argument");
     } else {
@@ -208,7 +210,7 @@ public class BatteryRecipeBuilder {
 
       json.add("key", jsonobject);
       JsonObject jsonobject1 = new JsonObject();
-      jsonobject1.addProperty("item", Registry.ITEM.getKey(this.result).toString());
+      jsonobject1.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(this.result)).toString());
       if (this.count > 1) {
         jsonobject1.addProperty("count", this.count);
       }

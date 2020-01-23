@@ -8,6 +8,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Set;
 
+@SuppressWarnings({"deprecation", "NullableProblems"})
 @OnlyIn(Dist.CLIENT)
 public class KilnRecipeGui extends AbstractRecipeBookGui {
    @Override

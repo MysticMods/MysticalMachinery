@@ -18,6 +18,7 @@ import noobanidus.mods.mysticalmachinery.tiles.FabricatorTile;
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public class FabricatorBlock extends Block {
   private final Supplier<? extends Block> block;
   private final int MAX_FE;

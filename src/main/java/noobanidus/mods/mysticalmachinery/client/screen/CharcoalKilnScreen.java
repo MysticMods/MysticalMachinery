@@ -1,26 +1,55 @@
 package noobanidus.mods.mysticalmachinery.client.screen;
 
-import net.minecraft.client.gui.screen.inventory.AbstractFurnaceScreen;
-import net.minecraft.client.gui.widget.button.ImageButton;
+import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import noobanidus.mods.mysticalmachinery.container.KilnContainer;
+import noobanidus.mods.mysticalmachinery.MysticalMachinery;
+import noobanidus.mods.mysticalmachinery.container.CharcoalKilnContainer;
 
+import java.util.Objects;
+
+@SuppressWarnings("Duplicates")
 @OnlyIn(Dist.CLIENT)
-public class CharcoalKilnScreen extends AbstractFurnaceScreen<KilnContainer> {
-   private static final ResourceLocation FURNACE_GUI_TEXTURES = new ResourceLocation("textures/gui/container/furnace.png");
+public class CharcoalKilnScreen extends ContainerScreen<CharcoalKilnContainer> {
+  private static final ResourceLocation FURNACE_GUI_TEXTURES = new ResourceLocation(MysticalMachinery.MODID, "textures/gui/charcoal_kiln.png");
 
-   public CharcoalKilnScreen(KilnContainer p_i51089_1_, PlayerInventory p_i51089_2_, ITextComponent p_i51089_3_) {
-      super(p_i51089_1_, new KilnRecipeGui(), p_i51089_2_, p_i51089_3_, FURNACE_GUI_TEXTURES);
-   }
+  public CharcoalKilnScreen(CharcoalKilnContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    super(screenContainer, inv, titleIn);
+  }
 
-   @Override
-   public void init () {
-      super.init();
-      this.buttons.removeIf(o -> o instanceof ImageButton);
-      this.children.removeIf(o -> o instanceof ImageButton);
-   }
+  public void render(int p1, int p2, float p3) {
+    this.renderBackground();
+    this.drawGuiContainerBackgroundLayer(p3, p1, p2);
+    super.render(p1, p2, p3);
+    this.renderHoveredToolTip(p1, p2);
+  }
+
+  protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+    String s = this.title.getFormattedText();
+    this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 4210752);
+    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 96 + 2), 4210752);
+  }
+
+  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+    GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+    Objects.requireNonNull(this.minecraft).getTextureManager().bindTexture(FURNACE_GUI_TEXTURES);
+    int i = this.guiLeft;
+    int j = this.guiTop;
+    this.blit(i, j, 0, 0, this.xSize, this.ySize);
+    if (this.container.isBurning()) {
+      int k = 100;
+      this.blit(i + 56, j + 12 + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+    }
+
+    int l = this.container.getCookProgressionScaled();
+    this.blit(i + 79, j + 34, 176, 14, l + 1, 16);
+  }
+
+  public void removed() {
+    super.removed();
+  }
 }

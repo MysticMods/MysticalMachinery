@@ -24,18 +24,18 @@ public class CharcoalKilnContainer extends Container {
   protected final World world;
 
   public CharcoalKilnContainer(int id, PlayerInventory playerInventoryIn) {
-    this(ModContainers.CHARCOAL_KILN_CONTAINER.get(), id, playerInventoryIn, new Inventory(2), new IntArray(3));
+    this(id, playerInventoryIn, new Inventory(2), new IntArray(3));
   }
 
-  public CharcoalKilnContainer(ContainerType<?> containerTypeIn, int id, PlayerInventory playerInventoryIn, IInventory inventory, IIntArray data) {
-    super(containerTypeIn, id);
+  public CharcoalKilnContainer(int id, PlayerInventory playerInventoryIn, IInventory inventory, IIntArray data) {
+    super(ModContainers.CHARCOAL_KILN_CONTAINER.get(), id);
     assertInventorySize(inventory, 2);
     assertIntArraySize(data, 3);
     this.inventory = inventory;
     this.data = data;
     this.world = playerInventoryIn.player.world;
-    this.addSlot(new Slot(inventory, 0, 56, 17));
-    this.addSlot(new FurnaceResultSlot(playerInventoryIn.player, inventory, 2, 116, 35));
+    this.addSlot(new Slot(inventory, 0, 56, 27));
+    this.addSlot(new FurnaceResultSlot(playerInventoryIn.player, inventory, 1, 116, 35));
 
     for (int i = 0; i < 3; ++i) {
       for (int j = 0; j < 9; ++j) {
@@ -61,7 +61,7 @@ public class CharcoalKilnContainer extends Container {
       ItemStack itemstack1 = slot.getStack();
       itemstack = itemstack1.copy();
       if (index == 1) {
-        if (!this.mergeItemStack(itemstack1, 3, 39, true)) {
+        if (!this.mergeItemStack(itemstack1, 3, 38, true)) {
           return ItemStack.EMPTY;
         }
 
@@ -72,13 +72,13 @@ public class CharcoalKilnContainer extends Container {
             return ItemStack.EMPTY;
           }
         } else if (index >= 3 && index < 30) {
-          if (!this.mergeItemStack(itemstack1, 30, 39, false)) {
+          if (!this.mergeItemStack(itemstack1, 30, 38, false)) {
             return ItemStack.EMPTY;
           }
-        } else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
+        } else if (index >= 30 && index < 38 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
           return ItemStack.EMPTY;
         }
-      } else if (!this.mergeItemStack(itemstack1, 3, 39, false)) {
+      } else if (!this.mergeItemStack(itemstack1, 3, 38, false)) {
         return ItemStack.EMPTY;
       }
 

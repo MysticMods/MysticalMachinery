@@ -31,6 +31,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import noobanidus.mods.mysticalmachinery.blocks.CharcoalKilnBlock;
+import noobanidus.mods.mysticalmachinery.container.CharcoalKilnContainer;
 import noobanidus.mods.mysticalmachinery.container.KilnContainer;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
 import noobanidus.mods.mysticalmachinery.init.ModTiles;
@@ -291,7 +292,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
 
   @Override
   protected Container createMenu(int id, PlayerInventory player) {
-    return new KilnContainer(id, player, this, this.furnaceData);
+    return new CharcoalKilnContainer(id, player, this, this.furnaceData);
   }
 
   protected CharcoalKilnRecipe curRecipe;

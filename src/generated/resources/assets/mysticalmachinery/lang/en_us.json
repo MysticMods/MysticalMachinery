@@ -32,6 +32,7 @@
   "item.mysticalmachinery.silver_power_cell": "Silver Power Cell",
   "item.mysticalmachinery.tin_power_cell": "Tin Power Cell",
   "itemGroup.mysticalmachinery": "Mystical Machinery",
+  "mysticalmachinery.container.charcoal_kiln": "Charcoal Kiln",
   "mysticalmachinery.container.kiln": "Kiln",
   "mysticalmachinery.container.sawmill": "Sawmill",
   "mysticalmachinery.energy_item.tooltip": "Energy: %s/%s FE",
