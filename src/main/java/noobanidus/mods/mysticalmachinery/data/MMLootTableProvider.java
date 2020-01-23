@@ -47,6 +47,7 @@ public class MMLootTableProvider extends LootTableProvider {
     @Override
     protected void addTables() {
       self(ModBlocks.KILN);
+      self(ModBlocks.CHARCOAL_KILN);
       self(ModBlocks.COOKIE_GENERATOR);
       self(ModBlocks.SAWMILL);
 
