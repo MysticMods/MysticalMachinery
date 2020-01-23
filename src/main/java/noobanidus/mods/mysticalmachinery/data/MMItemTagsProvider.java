@@ -18,5 +18,6 @@ public class MMItemTagsProvider extends DeferredItemTagsProvider {
     appendToTag(GENERATOR_COOKIES, COOKIES);
     addItemsToTag(BASE_POWERCELL, ModItems.POWERCELL_LEAD, ModItems.POWERCELL_TIN);
     addItemsToTag(SAWDUST, ModItems.SAWDUST);
+    addItemsToTag(FIRELIGHTERS, () -> Items.FLINT_AND_STEEL);
   }
 }

@@ -14,6 +14,7 @@ public class MMTags {
     public static Tag<Item> GENERATOR_COOKIES = modTag("generator_cookies");
     public static Tag<Item> BASE_POWERCELL = modTag("base_powercells");
     public static Tag<Item> SAWDUST = compatTag("dusts/wooden");
+    public static Tag<Item> FIRELIGHTERS = modTag("firelighters");
 
     static Tag<Item> tag(String modid, String name) {
       return tag(ItemTags.Wrapper::new, modid, name);

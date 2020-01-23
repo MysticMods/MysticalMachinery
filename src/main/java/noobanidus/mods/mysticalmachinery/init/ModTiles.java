@@ -8,6 +8,7 @@ import static noobanidus.mods.mysticalmachinery.MysticalMachinery.REGISTRY;
 
 public class ModTiles {
   public static final RegistryObject<TileEntityType<KilnTile>> KILN = REGISTRY.registerTileEntity("kiln", REGISTRY.tile(KilnTile::new, ModBlocks.KILN));
+  public static final RegistryObject<TileEntityType<CharcoalKilnTile>> CHARCOAL_KILN = REGISTRY.registerTileEntity("charcoal_kiln", REGISTRY.tile(CharcoalKilnTile::new, ModBlocks.CHARCOAL_KILN));
   public static final RegistryObject<TileEntityType<SawmillTile>> SAWMILL = REGISTRY.registerTileEntity("sawmill", REGISTRY.tile(SawmillTile::new, ModBlocks.SAWMILL));
   public static final RegistryObject<TileEntityType<CookieGeneratorTile>> COOKIE_GENERATOR = REGISTRY.registerTileEntity("cookie_generator", REGISTRY.tile(CookieGeneratorTile::new, ModBlocks.COOKIE_GENERATOR));
   //public static final RegistryObject<TileEntityType<StoredHeatGeneratorTile>> STORED_HEAT_GENERATOR = REGISTRY.registerTileEntity("stored_heat_generator", REGISTRY.tile(StoredHeatGeneratorTile::new, ModBlocks.STORED_HEAT_GENERATOR));

@@ -38,6 +38,8 @@ public class MMBlockStateProvider extends DeferredBlockStateProvider {
 
     horizontalBooleanStateBlock(ModBlocks.SAWMILL, booleanStateLoc("sawmill_%s"), booleanStateDescriptor(SawmillBlock.LIT));
 
+    horizontalModel(ModBlocks.CHARCOAL_KILN);
+
     ModBlocks.BLOCKS_WITH_MODELS.forEach(this::simpleModel);
 
     simpleBlock(ModBlocks.WATER_FABRICATOR, getExistingFile(blockModel(ModBlocks.WATER_FABRICATOR)));

@@ -18,6 +18,7 @@ public class MMLangProvider extends DeferredLanguageProvider {
     addItemGroup(MysticalMachinery.ITEM_GROUP, "Mystical Machinery");
 
     addBlock(ModBlocks.KILN);
+    addBlock(ModBlocks.CHARCOAL_KILN);
     addBlock(ModBlocks.SAWMILL);
 
     for (RegistryObject<MachineFrameBlock> type : ModBlocks.MACHINE_FRAMES.values()) {

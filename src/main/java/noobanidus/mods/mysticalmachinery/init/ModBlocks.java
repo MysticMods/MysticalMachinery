@@ -24,6 +24,8 @@ public class ModBlocks {
 
   public static RegistryObject<KilnBlock> KILN = REGISTRY.registerBlock("kiln", REGISTRY.block(KilnBlock::new, () -> Block.Properties.create(Material.ROCK).hardnessAndResistance(3.5F).lightValue(13)), ITEM_PROPS);
 
+  public static RegistryObject<CharcoalKilnBlock> CHARCOAL_KILN = REGISTRY.registerBlock("charcoal_kiln", REGISTRY.block(CharcoalKilnBlock::new, () -> Block.Properties.create(Material.ROCK).hardnessAndResistance(3.5F).lightValue(13)), ITEM_PROPS);
+
   public static RegistryObject<SawmillBlock> SAWMILL = REGISTRY.registerBlock("sawmill", REGISTRY.block(SawmillBlock::new, () -> Block.Properties.create(Material.ROCK).hardnessAndResistance(3.5f).lightValue(13)), ITEM_PROPS);
 
   public static RegistryObject<CookieGeneratorBlock> COOKIE_GENERATOR = REGISTRY.registerBlock("cookie_generator", REGISTRY.block(CookieGeneratorBlock::new, () -> Block.Properties.create(Material.IRON).hardnessAndResistance(2.5f).sound(SoundType.METAL)), ITEM_PROPS);

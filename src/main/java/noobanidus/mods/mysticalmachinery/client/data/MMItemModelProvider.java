@@ -25,6 +25,7 @@ public class MMItemModelProvider extends DeferredItemModelProvider {
     generated(ModItems.SAWDUST);
 
     blockItem(ModBlocks.KILN);
+    blockItem(ModBlocks.CHARCOAL_KILN);
 
     for (RegistryObject<MachineFrameBlock> block : ModBlocks.MACHINE_FRAMES.values()) {
       blockItem(block);

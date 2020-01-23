@@ -40,11 +40,6 @@ public class KilnBlock extends AbstractFastFurnaceBlock {
     return SHAPE;
   }
 
-  @Override
-  public boolean doesSideBlockRendering(BlockState state, IEnviromentBlockReader world, BlockPos pos, Direction face) {
-    return false;
-  }
-
   public KilnBlock(Properties properties) {
     super(properties);
   }

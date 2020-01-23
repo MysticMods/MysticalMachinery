@@ -7,6 +7,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ItemTags;
@@ -21,6 +22,7 @@ import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 import noobanidus.mods.mysticalmachinery.init.ModItems;
 import noobanidus.mods.mysticalmachinery.recipes.BatteryRecipeBuilder;
+import noobanidus.mods.mysticalmachinery.recipes.CharcoalKilnRecipeBuilder;
 import noobanidus.mods.mysticalmachinery.recipes.KilnRecipeBuilder;
 import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipeBuilder;
 
@@ -43,7 +45,18 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .addCriterion("has_terracotta_bricks", this.hasItem(epicsquid.mysticalworld.init.ModBlocks.TERRACOTTA_BRICK.get()))
         .build(consumer);
 
+    ShapedRecipeBuilder.shapedRecipe(ModBlocks.CHARCOAL_KILN.get(), 1)
+        .patternLine(" X ")
+        .patternLine("XFX")
+        .patternLine(" X ")
+        .key('F', ModBlocks.KILN.get())
+        .key('X', epicsquid.mysticalworld.init.ModBlocks.IRON_BRICK.get())
+        .addCriterion("has_iron_bricks", this.hasItem(epicsquid.mysticalworld.init.ModBlocks.IRON_BRICK.get()))
+        .addCriterion("has_kiln", this.hasItem(ModBlocks.KILN.get()))
+        .build(consumer);
+
     kilnRecipes(consumer);
+    charcoalKilnRecipes(consumer);
     sawmillRecipes(consumer);
 
     for (MachineFrame type : MachineFrame.values()) {
@@ -302,6 +315,10 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
         .key('S', MMTags.Items.SAWDUST)
         .addCriterion("has_sawdust", this.hasItem(MMTags.Items.SAWDUST))
         .build(consumer, new ResourceLocation(MysticalMachinery.MODID, "paper_from_sawdust"));
+  }
+
+  private void charcoalKilnRecipes (Consumer<IFinishedRecipe> consumer) {
+    CharcoalKilnRecipeBuilder.charcoalKilnRecipe(new ItemStack(Items.CHARCOAL, 15), Ingredient.fromTag(ItemTags.LOGS), 10, 5, 3.5f, 20000).addCriterion("has_logs", this.hasItem(ItemTags.LOGS)).build(consumer, "charcoal_from_charcoal_kiln");
   }
 
   private void sawmillRecipes (Consumer<IFinishedRecipe> consumer) {
