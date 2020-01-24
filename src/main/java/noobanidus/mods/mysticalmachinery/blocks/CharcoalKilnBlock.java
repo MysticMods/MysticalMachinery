@@ -7,22 +7,28 @@ import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.RedstoneTorchBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.mods.mysticalmachinery.MMTags;
+import noobanidus.mods.mysticalmachinery.init.ModSounds;
 import noobanidus.mods.mysticalmachinery.tiles.CharcoalKilnTile;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
-@SuppressWarnings({"NullableProblems", "deprecation"})
+@SuppressWarnings({"NullableProblems", "deprecation", "Duplicates"})
 public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
   public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
   public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
@@ -67,5 +73,54 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
   @Override
   public TileEntity createNewTileEntity(IBlockReader worldIn) {
     return new CharcoalKilnTile();
+  }
+
+  @Override
+  @OnlyIn(Dist.CLIENT)
+  public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+    if (stateIn.get(LIT)) {
+      if (rand.nextDouble() < 0.1D) {
+        worldIn.playSound(null, pos, ModSounds.KILN_CRACKLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+      }
+
+      if (rand.nextInt(4) == 0) {
+        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5D, pos.getY() + 1.35D, pos.getZ() + 0.05D, 0.0D, 0.03D, 0.0D);
+      }
+      if (rand.nextInt(4) == 0) {
+        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5D, pos.getY() + 1.35D, pos.getZ() + 0.95D, 0.0D, 0.03D, 0.0D);
+      }
+      if (rand.nextInt(4) == 0) {
+        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.05D, pos.getY() + 1.35D, pos.getZ() + 0.5D, 0.0D, 0.03D, 0.0D);
+      }
+      if (rand.nextInt(4) == 0) {
+        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.95D, pos.getY() + 1.35D, pos.getZ() + 0.5D, 0.0D, 0.03D, 0.0D);
+      }
+
+      if (rand.nextInt(7) == 0) {
+        worldIn.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5D, pos.getY() + 0.1, pos.getZ() + 0.05D, 0.0D, 0.03D, -0.03D);
+      }
+      if (rand.nextInt(7) == 0) {
+        worldIn.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.5D, pos.getY() + 0.1, pos.getZ() + 0.95D, 0.0D, 0.03D, 0.03D);
+      }
+      if (rand.nextInt(7) == 0) {
+        worldIn.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.05D, pos.getY() + 0.1, pos.getZ() + 0.5D, -0.03D, 0.03D, 0.0D);
+      }
+      if (rand.nextInt(7) == 0) {
+        worldIn.addParticle(ParticleTypes.SMOKE, pos.getX() + 0.95D, pos.getY() + 0.1, pos.getZ() + 0.5D, 0.03D, 0.03D, 0.0D);
+      }
+
+      if (rand.nextInt(21) == 0) {
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.3D, pos.getZ() + 0.15, 0.0D, 0.0D, 0.0D);
+      }
+      if (rand.nextInt(21) == 0) {
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.3D, pos.getZ() + 0.85D, 0.0D, 0.0D, 0.0D);
+      }
+      if (rand.nextInt(21) == 0) {
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.15, pos.getY() + 1.3D, pos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+      }
+      if (rand.nextInt(21) == 0) {
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.85D, pos.getY() + 1.3D, pos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+      }
+    }
   }
 }

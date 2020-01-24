@@ -52,6 +52,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   protected int cookTime;
   protected int cookTimeTotal;
   private int additional = -2;
+  private int tickCountdown = 60;
   protected final IIntArray furnaceData = new IIntArray() {
     @Override
     public int get(int index) {
@@ -87,7 +88,6 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
       return 3;
     }
   };
-  private final Map<ResourceLocation, Integer> recipeMap = Maps.newHashMap();
 
   public CharcoalKilnTile() {
     super(ModTiles.CHARCOAL_KILN.get());
@@ -100,6 +100,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   public void setBurning () {
     this.burning = true;
     this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CharcoalKilnBlock.LIT, true), 3);
+    this.tickCountdown = 60;
   }
 
   public void extinguish () {
@@ -140,6 +141,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
         boolean valid = this.canSmelt(recipe);
         if (valid) {
           ++this.cookTime;
+          tickCountdown = 60;
           if (this.cookTime == this.cookTimeTotal) {
             this.cookTime = 0;
             this.cookTimeTotal = this.getCookTime();
@@ -149,13 +151,23 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
         } else {
           this.cookTime = 0;
           this.additional = -2;
-          this.extinguish();
+          if (recipe == null) {
+            this.tickCountdown--;
+          }
         }
+      } else if (this.isBurning() && this.items.get(INPUT).isEmpty()) {
+        tickCountdown--;
       }
     }
 
     if (dirty) {
       this.markDirty();
+    }
+
+    if (!this.world.isRemote()) {
+      if (tickCountdown <= 0) {
+        this.extinguish();
+      }
     }
   }
 
@@ -332,15 +344,11 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
         itemstack1.grow(additional);
       }
 
-      ItemStack itemstack2 = this.items.get(2);
+      ItemStack itemstack2 = this.items.get(1);
       if (itemstack2.isEmpty()) {
-        this.items.set(2, itemstack1.copy());
+        this.items.set(1, itemstack1.copy());
       } else if (itemstack2.getItem() == itemstack1.getItem()) {
         itemstack2.grow(itemstack1.getCount());
-      }
-
-      if (!this.world.isRemote) {
-        this.setRecipeUsed(recipe);
       }
 
       itemstack.shrink(recipe.getIngredientCount());

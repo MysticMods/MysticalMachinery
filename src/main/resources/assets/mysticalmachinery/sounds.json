@@ -10,6 +10,17 @@
     ],
     "subtitle": "mysticalmachinery.subtitles.block.kiln.fire_crackle"
   },
+  "block.charcoal_kiln.fire_crackle": {
+    "category": "block",
+    "sounds": [
+       "mysticalmachinery:block/furnace/fire_crackle1",
+       "mysticalmachinery:block/furnace/fire_crackle2",
+       "mysticalmachinery:block/furnace/fire_crackle3",
+       "mysticalmachinery:block/furnace/fire_crackle4",
+       "mysticalmachinery:block/furnace/fire_crackle5"
+    ],
+    "subtitle": "mysticalmachinery.subtitles.block.charcoal_kiln.fire_crackle"
+  },
   "block.cookie_generator.munch": {
     "category": "block",
     "sounds": [

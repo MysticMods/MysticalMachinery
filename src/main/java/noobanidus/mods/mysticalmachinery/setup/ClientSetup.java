@@ -1,19 +1,26 @@
 package noobanidus.mods.mysticalmachinery.setup;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import noobanidus.mods.mysticalmachinery.blocks.CharcoalKilnBlock;
 import noobanidus.mods.mysticalmachinery.client.screen.CharcoalKilnScreen;
 import noobanidus.mods.mysticalmachinery.client.screen.KilnScreen;
 import noobanidus.mods.mysticalmachinery.client.screen.SawmillScreen;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 import noobanidus.mods.mysticalmachinery.init.ModContainers;
+
+import javax.annotation.Nullable;
+import java.awt.*;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientSetup {
@@ -22,7 +29,27 @@ public class ClientSetup {
     ScreenManager.registerFactory(ModContainers.SAWMILL_CONTAINER.get(), SawmillScreen::new);
     ScreenManager.registerFactory(ModContainers.CHARCOAL_KILN_CONTAINER.get(), CharcoalKilnScreen::new);
 
-    Minecraft.getInstance().getBlockColors().register((state, world, pos, index) -> Fluids.WATER.getAttributes().getColor(world, pos), ModBlocks.WATER_FABRICATOR.get());
-    Minecraft.getInstance().getItemColors().register((p1, index) -> Fluids.WATER.getAttributes().getColor(), ModBlocks.WATER_FABRICATOR.get());
+    Minecraft mc = Minecraft.getInstance();
+
+    mc.getBlockColors().register((state, world, pos, index) -> Fluids.WATER.getAttributes().getColor(world, pos), ModBlocks.WATER_FABRICATOR.get());
+    mc.getBlockColors().register(new FurnaceColor(mc), ModBlocks.CHARCOAL_KILN.get());
+    mc.getItemColors().register((p1, index) -> Fluids.WATER.getAttributes().getColor(), ModBlocks.WATER_FABRICATOR.get());
+  }
+
+  public static class FurnaceColor implements IBlockColor {
+    private Minecraft mc;
+
+    public FurnaceColor(Minecraft mc) {
+      this.mc = mc;
+    }
+
+    @Override
+    public int getColor(BlockState blockState, @Nullable IEnviromentBlockReader iEnviromentBlockReader, @Nullable BlockPos blockPos, int i) {
+      if (blockState.get(CharcoalKilnBlock.LIT)) {
+        return 0xffc0a1;
+      } else {
+        return 0xffffffff;
+      }
+    }
   }
 }

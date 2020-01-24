@@ -1,12 +1,12 @@
 package noobanidus.mods.mysticalmachinery.recipes;
 
-import net.minecraft.item.Item;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
-import noobanidus.mods.mysticalmachinery.MysticalMachinery;
+import net.minecraft.world.World;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
 
 @SuppressWarnings({"NullableProblems", "WeakerAccess"})
@@ -18,6 +18,11 @@ public class CharcoalKilnRecipe extends AbstractCookingRecipe {
     super(ModRecipes.CHARCOAL_KILN_TYPE, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
     this.ingredientCount = ingredientCount;
     this.maxAdditional = maxAdditional;
+  }
+
+  @Override
+  public boolean matches(IInventory inventory, World world) {
+    return super.matches(inventory, world) && inventory.getStackInSlot(0).getCount() >= ingredientCount;
   }
 
   @Override
