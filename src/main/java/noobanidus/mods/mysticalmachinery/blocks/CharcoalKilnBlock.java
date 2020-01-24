@@ -80,7 +80,7 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
   public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
     if (stateIn.get(LIT)) {
       if (rand.nextDouble() < 0.1D) {
-        worldIn.playSound(null, pos, ModSounds.KILN_CRACKLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+        worldIn.playSound(null, pos, ModSounds.CHARCOAL_KILN_CRACKLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
       }
 
       if (rand.nextInt(4) == 0) {

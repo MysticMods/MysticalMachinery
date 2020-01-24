@@ -52,6 +52,7 @@ public class MMLangProvider extends DeferredLanguageProvider {
     add("mysticalmachinery.tile.cookie_generator.contains", "Contains %s/%sFCE (Forge Cookie Energy)");
     add("mysticalmachinery.tile.end_stone_generator.contains", "Contains %s End Stone (%s/%s FE)");
     add("mysticalmachinery.tile.block_generator.contains", "Contains %s %s (%s/%s FE)");
+    add("mysticalmachinery.subtitles.block.charcoal_kiln.fire_crackle", "Charcoal Kiln crackles");
     add("mysticalmachinery.subtitles.block.kiln.fire_crackle", "Kiln crackles");
     add("mysticalmachinery.subtitles.block.cookie_generator.munch", "Generator munches");
     add("mysticalmachinery.subtitles.block.end_stone_generator.generate", "End Stone Generator operates");
