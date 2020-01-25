@@ -32,24 +32,6 @@ public class ClientSetup {
     Minecraft mc = Minecraft.getInstance();
 
     mc.getBlockColors().register((state, world, pos, index) -> Fluids.WATER.getAttributes().getColor(world, pos), ModBlocks.WATER_FABRICATOR.get());
-    mc.getBlockColors().register(new FurnaceColor(mc), ModBlocks.CHARCOAL_KILN.get());
     mc.getItemColors().register((p1, index) -> Fluids.WATER.getAttributes().getColor(), ModBlocks.WATER_FABRICATOR.get());
-  }
-
-  public static class FurnaceColor implements IBlockColor {
-    private Minecraft mc;
-
-    public FurnaceColor(Minecraft mc) {
-      this.mc = mc;
-    }
-
-    @Override
-    public int getColor(BlockState blockState, @Nullable IEnviromentBlockReader iEnviromentBlockReader, @Nullable BlockPos blockPos, int i) {
-      if (blockState.get(CharcoalKilnBlock.LIT)) {
-        return 0xffc0a1;
-      } else {
-        return 0xffffffff;
-      }
-    }
   }
 }

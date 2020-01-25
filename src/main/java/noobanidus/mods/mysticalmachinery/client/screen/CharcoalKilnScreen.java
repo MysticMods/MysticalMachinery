@@ -51,7 +51,7 @@ public class CharcoalKilnScreen extends ContainerScreen<CharcoalKilnContainer> {
     int j = this.guiTop;
     this.blit(i, j, 0, 0, this.xSize, this.ySize);
     if (this.container.isBurning()) {
-      int k = 100;
+      int k = 200;
       this.blit(i + 56, j + 12 + 36 + 12 - k, 176, 12 - k, 14, k + 1);
     } else {
       this.blit(i + 56, j + 46, 176, 31, 15, 15);

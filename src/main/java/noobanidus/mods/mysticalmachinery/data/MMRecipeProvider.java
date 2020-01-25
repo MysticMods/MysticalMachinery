@@ -318,7 +318,7 @@ public class MMRecipeProvider extends DeferredRecipeProvider {
   }
 
   private void charcoalKilnRecipes (Consumer<IFinishedRecipe> consumer) {
-    CharcoalKilnRecipeBuilder.charcoalKilnRecipe(new ItemStack(Items.CHARCOAL, 15), Ingredient.fromTag(ItemTags.LOGS), 10, 5, 3.5f, 2000).addCriterion("has_logs", this.hasItem(ItemTags.LOGS)).build(consumer, "charcoal_from_charcoal_kiln");
+    CharcoalKilnRecipeBuilder.charcoalKilnRecipe(new ItemStack(Items.CHARCOAL, 5), Ingredient.fromTag(ItemTags.LOGS), 7, 3, 3.5f, 1000).addCriterion("has_logs", this.hasItem(ItemTags.LOGS)).build(consumer, "charcoal_from_charcoal_kiln");
   }
 
   private void sawmillRecipes (Consumer<IFinishedRecipe> consumer) {

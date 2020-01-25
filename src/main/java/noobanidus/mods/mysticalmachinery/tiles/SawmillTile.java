@@ -7,9 +7,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -18,6 +16,7 @@ import noobanidus.mods.mysticalmachinery.container.SawmillContainer;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
 import noobanidus.mods.mysticalmachinery.init.ModTiles;
 import noobanidus.mods.mysticalmachinery.recipes.LogPlankLoader;
+import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipe;
 
 import javax.annotation.Nullable;
 
@@ -38,7 +37,7 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
     return new SawmillContainer(id, player, this, this.furnaceData);
   }
 
-  protected AbstractCookingRecipe curRecipe;
+  protected SawmillRecipe curRecipe;
   protected ItemStack failedMatch = ItemStack.EMPTY;
 
   @Override
@@ -49,10 +48,10 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
       --this.burnTime;
     }
 
-    if (!this.world.isRemote) {
+    if (this.world != null && !this.world.isRemote) {
       ItemStack fuel = this.items.get(FUEL);
       if (this.isBurning() || !fuel.isEmpty() && !this.items.get(INPUT).isEmpty()) {
-        AbstractCookingRecipe irecipe = getRecipe();
+        SawmillRecipe irecipe = getRecipe();
         boolean valid = this.canSmelt(irecipe);
         if (!this.isBurning() && (valid || isLog())) {
           this.burnTime = this.getBurnTime(fuel);
@@ -97,13 +96,33 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
 
   @Override
   protected boolean canSmelt(@Nullable IRecipe<?> recipe) {
-    if (!this.items.get(0).isEmpty() && recipe != null) {
-      ItemStack recipeOutput = recipe.getRecipeOutput();
-      if (!recipeOutput.isEmpty()) {
-        ItemStack output = this.items.get(OUTPUT);
-        if (output.isEmpty()) return true;
-        else if (!output.isItemEqual(recipeOutput)) return false;
-        else return output.getCount() + recipeOutput.getCount() <= output.getMaxStackSize();
+    ItemStack output = this.items.get(OUTPUT);
+    ItemStack input = this.items.get(INPUT);
+    if (!input.isEmpty()) {
+      Item plank = LogPlankLoader.getPlank(input.getItem());
+      if (recipe != null) {
+        ItemStack recipeOutput = recipe.getRecipeOutput();
+        if (!recipeOutput.isEmpty()) {
+          if (output.isEmpty()) {
+            return true;
+          }
+          else if (!output.isItemEqual(recipeOutput)) {
+            return false;
+          }
+          else {
+            return output.getCount() + recipeOutput.getCount() <= output.getMaxStackSize();
+          }
+        }
+      } else if (plank != null) {
+        if (output.isEmpty()) {
+          return true;
+        } else if (output.getCount() == output.getMaxStackSize()) {
+          return false;
+        } else if (output.getCount() + 6 > output.getMaxStackSize()) {
+          return false;
+        } else {
+          return output.getItem() == plank;
+        }
       }
     }
     return false;
@@ -121,7 +140,7 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
         itemstack2.grow(itemstack1.getCount());
       }
 
-      if (!this.world.isRemote) {
+      if (this.world != null && !this.world.isRemote) {
         this.setRecipeUsed(recipe);
       }
 
@@ -135,21 +154,32 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
 
   @Override
   protected int getCookTime() {
-    AbstractCookingRecipe rec = getRecipe();
+    SawmillRecipe rec = getRecipe();
     if (rec == null) return 30;
     return rec.getCookTime();
   }
 
   @Override
-  @SuppressWarnings("unchecked")
-  protected AbstractCookingRecipe getRecipe() {
+  protected SawmillRecipe getRecipe() {
     ItemStack input = this.getStackInSlot(INPUT);
-    if (input.isEmpty() || input == failedMatch) return null;
-    if (curRecipe != null && curRecipe.matches(this, world)) return curRecipe;
+    if (input.isEmpty() || input == failedMatch) {
+      return null;
+    }
+    if (curRecipe != null && curRecipe.matches(this, world)) {
+      return curRecipe;
+    }
     else {
-      AbstractCookingRecipe rec = world.getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>) this.recipeType, this, this.world).orElse(null);
-      if (rec == null) failedMatch = input;
-      else failedMatch = ItemStack.EMPTY;
+      if (this.world == null) {
+        return null;
+      }
+      SawmillRecipe rec = world.getRecipeManager().getRecipe(ModRecipes.SAWMILL_TYPE, this, this.world).orElse(null);
+
+      if (rec == null) {
+        failedMatch = input;
+      }
+      else {
+        failedMatch = ItemStack.EMPTY;
+      }
       return curRecipe = rec;
     }
   }
@@ -161,10 +191,6 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
     }
 
     Item planks = LogPlankLoader.getPlank(input.getItem());
-    if (planks == null) {
-      return false;
-    }
-
-    return true;
+    return planks != null;
   }
 }

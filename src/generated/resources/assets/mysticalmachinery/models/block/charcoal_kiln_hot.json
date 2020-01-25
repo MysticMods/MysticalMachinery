@@ -1,0 +1,7 @@
+{
+  "parent": "mysticalmachinery:block/charcoal_kiln",
+  "textures": {
+    "kiln_face": "mysticalmachinery:block/charcoal_kiln_face_hot",
+    "kiln_bottom": "mysticalmachinery:block/charcoal_kiln_bottom_hot"
+  }
+}

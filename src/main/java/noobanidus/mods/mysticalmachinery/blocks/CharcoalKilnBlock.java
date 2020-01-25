@@ -5,13 +5,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.RedstoneTorchBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -33,8 +34,7 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
   public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
   public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
 
-  public static VoxelShape NORTH = VoxelUtil.multiOr(Block.makeCuboidShape(0, 0, 0,16, 12, 16), Block.makeCuboidShape(6, 12, 0,10, 18, 3), Block.makeCuboidShape(6, 12, 13,10, 18, 16), Block.makeCuboidShape(0, 12, 6,3, 18, 10), Block.makeCuboidShape(13, 12, 6,16, 18, 10), Block.makeCuboidShape(9, 18, 0,10, 19, 3), Block.makeCuboidShape(9, 18, 13,10, 19, 16), Block.makeCuboidShape(6, 18, 0,7, 19, 3), Block.makeCuboidShape(6, 18, 13,7, 19, 16), Block.makeCuboidShape(7, 18, 0,9, 19, 1), Block.makeCuboidShape(7, 18, 13,9, 19, 14), Block.makeCuboidShape(7, 18, 2,9, 19, 3), Block.makeCuboidShape(7, 18, 15,9, 19, 16), Block.makeCuboidShape(0, 18, 9,3, 19, 10), Block.makeCuboidShape(13, 18, 9,16, 19, 10), Block.makeCuboidShape(0, 18, 7,1, 19, 9), Block.makeCuboidShape(13, 18, 7,14, 19, 9), Block.makeCuboidShape(2, 18, 7,3, 19, 9), Block.makeCuboidShape(15, 18, 7,16, 19, 9), Block.makeCuboidShape(0, 18, 6,3, 19, 7), Block.makeCuboidShape(13, 18, 6,16, 19, 7), Block.makeCuboidShape(-0.5, 0, 6,0, 1, 10), Block.makeCuboidShape(16, 0, 6,16.5, 1, 10), Block.makeCuboidShape(-0.5, 2, 6,0, 3, 10), Block.makeCuboidShape(16, 2, 6,16.5, 3, 10), Block.makeCuboidShape(9, 1, -0.5,10, 2, 0), Block.makeCuboidShape(9, 1, 16,10, 2, 16.5), Block.makeCuboidShape(6, 2, -0.5,10, 3, 0), Block.makeCuboidShape(6, 2, 16,10, 3, 16.5), Block.makeCuboidShape(6, 0, -0.5,10, 1, 0), Block.makeCuboidShape(6, 0, 16,10, 1, 16.5), Block.makeCuboidShape(6, 1, -0.5,7, 2, 0), Block.makeCuboidShape(6, 1, 16,7, 2, 16.5), Block.makeCuboidShape(-0.5, 1, 6,0, 2, 7), Block.makeCuboidShape(16, 1, 6,16.5, 2, 7), Block.makeCuboidShape(-0.5, 1, 9,0, 2, 10), Block.makeCuboidShape(16, 1, 9,16.5, 2, 10), Block.makeCuboidShape(1, 12, 1,15, 14, 15), Block.makeCuboidShape(2, 14, 2,14, 16, 14), Block.makeCuboidShape(3, 16, 3,13, 18, 13), Block.makeCuboidShape(9, 18, 7,10, 19, 9), Block.makeCuboidShape(6, 19, 7,10, 20, 9), Block.makeCuboidShape(6, 18, 7,7, 19, 9));
-  public static VoxelShape EAST = VoxelUtil.multiOr(Block.makeCuboidShape(0, 0, 0,16, 12, 16), Block.makeCuboidShape(13, 12, 6,16, 18, 10), Block.makeCuboidShape(0, 12, 6,3, 18, 10), Block.makeCuboidShape(6, 12, 0,10, 18, 3), Block.makeCuboidShape(6, 12, 13,10, 18, 16), Block.makeCuboidShape(13, 18, 9,16, 19, 10), Block.makeCuboidShape(0, 18, 9,3, 19, 10), Block.makeCuboidShape(13, 18, 6,16, 19, 7), Block.makeCuboidShape(0, 18, 6,3, 19, 7), Block.makeCuboidShape(15, 18, 7,16, 19, 9), Block.makeCuboidShape(2, 18, 7,3, 19, 9), Block.makeCuboidShape(13, 18, 7,14, 19, 9), Block.makeCuboidShape(0, 18, 7,1, 19, 9), Block.makeCuboidShape(6, 18, 0,7, 19, 3), Block.makeCuboidShape(6, 18, 13,7, 19, 16), Block.makeCuboidShape(7, 18, 0,9, 19, 1), Block.makeCuboidShape(7, 18, 13,9, 19, 14), Block.makeCuboidShape(7, 18, 2,9, 19, 3), Block.makeCuboidShape(7, 18, 15,9, 19, 16), Block.makeCuboidShape(9, 18, 0,10, 19, 3), Block.makeCuboidShape(9, 18, 13,10, 19, 16), Block.makeCuboidShape(6, 0, -0.5,10, 1, 0), Block.makeCuboidShape(6, 0, 16,10, 1, 16.5), Block.makeCuboidShape(6, 2, -0.5,10, 3, 0), Block.makeCuboidShape(6, 2, 16,10, 3, 16.5), Block.makeCuboidShape(16, 1, 9,16.5, 2, 10), Block.makeCuboidShape(-0.5, 1, 9,0, 2, 10), Block.makeCuboidShape(16, 2, 6,16.5, 3, 10), Block.makeCuboidShape(-0.5, 2, 6,0, 3, 10), Block.makeCuboidShape(16, 0, 6,16.5, 1, 10), Block.makeCuboidShape(-0.5, 0, 6,0, 1, 10), Block.makeCuboidShape(16, 1, 6,16.5, 2, 7), Block.makeCuboidShape(-0.5, 1, 6,0, 2, 7), Block.makeCuboidShape(9, 1, -0.5,10, 2, 0), Block.makeCuboidShape(9, 1, 16,10, 2, 16.5), Block.makeCuboidShape(6, 1, -0.5,7, 2, 0), Block.makeCuboidShape(6, 1, 16,7, 2, 16.5), Block.makeCuboidShape(1, 12, 1,15, 14, 15), Block.makeCuboidShape(2, 14, 2,14, 16, 14), Block.makeCuboidShape(3, 16, 3,13, 18, 13), Block.makeCuboidShape(7, 18, 9,9, 19, 10), Block.makeCuboidShape(7, 19, 6,9, 20, 10), Block.makeCuboidShape(7, 18, 6,9, 19, 7));
+  public static VoxelShape SHAPE = VoxelUtil.multiOr(Block.makeCuboidShape(1, 0, 1, 15, 12, 15), Block.makeCuboidShape(6, 12, 1, 10, 18, 5), Block.makeCuboidShape(6, 12, 11, 10, 18, 15), Block.makeCuboidShape(1, 12, 6, 5, 18, 10), Block.makeCuboidShape(11, 12, 6, 15, 18, 10), Block.makeCuboidShape(9, 18, 1, 10, 19, 5), Block.makeCuboidShape(9, 18, 11, 10, 19, 15), Block.makeCuboidShape(6, 18, 1, 7, 19, 5), Block.makeCuboidShape(6, 18, 11, 7, 19, 15), Block.makeCuboidShape(7, 18, 1, 9, 19, 2), Block.makeCuboidShape(7, 18, 11, 9, 19, 12), Block.makeCuboidShape(7, 18, 4, 9, 19, 5), Block.makeCuboidShape(7, 18, 14, 9, 19, 15), Block.makeCuboidShape(1, 18, 9, 5, 19, 10), Block.makeCuboidShape(11, 18, 9, 15, 19, 10), Block.makeCuboidShape(1, 18, 7, 2, 19, 9), Block.makeCuboidShape(11, 18, 7, 12, 19, 9), Block.makeCuboidShape(4, 18, 7, 5, 19, 9), Block.makeCuboidShape(14, 18, 7, 15, 19, 9), Block.makeCuboidShape(1, 18, 6, 5, 19, 7), Block.makeCuboidShape(11, 18, 6, 15, 19, 7), Block.makeCuboidShape(0.5, 0, 6, 1, 1, 10), Block.makeCuboidShape(15, 0, 6, 15.5, 1, 10), Block.makeCuboidShape(0.5, 2, 6, 1, 3, 10), Block.makeCuboidShape(15, 2, 6, 15.5, 3, 10), Block.makeCuboidShape(9, 1, 0.5, 10, 2, 1), Block.makeCuboidShape(9, 1, 15, 10, 2, 15.5), Block.makeCuboidShape(6, 2, 0.5, 10, 3, 1), Block.makeCuboidShape(6, 2, 15, 10, 3, 15.5), Block.makeCuboidShape(6, 0, 0.5, 10, 1, 1), Block.makeCuboidShape(6, 0, 15, 10, 1, 15.5), Block.makeCuboidShape(6, 1, 0.5, 7, 2, 1), Block.makeCuboidShape(6, 1, 15, 7, 2, 15.5), Block.makeCuboidShape(0.5, 1, 6, 1, 2, 7), Block.makeCuboidShape(15, 1, 6, 15.5, 2, 7), Block.makeCuboidShape(0.5, 1, 9, 1, 2, 10), Block.makeCuboidShape(15, 1, 9, 15.5, 2, 10), Block.makeCuboidShape(2, 12, 2, 14, 13, 14));
 
   public CharcoalKilnBlock(Properties properties) {
     super(properties);
@@ -42,12 +42,7 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
 
   @Override
   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-    Direction facing = state.get(FACING);
-    if (facing == Direction.NORTH || facing == Direction.SOUTH) {
-      return NORTH;
-    } else {
-      return EAST;
-    }
+    return SHAPE;
   }
 
   @Override
@@ -76,6 +71,11 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
   }
 
   @Override
+  public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
+    entityIn.attackEntityFrom(DamageSource.IN_FIRE, 1.0F);
+  }
+
+  @Override
   @OnlyIn(Dist.CLIENT)
   public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
     if (stateIn.get(LIT)) {
@@ -84,16 +84,16 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
       }
 
       if (rand.nextInt(4) == 0) {
-        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5D, pos.getY() + 1.35D, pos.getZ() + 0.05D, 0.0D, 0.03D, 0.0D);
+        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5D, pos.getY() + 1.35D, pos.getZ() + 0.2, 0.0D, 0.03D, 0.0D);
       }
       if (rand.nextInt(4) == 0) {
-        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5D, pos.getY() + 1.35D, pos.getZ() + 0.95D, 0.0D, 0.03D, 0.0D);
+        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.5D, pos.getY() + 1.35D, pos.getZ() + 0.8D, 0.0D, 0.03D, 0.0D);
       }
       if (rand.nextInt(4) == 0) {
-        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.05D, pos.getY() + 1.35D, pos.getZ() + 0.5D, 0.0D, 0.03D, 0.0D);
+        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.2D, pos.getY() + 1.35D, pos.getZ() + 0.5D, 0.0D, 0.03D, 0.0D);
       }
       if (rand.nextInt(4) == 0) {
-        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.95D, pos.getY() + 1.35D, pos.getZ() + 0.5D, 0.0D, 0.03D, 0.0D);
+        worldIn.addOptionalParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, true, pos.getX() + 0.8D, pos.getY() + 1.35D, pos.getZ() + 0.5D, 0.0D, 0.03D, 0.0D);
       }
 
       if (rand.nextInt(7) == 0) {
@@ -110,16 +110,16 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
       }
 
       if (rand.nextInt(21) == 0) {
-        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.3D, pos.getZ() + 0.15, 0.0D, 0.0D, 0.0D);
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.05D, pos.getZ() + 0.2, 0.0D, 0D, 0.0D);
       }
       if (rand.nextInt(21) == 0) {
-        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.3D, pos.getZ() + 0.85D, 0.0D, 0.0D, 0.0D);
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.05D, pos.getZ() + 0.8D, 0.0D, 0D, 0.0D);
       }
       if (rand.nextInt(21) == 0) {
-        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.15, pos.getY() + 1.3D, pos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.2D, pos.getY() + 1.05D, pos.getZ() + 0.5D, 0.0D, 0D, 0.0D);
       }
       if (rand.nextInt(21) == 0) {
-        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.85D, pos.getY() + 1.3D, pos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.8D, pos.getY() + 1.05D, pos.getZ() + 0.5D, 0.0D, 0D, 0.0D);
       }
     }
   }

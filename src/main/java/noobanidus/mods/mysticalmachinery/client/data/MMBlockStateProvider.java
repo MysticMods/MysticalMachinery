@@ -1,28 +1,21 @@
 package noobanidus.mods.mysticalmachinery.client.data;
 
-import com.google.common.collect.Streams;
 import epicsquid.mysticallib.client.data.DeferredBlockStateProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.fml.RegistryObject;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
+import noobanidus.mods.mysticalmachinery.blocks.CharcoalKilnBlock;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrame;
 import noobanidus.mods.mysticalmachinery.blocks.MachineFrameBlock;
 import noobanidus.mods.mysticalmachinery.blocks.SawmillBlock;
-import noobanidus.mods.mysticalmachinery.blocks.StoredHeatGeneratorBlock;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 public class MMBlockStateProvider extends DeferredBlockStateProvider {
   public MMBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -38,7 +31,25 @@ public class MMBlockStateProvider extends DeferredBlockStateProvider {
 
     horizontalBooleanStateBlock(ModBlocks.SAWMILL, booleanStateLoc("sawmill_%s"), booleanStateDescriptor(SawmillBlock.LIT));
 
-    horizontalModel(ModBlocks.CHARCOAL_KILN);
+    getVariantBuilder(ModBlocks.CHARCOAL_KILN.get()).forAllStates((state) -> {
+      if (state.get(CharcoalKilnBlock.LIT)) {
+        return ConfiguredModel.builder()
+            .modelFile(getBuilder("charcoal_kiln_hot")
+                .parent(getExistingFile(new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln")))
+                .texture("kiln_face", new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln_face_hot"))
+                .texture("kiln_bottom", new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln_bottom_hot")))
+            .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
+            .build();
+      } else {
+        return ConfiguredModel.builder()
+            .modelFile(getBuilder("charcoal_kiln_cold")
+                .parent(getExistingFile(new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln")))
+                .texture("kiln_face", new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln_face"))
+                .texture("kiln_bottom", new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln_bottom")))
+            .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
+            .build();
+      }
+    });
 
     ModBlocks.BLOCKS_WITH_MODELS.forEach(this::simpleModel);
 
