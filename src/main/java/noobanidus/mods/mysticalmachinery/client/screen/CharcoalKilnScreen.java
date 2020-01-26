@@ -50,9 +50,10 @@ public class CharcoalKilnScreen extends ContainerScreen<CharcoalKilnContainer> {
     int i = this.guiLeft;
     int j = this.guiTop;
     this.blit(i, j, 0, 0, this.xSize, this.ySize);
+    int l = this.container.getCookProgressionScaled();
+    this.blit(i + 79, j + 34, 176, 14, l + 1, 16);
     if (this.container.isBurning()) {
-      int k = 200;
-      this.blit(i + 56, j + 12 + 36 + 12 - k, 176, 12 - k, 14, k + 1);
+      this.blit(i + 56, j + 12 + 36 + 12 - 200, 176, 12 - 200, 14, 200 + 1);
     } else {
       this.blit(i + 56, j + 46, 176, 31, 15, 15);
       Item item = timer.getCycledItem(MMTags.Items.FIRELIGHTERS.getAllElements());
@@ -63,9 +64,6 @@ public class CharcoalKilnScreen extends ContainerScreen<CharcoalKilnContainer> {
         RenderHelper.disableStandardItemLighting();
       }
     }
-
-    int l = this.container.getCookProgressionScaled();
-    this.blit(i + 79, j + 34, 176, 14, l + 1, 16);
   }
 
   public void removed() {
