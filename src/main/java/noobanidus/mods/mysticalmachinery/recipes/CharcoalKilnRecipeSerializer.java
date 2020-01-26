@@ -53,9 +53,9 @@ public class CharcoalKilnRecipeSerializer extends ForgeRegistryEntry<IRecipeSeri
   public CharcoalKilnRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
     String s = buffer.readString(32767);
     Ingredient ingredient = Ingredient.read(buffer);
-    int ingredientCount = buffer.readInt();
+    int ingredientCount = buffer.readVarInt();
     ItemStack itemstack = buffer.readItemStack();
-    int maxAdditional = buffer.readInt();
+    int maxAdditional = buffer.readVarInt();
     float f = buffer.readFloat();
     int i = buffer.readVarInt();
     return new CharcoalKilnRecipe(recipeId, s, ingredient, ingredientCount, itemstack, maxAdditional, f, i);
