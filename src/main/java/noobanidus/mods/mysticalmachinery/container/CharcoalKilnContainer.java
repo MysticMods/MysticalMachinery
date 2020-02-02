@@ -24,13 +24,13 @@ public class CharcoalKilnContainer extends Container {
   protected final World world;
 
   public CharcoalKilnContainer(int id, PlayerInventory playerInventoryIn) {
-    this(id, playerInventoryIn, new Inventory(2), new IntArray(3));
+    this(id, playerInventoryIn, new Inventory(2), new IntArray(4));
   }
 
   public CharcoalKilnContainer(int id, PlayerInventory playerInventoryIn, IInventory inventory, IIntArray data) {
     super(ModContainers.CHARCOAL_KILN_CONTAINER.get(), id);
     assertInventorySize(inventory, 2);
-    assertIntArraySize(data, 3);
+    assertIntArraySize(data, 4);
     this.inventory = inventory;
     this.data = data;
     this.world = playerInventoryIn.player.world;

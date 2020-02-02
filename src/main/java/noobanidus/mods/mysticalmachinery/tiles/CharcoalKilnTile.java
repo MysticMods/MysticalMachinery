@@ -1,9 +1,7 @@
 package noobanidus.mods.mysticalmachinery.tiles;
 
-import com.google.common.collect.Maps;
 import epicsquid.mysticallib.util.Util;
-import net.minecraft.block.AbstractFurnaceBlock;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IRecipeHelperPopulator;
@@ -12,7 +10,6 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.RecipeItemHelper;
@@ -22,7 +19,6 @@ import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -32,13 +28,11 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import noobanidus.mods.mysticalmachinery.blocks.CharcoalKilnBlock;
 import noobanidus.mods.mysticalmachinery.container.CharcoalKilnContainer;
-import noobanidus.mods.mysticalmachinery.container.KilnContainer;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
 import noobanidus.mods.mysticalmachinery.init.ModTiles;
 import noobanidus.mods.mysticalmachinery.recipes.CharcoalKilnRecipe;
 
 import javax.annotation.Nullable;
-import java.util.Map;
 
 @SuppressWarnings({"Duplicates", "WeakerAccess", "NullableProblems"})
 public class CharcoalKilnTile extends LockableTileEntity implements ISidedInventory, IRecipeHolder, IRecipeHelperPopulator, ITickableTileEntity {
@@ -49,6 +43,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   protected static final int[] SLOTS_HORIZONTAL = new int[]{0};
   protected NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
   protected boolean burning;
+  protected boolean blocked = false;
   protected int cookTime;
   protected int cookTimeTotal;
   private int additional = -2;
@@ -63,6 +58,8 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
           return CharcoalKilnTile.this.cookTime;
         case 2:
           return CharcoalKilnTile.this.cookTimeTotal;
+        case 3:
+          return CharcoalKilnTile.this.blocked ? 1 : 0;
         default:
           return 0;
       }
@@ -79,13 +76,17 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
           break;
         case 2:
           CharcoalKilnTile.this.cookTimeTotal = value;
+          break;
+        case 3:
+          CharcoalKilnTile.this.blocked = (value == 1);
+          break;
       }
 
     }
 
     @Override
     public int size() {
-      return 3;
+      return 4;
     }
   };
 
@@ -93,7 +94,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
     super(ModTiles.CHARCOAL_KILN.get());
   }
 
-  public boolean isBlocked () {
+  public boolean isBlocked() {
     return this.blocked;
   }
 
@@ -101,15 +102,35 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
     return this.burning;
   }
 
-  public void setBurning () {
+  public void setBurning() {
     this.burning = true;
     this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CharcoalKilnBlock.LIT, true), 3);
     this.tickCountdown = 60;
   }
 
-  public void extinguish () {
+  public void setBlocked() {
+    if (!blocked) {
+      BlockState state = this.world.getBlockState(this.pos);
+      if (!state.get(CharcoalKilnBlock.BLOCKED)) {
+        this.world.setBlockState(this.pos, state.with(CharcoalKilnBlock.BLOCKED, true));
+      }
+    }
+    this.blocked = true;
+  }
+
+  public void extinguish() {
     this.burning = false;
     this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(CharcoalKilnBlock.LIT, false), 3);
+  }
+
+  public void setUnblocked() {
+    if (this.blocked) {
+      BlockState state = this.world.getBlockState(this.pos);
+      if (state.get(CharcoalKilnBlock.BLOCKED)) {
+        this.world.setBlockState(this.pos, state.with(CharcoalKilnBlock.BLOCKED, false));
+      }
+    }
+    this.blocked = false;
   }
 
   @Override
@@ -121,6 +142,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
       this.blocked = compound.getBoolean("Blocked");
     } else {
       this.blocked = false;
+      // TODO: ???
     }
     this.burning = compound.getBoolean("Burning");
     this.cookTime = compound.getInt("CookTime");
@@ -334,13 +356,18 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
       if (!recipeOutput.isEmpty()) {
         ItemStack output = this.items.get(OUTPUT);
         if (output.isEmpty()) {
+          setUnblocked();
           return true;
-        }
-        else if (!output.isItemEqual(recipeOutput)) {
+        } else if (!output.isItemEqual(recipeOutput)) {
           return false;
-        }
-        else {
-          return output.getCount() + recipeOutput.getCount() + ((additional > 0) ? additional : 0) <= output.getMaxStackSize();
+        } else {
+          if (output.getCount() + recipeOutput.getCount() + ((additional > 0) ? additional : 0) <= output.getMaxStackSize()) {
+            setUnblocked();
+            return true;
+          } else {
+            setBlocked();
+            return false;
+          }
         }
       }
     }
@@ -350,7 +377,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   protected void smeltItem(@Nullable CharcoalKilnRecipe recipe) {
     if (recipe != null && this.canSmelt(recipe)) {
       ItemStack itemstack = this.items.get(0);
-      ItemStack itemstack1 = recipe.getRecipeOutput();
+      ItemStack itemstack1 = recipe.getRecipeOutput().copy();
       if (additional > 0) {
         itemstack1.grow(additional);
       }
