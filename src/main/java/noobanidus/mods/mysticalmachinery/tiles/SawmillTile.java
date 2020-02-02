@@ -53,7 +53,7 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
       if (this.isBurning() || !fuel.isEmpty() && !this.items.get(INPUT).isEmpty()) {
         SawmillRecipe irecipe = getRecipe();
         boolean valid = this.canSmelt(irecipe);
-        if (!this.isBurning() && (valid || isLog())) {
+        if (!this.isBurning() && valid) {
           this.burnTime = this.getBurnTime(fuel);
           this.recipesUsed = this.burnTime;
           if (this.isBurning()) {
@@ -68,7 +68,7 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
           }
         }
 
-        if (this.isBurning() && (valid || isLog())) {
+        if (this.isBurning() && valid) {
           ++this.cookTime;
           if (this.cookTime == this.cookTimeTotal) {
             this.cookTime = 0;
@@ -99,29 +99,16 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
     ItemStack output = this.items.get(OUTPUT);
     ItemStack input = this.items.get(INPUT);
     if (!input.isEmpty()) {
-      Item plank = LogPlankLoader.getPlank(input.getItem());
       if (recipe != null) {
         ItemStack recipeOutput = recipe.getRecipeOutput();
         if (!recipeOutput.isEmpty()) {
           if (output.isEmpty()) {
             return true;
-          }
-          else if (!output.isItemEqual(recipeOutput)) {
+          } else if (!output.isItemEqual(recipeOutput)) {
             return false;
-          }
-          else {
+          } else {
             return output.getCount() + recipeOutput.getCount() <= output.getMaxStackSize();
           }
-        }
-      } else if (plank != null) {
-        if (output.isEmpty()) {
-          return true;
-        } else if (output.getCount() == output.getMaxStackSize()) {
-          return false;
-        } else if (output.getCount() + 6 > output.getMaxStackSize()) {
-          return false;
-        } else {
-          return output.getItem() == plank;
         }
       }
     }
@@ -130,9 +117,9 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
 
   @Override
   protected void smeltItem(@Nullable IRecipe<?> recipe) {
-    if (isLog() || (recipe != null && this.canSmelt(recipe))) {
+    if (recipe != null && this.canSmelt(recipe)) {
       ItemStack itemstack = this.items.get(0);
-      ItemStack itemstack1 = isLog() ? new ItemStack(LogPlankLoader.getPlank(itemstack.getItem()), 6) : recipe.getRecipeOutput();
+      ItemStack itemstack1 = recipe.getRecipeOutput();
       ItemStack itemstack2 = this.items.get(2);
       if (itemstack2.isEmpty()) {
         this.items.set(2, itemstack1.copy());
@@ -167,30 +154,21 @@ public class SawmillTile extends AbstractFastFurnaceTileEntity {
     }
     if (curRecipe != null && curRecipe.matches(this, world)) {
       return curRecipe;
-    }
-    else {
+    } else {
       if (this.world == null) {
         return null;
       }
       SawmillRecipe rec = world.getRecipeManager().getRecipe(ModRecipes.SAWMILL_TYPE, this, this.world).orElse(null);
+      failedMatch = ItemStack.EMPTY;
 
       if (rec == null) {
-        failedMatch = input;
-      }
-      else {
-        failedMatch = ItemStack.EMPTY;
+        if (input.getItem().isIn(ItemTags.LOGS)) {
+          rec = new SawmillRecipe.Dynamic(input.getItem());
+        } else {
+          failedMatch = input;
+        }
       }
       return curRecipe = rec;
     }
-  }
-
-  private boolean isLog() {
-    ItemStack input = this.getStackInSlot(INPUT);
-    if (!input.getItem().isIn(ItemTags.LOGS)) {
-      return false;
-    }
-
-    Item planks = LogPlankLoader.getPlank(input.getItem());
-    return planks != null;
   }
 }

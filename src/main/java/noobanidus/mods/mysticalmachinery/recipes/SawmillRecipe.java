@@ -22,13 +22,21 @@ public class SawmillRecipe extends AbstractCookingRecipe {
 
   public static class Serializer extends SawmillRecipeSerializer<SawmillRecipe> {
     public Serializer() {
-      super(SawmillRecipe::new, 100);
+      super(SawmillRecipe::new, 30);
     }
   }
 
   public static SawmillRecipe logRecipe(Item log, Item plank) {
     return new SawmillRecipe(new ResourceLocation(MysticalMachinery.MODID,
         log.getRegistryName().getPath() + "_to_" + plank.getRegistryName().getPath() + "_via_sawmill"),
-        "sawmill", Ingredient.fromItems(log), new ItemStack(plank, 6), 0.35f, 100);
+        "sawmill", Ingredient.fromItems(log), new ItemStack(plank, 6), 0.35f, 30);
+  }
+
+  public static class Dynamic extends SawmillRecipe {
+    public static ResourceLocation DYNAMIC_ID = new ResourceLocation(MysticalMachinery.MODID, "__dynamic");
+
+    public Dynamic(Item logIn) {
+      super(DYNAMIC_ID, "sawmill", Ingredient.fromItems(logIn), new ItemStack(LogPlankLoader.getPlank(logIn), 6), 0.35f, 30);
+    }
   }
 }
