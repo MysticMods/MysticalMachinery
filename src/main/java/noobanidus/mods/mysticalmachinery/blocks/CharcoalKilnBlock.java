@@ -121,16 +121,16 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
       }
 
       if (rand.nextInt(21) == 0) {
-        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.05D, pos.getZ() + 0.2, 0.0D, 0D, 0.0D);
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.25D, pos.getZ() + 0.2, 0.0D, 0D, 0.0D);
       }
       if (rand.nextInt(21) == 0) {
-        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.05D, pos.getZ() + 0.8D, 0.0D, 0D, 0.0D);
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.5D, pos.getY() + 1.25D, pos.getZ() + 0.8D, 0.0D, 0D, 0.0D);
       }
       if (rand.nextInt(21) == 0) {
-        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.2D, pos.getY() + 1.05D, pos.getZ() + 0.5D, 0.0D, 0D, 0.0D);
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.2D, pos.getY() + 1.25D, pos.getZ() + 0.5D, 0.0D, 0D, 0.0D);
       }
       if (rand.nextInt(21) == 0) {
-        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.8D, pos.getY() + 1.05D, pos.getZ() + 0.5D, 0.0D, 0D, 0.0D);
+        worldIn.addParticle(ParticleTypes.FLAME, pos.getX() + 0.8D, pos.getY() + 1.25D, pos.getZ() + 0.5D, 0.0D, 0D, 0.0D);
       }
     }
   }
