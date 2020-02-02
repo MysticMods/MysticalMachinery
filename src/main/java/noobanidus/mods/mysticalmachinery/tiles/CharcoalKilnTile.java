@@ -93,6 +93,10 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
     super(ModTiles.CHARCOAL_KILN.get());
   }
 
+  public boolean isBlocked () {
+    return this.blocked;
+  }
+
   protected boolean isBurning() {
     return this.burning;
   }
@@ -113,6 +117,11 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
     super.read(compound);
     this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
     ItemStackHelper.loadAllItems(compound, this.items);
+    if (compound.contains("Blocked")) {
+      this.blocked = compound.getBoolean("Blocked");
+    } else {
+      this.blocked = false;
+    }
     this.burning = compound.getBoolean("Burning");
     this.cookTime = compound.getInt("CookTime");
     this.cookTimeTotal = compound.getInt("CookTimeTotal");
@@ -122,6 +131,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   @Override
   public CompoundNBT write(CompoundNBT compound) {
     super.write(compound);
+    compound.putBoolean("Blocked", this.blocked);
     compound.putBoolean("Burning", this.burning);
     compound.putInt("CookTime", this.cookTime);
     compound.putInt("CookTimeTotal", this.cookTimeTotal);
@@ -293,8 +303,9 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   @Override
   public void remove() {
     super.remove();
-    for (int x = 0; x < handlers.length; x++)
-      handlers[x].invalidate();
+    for (LazyOptional<? extends IItemHandler> handler : handlers) {
+      handler.invalidate();
+    }
   }
 
   @Override

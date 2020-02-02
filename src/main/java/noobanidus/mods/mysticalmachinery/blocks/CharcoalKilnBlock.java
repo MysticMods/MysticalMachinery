@@ -5,7 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.RedstoneTorchBlock;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
@@ -15,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -72,7 +75,16 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
 
   @Override
   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-    entityIn.attackEntityFrom(DamageSource.IN_FIRE, 1.0F);
+    entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+  }
+
+  @Override
+  public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+    if (!entity.isImmuneToFire() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity)) {
+      entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+    }
+
+    super.onEntityWalk(world, pos, entity);
   }
 
   @Override
@@ -81,6 +93,8 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
     if (stateIn.get(LIT)) {
       if (rand.nextDouble() < 0.1D) {
         worldIn.playSound(null, pos, ModSounds.CHARCOAL_KILN_CRACKLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+      } else if (worldIn.isRainingAt(pos) && worldIn.canBlockSeeSky(pos) && rand.nextInt(40) == 0) {
+        worldIn.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.NEUTRAL, 0.2f, 1.3f);
       }
 
       if (rand.nextInt(4) == 0) {

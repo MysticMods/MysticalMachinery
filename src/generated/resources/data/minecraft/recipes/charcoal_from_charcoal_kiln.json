@@ -3,11 +3,11 @@
   "ingredient": {
     "tag": "minecraft:logs"
   },
-  "ingredientCount": 7,
-  "maxAdditional": 3,
+  "ingredientCount": 4,
+  "maxAdditional": 2,
   "result": {
     "item": "minecraft:charcoal",
-    "count": 5
+    "count": 6
   },
   "experience": 3.5,
   "cookingtime": 1000

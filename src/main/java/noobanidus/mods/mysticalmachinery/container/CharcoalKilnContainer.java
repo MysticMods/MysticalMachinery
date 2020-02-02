@@ -113,5 +113,10 @@ public class CharcoalKilnContainer extends Container {
   public boolean isBurning() {
     return this.data.get(0) == 1;
   }
+
+  @OnlyIn(Dist.CLIENT)
+  public boolean isBlocked () {
+    return this.data.get(3) == 1;
+  }
 }
 
