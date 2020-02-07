@@ -1,32 +1,62 @@
 {
   "variants": {
-    "facing=north,lit=false": {
+    "blocked=false,facing=north,lit=false": {
       "model": "mysticalmachinery:block/charcoal_kiln_cold"
     },
-    "facing=south,lit=false": {
+    "blocked=true,facing=north,lit=false": {
+      "model": "mysticalmachinery:block/charcoal_kiln_cold"
+    },
+    "blocked=false,facing=south,lit=false": {
       "model": "mysticalmachinery:block/charcoal_kiln_cold",
       "y": 180
     },
-    "facing=west,lit=false": {
+    "blocked=true,facing=south,lit=false": {
+      "model": "mysticalmachinery:block/charcoal_kiln_cold",
+      "y": 180
+    },
+    "blocked=false,facing=west,lit=false": {
       "model": "mysticalmachinery:block/charcoal_kiln_cold",
       "y": 270
     },
-    "facing=east,lit=false": {
+    "blocked=true,facing=west,lit=false": {
+      "model": "mysticalmachinery:block/charcoal_kiln_cold",
+      "y": 270
+    },
+    "blocked=false,facing=east,lit=false": {
       "model": "mysticalmachinery:block/charcoal_kiln_cold",
       "y": 90
     },
-    "facing=north,lit=true": {
+    "blocked=true,facing=east,lit=false": {
+      "model": "mysticalmachinery:block/charcoal_kiln_cold",
+      "y": 90
+    },
+    "blocked=false,facing=north,lit=true": {
       "model": "mysticalmachinery:block/charcoal_kiln_hot"
     },
-    "facing=south,lit=true": {
+    "blocked=true,facing=north,lit=true": {
+      "model": "mysticalmachinery:block/charcoal_kiln_hot"
+    },
+    "blocked=false,facing=south,lit=true": {
       "model": "mysticalmachinery:block/charcoal_kiln_hot",
       "y": 180
     },
-    "facing=west,lit=true": {
+    "blocked=true,facing=south,lit=true": {
+      "model": "mysticalmachinery:block/charcoal_kiln_hot",
+      "y": 180
+    },
+    "blocked=false,facing=west,lit=true": {
       "model": "mysticalmachinery:block/charcoal_kiln_hot",
       "y": 270
     },
-    "facing=east,lit=true": {
+    "blocked=true,facing=west,lit=true": {
+      "model": "mysticalmachinery:block/charcoal_kiln_hot",
+      "y": 270
+    },
+    "blocked=false,facing=east,lit=true": {
+      "model": "mysticalmachinery:block/charcoal_kiln_hot",
+      "y": 90
+    },
+    "blocked=true,facing=east,lit=true": {
       "model": "mysticalmachinery:block/charcoal_kiln_hot",
       "y": 90
     }

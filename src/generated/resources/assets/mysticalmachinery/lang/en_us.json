@@ -36,6 +36,8 @@
   "mysticalmachinery.container.kiln": "Kiln",
   "mysticalmachinery.container.sawmill": "Sawmill",
   "mysticalmachinery.energy_item.tooltip": "Energy: %s/%s FE",
+  "mysticalmachinery.jei.charcoal_kiln": "Charcoal Kiln Baking",
+  "mysticalmachinery.jei.charcoal_kiln.max_additional": "Additional: %s",
   "mysticalmachinery.jei.kiln": "Kiln Baking",
   "mysticalmachinery.jei.sawmill": "Sawing",
   "mysticalmachinery.subtitles.block.charcoal_kiln.fire_crackle": "Charcoal Kiln crackles",
