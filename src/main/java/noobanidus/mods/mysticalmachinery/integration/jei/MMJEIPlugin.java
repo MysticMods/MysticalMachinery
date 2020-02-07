@@ -20,10 +20,12 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.client.screen.KilnScreen;
 import noobanidus.mods.mysticalmachinery.client.screen.SawmillScreen;
+import noobanidus.mods.mysticalmachinery.container.CharcoalKilnContainer;
 import noobanidus.mods.mysticalmachinery.container.KilnContainer;
 import noobanidus.mods.mysticalmachinery.container.SawmillContainer;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
+import noobanidus.mods.mysticalmachinery.recipes.CharcoalKilnRecipe;
 import noobanidus.mods.mysticalmachinery.recipes.FakeCraftingInventory;
 import noobanidus.mods.mysticalmachinery.recipes.KilnRecipe;
 import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipe;
@@ -47,6 +49,9 @@ public class MMJEIPlugin implements IModPlugin {
   @Nullable
   private SawmillCategory sawmillCategory;
 
+  @Nullable
+  private CharcoalKilnCategory charcoalKilnCategory;
+
   @Override
   public ResourceLocation getPluginUid() {
     return UID;
@@ -60,6 +65,8 @@ public class MMJEIPlugin implements IModPlugin {
     registration.addRecipeCategories(kilnCategory);
     sawmillCategory = new SawmillCategory(guiHelper);
     registration.addRecipeCategories(sawmillCategory);
+    charcoalKilnCategory = new CharcoalKilnCategory(guiHelper);
+    registration.addRecipeCategories(charcoalKilnCategory);
   }
 
   @Override
@@ -86,6 +93,10 @@ public class MMJEIPlugin implements IModPlugin {
 
     allRecipes.stream().filter(o -> o instanceof SawmillRecipe).forEach(o -> sawmillRecipes.add((SawmillRecipe) o));
     registration.addRecipes(sawmillRecipes, SawmillCategory.UID);
+
+    List<CharcoalKilnRecipe> charcoalKilnRecipes = new ArrayList<>();
+    allRecipes.stream().filter(o -> o instanceof CharcoalKilnRecipe).forEach(o -> charcoalKilnRecipes.add((CharcoalKilnRecipe) o));
+    registration.addRecipes(charcoalKilnRecipes, CharcoalKilnCategory.UID);
   }
 
   @Override
@@ -100,11 +111,13 @@ public class MMJEIPlugin implements IModPlugin {
     registration.addRecipeTransferHandler(KilnContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
     registration.addRecipeTransferHandler(SawmillContainer.class, SawmillCategory.UID, 0, 1, 3, 36);
     registration.addRecipeTransferHandler(SawmillContainer.class, VanillaRecipeCategoryUid.FUEL, 1, 1, 3, 36);
+    registration.addRecipeTransferHandler(CharcoalKilnContainer.class, CharcoalKilnCategory.UID, 0, 1, 2, 35);
   }
 
   @Override
   public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.KILN.get()), KilnCategory.UID, VanillaRecipeCategoryUid.FUEL);
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.SAWMILL.get()), SawmillCategory.UID, VanillaRecipeCategoryUid.FUEL);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.CHARCOAL_KILN.get()), CharcoalKilnCategory.UID);
   }
 }
