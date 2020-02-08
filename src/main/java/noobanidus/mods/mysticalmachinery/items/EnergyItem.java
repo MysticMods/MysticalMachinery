@@ -39,6 +39,22 @@ public class EnergyItem extends Item {
     addPropertyOverride(new ResourceLocation(MysticalMachinery.MODID, "charge"), (stack, world, entity) -> charge(stack));
   }
 
+  @Override
+  public int getItemStackLimit(ItemStack stack) {
+    if (stack.getItem() == this) {
+      return 1;
+    }
+    return super.getItemStackLimit(stack);
+  }
+
+  @Override
+  public boolean isEnchantable(ItemStack stack) {
+    if (stack.getItem() == this) {
+      return false;
+    }
+    return super.isEnchantable(stack);
+  }
+
   private float charge(ItemStack stack) {
     LazyOptional<IEnergyStorage> opt = stack.getCapability(CapabilityEnergy.ENERGY);
     if (!opt.isPresent()) {
