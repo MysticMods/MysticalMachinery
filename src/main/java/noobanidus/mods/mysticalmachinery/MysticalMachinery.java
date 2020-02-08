@@ -1,5 +1,7 @@
 package noobanidus.mods.mysticalmachinery;
 
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.config.ModConfig;
 import noobanidus.mods.mysticalmachinery.config.ConfigManager;
 import noobanidus.mods.mysticalmachinery.init.*;
 import noobanidus.mods.mysticalmachinery.setup.ClientSetup;
@@ -35,6 +37,7 @@ public class MysticalMachinery {
   public static ModSetup setup = new ModSetup();
 
   public MysticalMachinery() {
+    ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     modBus.addListener(setup::init);
