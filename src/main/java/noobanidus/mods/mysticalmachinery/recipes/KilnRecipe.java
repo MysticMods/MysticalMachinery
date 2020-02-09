@@ -1,6 +1,5 @@
 package noobanidus.mods.mysticalmachinery.recipes;
 
-import epicsquid.mysticallib.recipe.AbstractCookingRecipeSerializer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -19,7 +18,7 @@ public class KilnRecipe extends AbstractCookingRecipe {
     return ModRecipes.KILN_SERIALIZER.get();
   }
 
-  public static class Serializer extends AbstractCookingRecipeSerializer<KilnRecipe> {
+  public static class Serializer extends RecipeSerializer<KilnRecipe> {
     public Serializer() {
       super(KilnRecipe::new, 100);
     }

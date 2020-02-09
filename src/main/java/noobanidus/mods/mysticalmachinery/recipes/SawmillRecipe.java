@@ -20,7 +20,7 @@ public class SawmillRecipe extends AbstractCookingRecipe {
     return ModRecipes.SAWMILL_SERIALIZER.get();
   }
 
-  public static class Serializer extends SawmillRecipeSerializer<SawmillRecipe> {
+  public static class Serializer extends RecipeSerializer<SawmillRecipe> {
     public Serializer() {
       super(SawmillRecipe::new, 30);
     }

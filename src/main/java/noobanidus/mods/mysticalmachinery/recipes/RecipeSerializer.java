@@ -5,14 +5,15 @@ import com.google.gson.JsonObject;
 import epicsquid.mysticallib.recipe.AbstractCookingRecipeSerializer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipe;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class SawmillRecipeSerializer<T extends SawmillRecipe> extends AbstractCookingRecipeSerializer<T> {
-  protected SawmillRecipeSerializer(IFactory<T> serializer, int defaultCookTime) {
+public class RecipeSerializer<T extends AbstractCookingRecipe> extends AbstractCookingRecipeSerializer<T> {
+  protected RecipeSerializer(IFactory<T> serializer, int defaultCookTime) {
     super(serializer, defaultCookTime);
   }
 
