@@ -119,7 +119,7 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    if (project(':MysticalLib') != null) {
+    if (findProject(':MysticalLib') != null) {
         compile project(':MysticalLib')
     } else {
         compile fg.deobf(project.dependencies.create("epicsquid.mysticallib:mysticallib:${mysticallib_version}-${mysticallib_build}") {
@@ -127,7 +127,7 @@ dependencies {
         })
     }
 
-    if (project(':MysticalWorld') != null) {
+    if (findProject(':MysticalWorld') != null) {
         compile project(':MysticalWorld')
     } else {
         compile fg.deobf(project.dependencies.create("epicsquid.mysticalworld:mysticalworld:${mysticalworld_version}") {
