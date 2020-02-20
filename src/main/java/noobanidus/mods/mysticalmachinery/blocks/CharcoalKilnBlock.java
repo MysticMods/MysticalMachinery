@@ -1,7 +1,10 @@
 package noobanidus.mods.mysticalmachinery.blocks;
 
 import epicsquid.mysticallib.util.VoxelUtil;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.RedstoneTorchBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -72,13 +75,18 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
 
   @Override
   public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-    entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+    if (state.get(LIT) && entityIn instanceof LivingEntity) {
+      entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+    }
   }
 
   @Override
   public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-    if (!entity.isImmuneToFire() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity)) {
-      entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+    BlockState state = world.getBlockState(pos);
+    if (state.get(LIT)) {
+      if (!entity.isImmuneToFire() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity)) {
+        entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+      }
     }
 
     super.onEntityWalk(world, pos, entity);
