@@ -1,21 +1,27 @@
 buildscript {
     repositories {
-        mavenLocal()
-        maven { url = 'http://files.minecraftforge.net/maven' }
-        jcenter()
         mavenCentral()
+        mavenLocal()
         maven {
-            url 'https://dogforce-games.com/maven'
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.165-run-configs-rework', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.0.+', changing: true
     }
 }
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
 apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'eclipse'
 
 version = "${minecraft_version}-${mod_version}"
 //if (System.getenv('BUILD_NUMBER') != null) {
@@ -113,6 +119,10 @@ repositories {
     }
 }
 
+configurations {
+    shade
+}
+
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
@@ -136,12 +146,15 @@ dependencies {
     }
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}")
+
+    def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
+    implementation fg.deobf(registrate)
+    shade registrate
 }
 
 sourceSets.main.resources {
     srcDir 'src/generated/resources'
 }
-
 
 // Example for how to get properties into the manifest for reading by the runtime..
 jar {
@@ -158,77 +171,14 @@ jar {
     }
 }
 
-//processResources {
-//    // this will ensure that this task is redone when the versions change.
-//    inputs.property "version", project.version
-//    inputs.property "mcversion", project.minecraft_version
-//
-//    // replace stuff in mcmod.info, nothing else
-//    from(sourceSets.main.resources.srcDirs) {
-//        include 'mcmod.info'
-//
-//        // replace version and mcversion
-//        expand 'version': project.version, 'mcversion': project.minecraft_version
-//    }
-//
-//    // copy everything else except the mcmod.info
-//    from(sourceSets.main.resources.srcDirs) {
-//        exclude 'mcmod.info'
-//    }
-//}
-
-// Example configuration to allow publishing using the maven-publish task
-// we define a custom artifact that is sourced from the reobfJar output task
-// and then declare that to be published
-// Note you'll need to add a repository here
-def reobfFile = file("$buildDir/reobfJar/output.jar")
-def reobfArtifact = artifacts.add('default', reobfFile) {
-    type 'jar'
-    builtBy 'reobfJar'
-}
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact reobfArtifact
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
-    }
+shadowJar {
+    configurations = [project.configurations.shade]
+    relocate 'com.tterrag.registrate', 'epicsquid.mysticalmachinery.repack.registrate'
+    classifier ''
 }
 
-// publishing {
+reobf {
+    shadowJar {}
+}
 
-//     publications {
-
-//         mavenJava(MavenPublication) {
-
-//             groupId project.group
-//             artifactId project.archivesBaseName
-//             version project.version
-//             from components.java
-
-//             artifact deobfJar {
-
-//                 classifier 'deobf'
-//             }
-//         }
-//     }
-
-//     repositories {
-
-//         maven {
-
-//             url "file://" + System.getenv("local_maven")
-//         }
-//     }
-// }
-
-// task deobfJar(type: Jar) {
-//     from sourceSets.main.output
-//     classifier = 'deobf'
-// }
-
-// tasks.build.dependsOn deobfJar
+build.dependsOn reobfShadowJar
