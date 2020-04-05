@@ -20,20 +20,5 @@
        "mysticalmachinery:block/furnace/fire_crackle5"
     ],
     "subtitle": "mysticalmachinery.subtitles.block.charcoal_kiln.fire_crackle"
-  },
-  "block.cookie_generator.munch": {
-    "category": "block",
-    "sounds": [
-       "mysticalmachinery:mob/phantom/bite1"
-    ],
-    "subtitle": "mysticalmachinery.subtitles.block.cookie_generator.munch"
-  },
-  "block.end_stone_generator.generate": {
-    "category": "block",
-    "sounds": [
-      "mysticalmachinery:entity/endereye/dead1",
-      "mysticalmachinery:entity/endereye/dead2"
-    ],
-    "subtitle": "mysticalmachinery.subtitles.block.end_stone_generator.generate"
   }
 }
