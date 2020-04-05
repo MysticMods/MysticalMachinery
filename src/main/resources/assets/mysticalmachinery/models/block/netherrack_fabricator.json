@@ -1,9 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "mysticalmachinery:block/block_fabricator_base",
-	"textures": {
-		"block": "block/netherrack",
-		"body": "block/nether_bricks",
-		"particle": "block/nether_bricks"
-	}
-}

@@ -1,0 +1,10 @@
+{
+  "type": "mysticalmachinery:kiln",
+  "ingredient": {
+    "item": "mysticalworld:soft_stone_small_post"
+  },
+  "result": "mysticalworld:cracked_stone_small_post",
+  "experience": 0.35,
+  "cookingtime": 80,
+  "itemcount": 1
+}

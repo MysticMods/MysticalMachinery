@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalmachinery:sawmill"
+      "mysticalworld:cracked_stone_wall_from_kiln"
     ]
   },
   "criteria": {
-    "has_logs": {
+    "has_soft_stone_wall": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:logs"
+            "item": "mysticalworld:soft_stone_wall"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalmachinery:sawmill"
+        "recipe": "mysticalworld:cracked_stone_wall_from_kiln"
       }
     }
   },
   "requirements": [
     [
-      "has_logs",
+      "has_soft_stone_wall",
       "has_the_recipe"
     ]
   ]

@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "mysticalmachinery:sawmill"
+      "mysticalworld:cracked_stone_wide_post_from_kiln"
     ]
   },
   "criteria": {
-    "has_logs": {
+    "has_soft_stone_wide_post": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:logs"
+            "item": "mysticalworld:soft_stone_wide_post"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "mysticalmachinery:sawmill"
+        "recipe": "mysticalworld:cracked_stone_wide_post_from_kiln"
       }
     }
   },
   "requirements": [
     [
-      "has_logs",
+      "has_soft_stone_wide_post",
       "has_the_recipe"
     ]
   ]

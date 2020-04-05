@@ -1,7 +1,0 @@
-{
-	"credit": "Made with Blockbench",
-	"parent": "mysticalmachinery:block/block_fabricator_base",
-	"textures": {
-		"block": "block/red_sand"
-	}
-}

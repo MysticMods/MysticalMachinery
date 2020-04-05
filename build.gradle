@@ -173,7 +173,7 @@ jar {
 
 shadowJar {
     configurations = [project.configurations.shade]
-    relocate 'com.tterrag.registrate', 'epicsquid.mysticalmachinery.repack.registrate'
+    relocate 'com.tterrag.registrate', 'noobanidus.mods.mysticalmachinery.repack.registrate'
     classifier ''
 }
 

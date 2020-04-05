@@ -30,8 +30,5 @@ public class ClientSetup {
     ScreenManager.registerFactory(ModContainers.CHARCOAL_KILN_CONTAINER.get(), CharcoalKilnScreen::new);
 
     Minecraft mc = Minecraft.getInstance();
-
-    mc.getBlockColors().register((state, world, pos, index) -> Fluids.WATER.getAttributes().getColor(world, pos), ModBlocks.WATER_FABRICATOR.get());
-    mc.getItemColors().register((p1, index) -> Fluids.WATER.getAttributes().getColor(), ModBlocks.WATER_FABRICATOR.get());
   }
 }

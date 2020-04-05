@@ -1,0 +1,15 @@
+{
+  "block.mysticalmachinery.charcoal_kiln": "u\u05DF\u0131\u029E \u05DF\u0250o\u0254\u0279\u0250\u0265\u0186",
+  "block.mysticalmachinery.kiln": "u\u05DF\u0131\u029E",
+  "block.mysticalmachinery.sawmill": "\u05DF\u05DF\u0131\u026F\u028D\u0250S",
+  "item.mysticalmachinery.sawdust": "\u0287snp\u028D\u0250S",
+  "mysticalmachinery.container.charcoal_kiln": "u\u05DF\u0131\u029E \u05DF\u0250o\u0254\u0279\u0250\u0265\u0186",
+  "mysticalmachinery.container.kiln": "u\u05DF\u0131\u029E",
+  "mysticalmachinery.container.sawmill": "\u05DF\u05DF\u0131\u026F\u028D\u0250S",
+  "mysticalmachinery.jei.charcoal_kiln": "bu\u0131\u029E\u0250\u15FA u\u05DF\u0131\u029E \u05DF\u0250o\u0254\u0279\u0250\u0265\u0186",
+  "mysticalmachinery.jei.charcoal_kiln.max_additional": "%s~ :\u0250\u0279\u0287x\u018E",
+  "mysticalmachinery.jei.kiln": "bu\u0131\u029E\u0250\u15FA u\u05DF\u0131\u029E",
+  "mysticalmachinery.jei.sawmill": "bu\u0131\u028D\u0250S",
+  "mysticalmachinery.subtitles.block.charcoal_kiln.fire_crackle": "s\u01DD\u05DF\u029E\u0254\u0250\u0279\u0254 u\u05DF\u0131\u029E \u05DF\u0250o\u0254\u0279\u0250\u0265\u0186",
+  "mysticalmachinery.subtitles.block.kiln.fire_crackle": "s\u01DD\u05DF\u029E\u0254\u0250\u0279\u0254 u\u05DF\u0131\u029E"
+}

@@ -1,5 +1,7 @@
 package noobanidus.mods.mysticalmachinery;
 
+import epicsquid.mysticallib.registrate.CustomRegistrate;
+import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import noobanidus.mods.mysticalmachinery.config.ConfigManager;
@@ -32,17 +34,19 @@ public class MysticalMachinery {
     }
   };
 
-  public static final ModRegistry REGISTRY = new ModRegistry(MODID);
+  public static CustomRegistrate REGISTRATE;
 
   public static ModSetup setup = new ModSetup();
 
   public MysticalMachinery() {
-    ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);
+/*    ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigManager.COMMON_CONFIG);*/
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     modBus.addListener(setup::init);
-    modBus.addListener(setup::gatherData);
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> modBus.addListener(ClientSetup::init));
+
+    REGISTRATE = CustomRegistrate.create(MODID);
+    REGISTRATE.itemGroup(() -> ITEM_GROUP);
 
     ModItems.load();
     ModBlocks.load();
@@ -51,10 +55,9 @@ public class MysticalMachinery {
     ModRecipes.load();
     ModContainers.load();
     ModSounds.load();
+    ModLang.load();
+    ModTags.load();
 
-    modBus.addGenericListener(EntityType.class, ModEntities::registerEntities);
-
-    ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));
-    REGISTRY.registerEventBus(modBus);
+/*    ConfigManager.loadConfig(ConfigManager.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve(MODID + "-common.toml"));*/
   }
 }
