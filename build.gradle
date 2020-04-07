@@ -86,6 +86,8 @@ minecraft {
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
+            args '--mod', 'mysticalmachinery', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
+
             mods {
                 MysticalMachinery {
                     source sourceSets.main
@@ -111,12 +113,6 @@ repositories {
         name = "Progwml6 maven"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
-    flatDir {
-        dir 'libs'
-    }
-    flatDir {
-        dir "../libs"
-    }
 }
 
 configurations {
@@ -140,12 +136,14 @@ dependencies {
     if (findProject(':MysticalWorld') != null) {
         compile project(':MysticalWorld')
     } else {
-        compile fg.deobf(project.dependencies.create("epicsquid.mysticalworld:mysticalworld:${mysticalworld_version}") {
+        compile fg.deobf(project.dependencies.create("epicsquid.mysticalworld:mysticalworld:${mysticalworld_version}-${mysticalworld_build}") {
             transitive = false
         })
     }
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}")
+
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 
     def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
     implementation fg.deobf(registrate)

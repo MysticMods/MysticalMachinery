@@ -3,6 +3,7 @@
   "block.mysticalmachinery.kiln": "Kiln",
   "block.mysticalmachinery.sawmill": "Sawmill",
   "item.mysticalmachinery.sawdust": "Sawdust",
+  "itemGroup.mysticalmachinery": "Mystical Machinery",
   "mysticalmachinery.container.charcoal_kiln": "Charcoal Kiln",
   "mysticalmachinery.container.kiln": "Kiln",
   "mysticalmachinery.container.sawmill": "Sawmill",

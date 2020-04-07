@@ -93,13 +93,6 @@ public class ModRecipes {
     kiln(epicsquid.mysticalworld.init.ModBlocks.WET_MUD_BLOCK, epicsquid.mysticalworld.init.ModBlocks.MUD_BLOCK, consumer);
     kiln(epicsquid.mysticalworld.init.ModBlocks.WET_MUD_BRICK, epicsquid.mysticalworld.init.ModBlocks.MUD_BRICK, consumer);
 
-    kiln(epicsquid.mysticalworld.init.ModBlocks.SOFT_STONE, epicsquid.mysticalworld.init.ModBlocks.CRACKED_STONE, consumer);
-    kiln(epicsquid.mysticalworld.init.ModBlocks.SOFT_STONE_SLAB, epicsquid.mysticalworld.init.ModBlocks.CRACKED_STONE_SLAB, consumer);
-    kiln(epicsquid.mysticalworld.init.ModBlocks.SOFT_STONE_STAIRS, epicsquid.mysticalworld.init.ModBlocks.CRACKED_STONE_STAIRS, consumer);
-    kiln(epicsquid.mysticalworld.init.ModBlocks.SOFT_STONE_WALL, epicsquid.mysticalworld.init.ModBlocks.CRACKED_STONE_WALL, consumer);
-    kiln(epicsquid.mysticalworld.init.ModBlocks.SOFT_STONE_WIDE_POST, epicsquid.mysticalworld.init.ModBlocks.CRACKED_STONE_WIDE_POST, consumer);
-    kiln(epicsquid.mysticalworld.init.ModBlocks.SOFT_STONE_SMALL_POST, epicsquid.mysticalworld.init.ModBlocks.CRACKED_STONE_SMALL_POST, consumer);
-
     kiln(Items.BLACK_TERRACOTTA, Items.BLACK_GLAZED_TERRACOTTA, consumer);
     kiln(Items.BLUE_TERRACOTTA, Items.BLUE_GLAZED_TERRACOTTA, consumer);
     kiln(Items.BROWN_TERRACOTTA, Items.BROWN_GLAZED_TERRACOTTA, consumer);

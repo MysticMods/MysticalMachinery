@@ -4,6 +4,7 @@ import static noobanidus.mods.mysticalmachinery.MysticalMachinery.REGISTRATE;
 
 public class ModLang {
   static {
+    REGISTRATE.addRawLang("itemGroup.mysticalmachinery", "Mystical Machinery");
     REGISTRATE.addRawLang("mysticalmachinery.container.kiln", "Kiln");
     REGISTRATE.addRawLang("mysticalmachinery.container.sawmill", "Sawmill");
     REGISTRATE.addRawLang("mysticalmachinery.container.charcoal_kiln", "Charcoal Kiln");
