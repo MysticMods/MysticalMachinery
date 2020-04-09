@@ -43,7 +43,6 @@ public class MysticalMachinery {
 
     ModItems.load();
     ModBlocks.load();
-    ModEntities.load();
     ModTiles.load();
     ModRecipes.load();
     ModContainers.load();
