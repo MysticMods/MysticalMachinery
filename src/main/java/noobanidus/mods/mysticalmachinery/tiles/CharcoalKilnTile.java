@@ -1,6 +1,5 @@
 package noobanidus.mods.mysticalmachinery.tiles;
 
-import epicsquid.mysticallib.util.Util;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,6 +25,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import noobanidus.libs.noobutil.util.MathUtil;
 import noobanidus.mods.mysticalmachinery.blocks.CharcoalKilnBlock;
 import noobanidus.mods.mysticalmachinery.container.CharcoalKilnContainer;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
@@ -346,7 +346,7 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   protected boolean canSmelt(@Nullable CharcoalKilnRecipe recipe) {
     if (this.additional == -2 && recipe != null) {
       if (recipe.getMaxAdditional() != 0) {
-        additional = Util.rand.nextInt(recipe.getMaxAdditional()) + 1;
+        additional = MathUtil.rand.nextInt(recipe.getMaxAdditional()) + 1;
       } else {
         additional = -1;
       }

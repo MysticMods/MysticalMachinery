@@ -1,6 +1,5 @@
 package noobanidus.mods.mysticalmachinery;
 
-import epicsquid.mysticalworld.init.ModEntities;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -8,9 +7,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import noobanidus.libs.noobutil.registrate.CustomRegistrate;
 import noobanidus.mods.mysticalmachinery.init.*;
-import noobanidus.mods.mysticalmachinery.registrate.CustomRegistrate;
-import noobanidus.mods.mysticalmachinery.setup.ClientSetup;
+import noobanidus.mods.mysticalmachinery.setup.ClientInit;
 import noobanidus.mods.mysticalmachinery.setup.ModSetup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,7 +35,7 @@ public class MysticalMachinery {
     IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
     modBus.addListener(setup::init);
-    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> modBus.addListener(ClientSetup::init));
+    DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientInit::init);
 
     REGISTRATE = CustomRegistrate.create(MODID);
     REGISTRATE.itemGroup(() -> ITEM_GROUP);

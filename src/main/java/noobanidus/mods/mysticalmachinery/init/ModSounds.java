@@ -1,6 +1,6 @@
 package noobanidus.mods.mysticalmachinery.init;
 
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.util.SoundEvent;
 
 import static noobanidus.mods.mysticalmachinery.MysticalMachinery.REGISTRATE;

@@ -1,6 +1,6 @@
 package noobanidus.mods.mysticalmachinery.init;
 
-import com.tterrag.registrate.util.RegistryEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.tileentity.TileEntityType;
 import noobanidus.mods.mysticalmachinery.tiles.CharcoalKilnTile;
 import noobanidus.mods.mysticalmachinery.tiles.KilnTile;

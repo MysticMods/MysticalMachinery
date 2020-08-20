@@ -113,6 +113,7 @@ repositories {
         name = "Progwml6 maven"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
+    flatDir { dirs 'libs' }
 }
 
 configurations {
@@ -125,21 +126,9 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    if (findProject(':MysticalLib') != null) {
-        compile project(':MysticalLib')
-    } else {
-        compile fg.deobf(project.dependencies.create("epicsquid.mysticallib:mysticallib:${mysticallib_version}-${mysticallib_build}") {
-            transitive = false
-        })
-    }
-
-    if (findProject(':MysticalWorld') != null) {
-        compile project(':MysticalWorld')
-    } else {
-        compile fg.deobf(project.dependencies.create("epicsquid.mysticalworld:mysticalworld:${mysticalworld_version}-${mysticalworld_build}") {
-            transitive = false
-        })
-    }
+    compile fg.deobf(project.dependencies.create("epicsquid.mysticalworld:mysticalworld:${mysticalworld_version}-${mysticalworld_build}") {
+        transitive = false
+    })
 
     compile fg.deobf("mezz.jei:jei-${jei_version}")
 
@@ -148,6 +137,10 @@ dependencies {
     def registrate = "com.tterrag.registrate:Registrate:MC${minecraft_version}-${registrate_version}"
     implementation fg.deobf(registrate)
     shade registrate
+
+    def noobutil = "noobanidus.libs:noobutil:${minecraft_version}-${noobutil_version}"
+    implementation fg.deobf(noobutil)
+    shade noobutil
 }
 
 sourceSets.main.resources {
@@ -172,6 +165,7 @@ jar {
 shadowJar {
     configurations = [project.configurations.shade]
     relocate 'com.tterrag.registrate', 'noobanidus.mods.mysticalmachinery.repack.registrate'
+    relocate 'noobanidus.libs.noobutil', 'noobanids.libs.mysticalmachinery.repack.noobutil'
     classifier ''
 }
 

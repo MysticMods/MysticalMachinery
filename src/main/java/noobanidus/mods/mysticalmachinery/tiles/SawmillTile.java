@@ -4,7 +4,6 @@ import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
@@ -15,7 +14,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import noobanidus.mods.mysticalmachinery.container.SawmillContainer;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
 import noobanidus.mods.mysticalmachinery.init.ModTiles;
-import noobanidus.mods.mysticalmachinery.recipes.LogPlankLoader;
 import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipe;
 
 import javax.annotation.Nullable;

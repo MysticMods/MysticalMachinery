@@ -4,7 +4,6 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.plugins.vanilla.cooking.AbstractCookingCategory;
-import mezz.jei.util.Translator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
@@ -13,11 +12,9 @@ import net.minecraft.util.ResourceLocation;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
 import noobanidus.mods.mysticalmachinery.recipes.CharcoalKilnRecipe;
-import noobanidus.mods.mysticalmachinery.recipes.KilnRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CharcoalKilnCategory extends AbstractCookingCategory<CharcoalKilnRecipe> {
@@ -60,7 +57,7 @@ public class CharcoalKilnCategory extends AbstractCookingCategory<CharcoalKilnRe
       Minecraft minecraft = Minecraft.getInstance();
       FontRenderer fontRenderer = minecraft.fontRenderer;
       int stringWidth = fontRenderer.getStringWidth(experienceString);
-      fontRenderer.drawString(experienceString, (float)(this.getBackground().getWidth() - stringWidth), 45.0F, -8355712);
+      fontRenderer.drawString(experienceString, (float) (this.getBackground().getWidth() - stringWidth), 45.0F, -8355712);
     }
   }
 }

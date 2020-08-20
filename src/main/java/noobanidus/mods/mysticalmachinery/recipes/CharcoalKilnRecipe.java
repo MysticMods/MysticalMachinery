@@ -30,7 +30,7 @@ public class CharcoalKilnRecipe extends AbstractCookingRecipe {
     return ModRecipes.CHARCOAL_KILN_SERIALIZER.get();
   }
 
-  public int getIngredientCount () {
+  public int getIngredientCount() {
     return ingredientCount;
   }
 

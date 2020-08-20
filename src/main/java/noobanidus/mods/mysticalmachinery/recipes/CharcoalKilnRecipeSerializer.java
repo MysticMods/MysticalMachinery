@@ -2,10 +2,8 @@ package noobanidus.mods.mysticalmachinery.recipes;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import epicsquid.mysticallib.recipe.AbstractCookingRecipeSerializer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipe;

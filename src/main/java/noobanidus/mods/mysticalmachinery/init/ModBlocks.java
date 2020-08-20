@@ -1,7 +1,6 @@
 package noobanidus.mods.mysticalmachinery.init;
 
-import com.tterrag.registrate.util.RegistryEntry;
-import epicsquid.mysticalworld.MysticalWorld;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -47,16 +46,16 @@ public class ModBlocks {
       .blockstate((ctx, p) -> p.getVariantBuilder(ModBlocks.CHARCOAL_KILN.get()).forAllStates((state) -> {
         if (state.get(CharcoalKilnBlock.LIT)) {
           return ConfiguredModel.builder()
-              .modelFile(p.getBuilder("charcoal_kiln_hot")
-                  .parent(p.getExistingFile(new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln")))
+              .modelFile(p.models().getBuilder("charcoal_kiln_hot")
+                  .parent(p.models().getExistingFile(new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln")))
                   .texture("kiln_face", new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln_face_hot"))
                   .texture("kiln_bottom", new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln_bottom_hot")))
               .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
               .build();
         } else {
           return ConfiguredModel.builder()
-              .modelFile(p.getBuilder("charcoal_kiln_cold")
-                  .parent(p.getExistingFile(new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln")))
+              .modelFile(p.models().getBuilder("charcoal_kiln_cold")
+                  .parent(p.models().getExistingFile(new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln")))
                   .texture("kiln_face", new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln_face"))
                   .texture("kiln_bottom", new ResourceLocation(MysticalMachinery.MODID, "block/charcoal_kiln_bottom")))
               .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
@@ -85,7 +84,7 @@ public class ModBlocks {
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry())
               .forAllStates(state -> ConfiguredModel.builder()
-                  .modelFile(p.getExistingFile(new ResourceLocation(MysticalMachinery.MODID, state.get(SawmillBlock.LIT) ? "sawmill_on" : "sawmill_off")))
+                  .modelFile(p.models().getExistingFile(new ResourceLocation(MysticalMachinery.MODID, state.get(SawmillBlock.LIT) ? "sawmill_on" : "sawmill_off")))
                   .rotationY(((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 180) % 360)
                   .build()
               )

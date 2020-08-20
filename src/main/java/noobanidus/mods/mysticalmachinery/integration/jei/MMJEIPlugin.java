@@ -16,7 +16,6 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import noobanidus.mods.mysticalmachinery.MysticalMachinery;
 import noobanidus.mods.mysticalmachinery.client.screen.KilnScreen;
 import noobanidus.mods.mysticalmachinery.client.screen.SawmillScreen;
@@ -24,19 +23,15 @@ import noobanidus.mods.mysticalmachinery.container.CharcoalKilnContainer;
 import noobanidus.mods.mysticalmachinery.container.KilnContainer;
 import noobanidus.mods.mysticalmachinery.container.SawmillContainer;
 import noobanidus.mods.mysticalmachinery.init.ModBlocks;
-import noobanidus.mods.mysticalmachinery.init.ModRecipes;
 import noobanidus.mods.mysticalmachinery.recipes.CharcoalKilnRecipe;
 import noobanidus.mods.mysticalmachinery.recipes.FakeCraftingInventory;
 import noobanidus.mods.mysticalmachinery.recipes.KilnRecipe;
 import noobanidus.mods.mysticalmachinery.recipes.SawmillRecipe;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 @SuppressWarnings("unchecked")
 @JeiPlugin

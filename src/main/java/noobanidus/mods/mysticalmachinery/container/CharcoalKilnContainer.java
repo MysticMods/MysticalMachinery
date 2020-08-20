@@ -5,7 +5,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.FurnaceResultSlot;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -50,10 +49,12 @@ public class CharcoalKilnContainer extends Container {
     this.trackIntArray(data);
   }
 
+  @Override
   public boolean canInteractWith(PlayerEntity playerIn) {
     return this.inventory.isUsableByPlayer(playerIn);
   }
 
+  @Override
   public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
     ItemStack itemstack = ItemStack.EMPTY;
     Slot slot = this.inventorySlots.get(index);
@@ -115,7 +116,7 @@ public class CharcoalKilnContainer extends Container {
   }
 
   @OnlyIn(Dist.CLIENT)
-  public boolean isBlocked () {
+  public boolean isBlocked() {
     return this.data.get(3) == 1;
   }
 }

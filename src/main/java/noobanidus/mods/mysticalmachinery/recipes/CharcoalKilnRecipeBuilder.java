@@ -6,15 +6,10 @@ import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.advancements.IRequirementsStrategy;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger.Instance;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
-import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 import noobanidus.mods.mysticalmachinery.init.ModRecipes;
 
 import javax.annotation.Nullable;
@@ -40,7 +35,7 @@ public class CharcoalKilnRecipeBuilder {
     this.maxAdditional = maxAdditional;
   }
 
-  public static CharcoalKilnRecipeBuilder charcoalKilnRecipe (ItemStack result, Ingredient ingredient, int ingredientCount, int maxAdditional, float xp, int cookTime) {
+  public static CharcoalKilnRecipeBuilder charcoalKilnRecipe(ItemStack result, Ingredient ingredient, int ingredientCount, int maxAdditional, float xp, int cookTime) {
     return new CharcoalKilnRecipeBuilder(result, ingredient, ingredientCount, maxAdditional, xp, cookTime);
   }
 

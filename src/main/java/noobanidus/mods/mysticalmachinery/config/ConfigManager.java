@@ -5,8 +5,6 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ConfigManager {
 
