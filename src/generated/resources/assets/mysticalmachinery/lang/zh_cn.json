@@ -1,0 +1,16 @@
+{
+  "block.mysticalmachinery.charcoal_kiln": "炭窑",
+  "block.mysticalmachinery.kiln": "窑",
+  "block.mysticalmachinery.sawmill": "锯木机",
+  "item.mysticalmachinery.sawdust": "锯末",
+  "itemGroup.mysticalmachinery": "神秘机械",
+  "mysticalmachinery.container.charcoal_kiln": "炭窑",
+  "mysticalmachinery.container.kiln": "窑",
+  "mysticalmachinery.container.sawmill": "锯木机",
+  "mysticalmachinery.jei.charcoal_kiln": "炭窑烘烤",
+  "mysticalmachinery.jei.charcoal_kiln.max_additional": "额外烘烤：~%s",
+  "mysticalmachinery.jei.kiln": "窑烘烤",
+  "mysticalmachinery.jei.sawmill": "锯木",
+  "mysticalmachinery.subtitles.block.charcoal_kiln.fire_crackle": "炭窑破裂",
+  "mysticalmachinery.subtitles.block.kiln.fire_crackle": "窑破裂"
+}
