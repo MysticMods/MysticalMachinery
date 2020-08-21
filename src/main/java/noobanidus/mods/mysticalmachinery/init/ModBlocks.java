@@ -42,7 +42,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<CharcoalKilnBlock> CHARCOAL_KILN = REGISTRATE.block("charcoal_kiln", Material.IRON, CharcoalKilnBlock::new)
-      .properties((o) -> o.hardnessAndResistance(3.5F).lightValue(13))
+      .properties((o) -> o.hardnessAndResistance(3.5F).lightValue(13).notSolid())
       .blockstate((ctx, p) -> p.getVariantBuilder(ModBlocks.CHARCOAL_KILN.get()).forAllStates((state) -> {
         if (state.get(CharcoalKilnBlock.LIT)) {
           return ConfiguredModel.builder()

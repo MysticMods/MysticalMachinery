@@ -25,6 +25,7 @@ public class ClientSetup {
 
       RenderType cutout = RenderType.getCutoutMipped();
       RenderTypeLookup.setRenderLayer(ModBlocks.SAWMILL.get(), cutout);
+      RenderTypeLookup.setRenderLayer(ModBlocks.CHARCOAL_KILN.get(), cutout);
 
       ShadedClientSetup.init(event);
     });
