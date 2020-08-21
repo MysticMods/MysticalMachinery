@@ -9,7 +9,7 @@ displayURL="https://www.curseforge.com/minecraft/mc-mods/mystical-machiner"
 credits="" #optional
 authors="Noobanidus, 5B" #optional
 description='''
-A Small set of vanllia-esque features to liven up your world..
+A small set of machines to liven up your world.
 '''
 [[dependencies.mysticalmachinery]] #optional
     modId="forge" #mandatory
