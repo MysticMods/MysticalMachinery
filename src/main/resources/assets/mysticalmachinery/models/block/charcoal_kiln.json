@@ -5,7 +5,8 @@
 	"textures": {
 		"kiln_top": "mysticalmachinery:block/charcoal_kiln_bottom",
 		"kiln_face": "mysticalmachinery:block/charcoal_kiln_face",
-		"kiln_chimneys": "mysticalmachinery:block/charcoal_kiln_sides_top"
+		"kiln_chimneys": "mysticalmachinery:block/charcoal_kiln_sides_top",
+		"particle": "mysticalmachinery:block/charcoal_kiln_bottom"
 	},
 	"elements": [
 		{

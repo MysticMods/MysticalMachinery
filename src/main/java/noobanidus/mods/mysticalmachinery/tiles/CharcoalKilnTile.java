@@ -341,7 +341,6 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   }
 
   protected CharcoalKilnRecipe curRecipe;
-  protected ItemStack failedMatch = ItemStack.EMPTY;
 
   protected boolean canSmelt(@Nullable CharcoalKilnRecipe recipe) {
     if (this.additional == -2 && recipe != null) {
@@ -403,12 +402,14 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   @SuppressWarnings("unchecked")
   protected CharcoalKilnRecipe getRecipe() {
     ItemStack input = this.getStackInSlot(INPUT);
-    if (input.isEmpty() || input == failedMatch) return null;
-    if (curRecipe != null && curRecipe.matches(this, world)) return curRecipe;
+    if (input.isEmpty()) {
+      return null;
+    }
+    if (curRecipe != null && curRecipe.matches(this, world)) {
+      return curRecipe;
+    }
     else {
       CharcoalKilnRecipe rec = world.getRecipeManager().getRecipe(ModRecipes.CHARCOAL_KILN_TYPE, this, this.world).orElse(null);
-      if (rec == null) failedMatch = input;
-      else failedMatch = ItemStack.EMPTY;
       return curRecipe = rec;
     }
   }
