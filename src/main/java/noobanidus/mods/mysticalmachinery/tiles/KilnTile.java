@@ -8,6 +8,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import noobanidus.mods.mysticalmachinery.container.KilnContainer;
@@ -18,8 +19,8 @@ import javax.annotation.Nullable;
 
 public class KilnTile extends AbstractFastFurnaceTileEntity {
   @SuppressWarnings("ConstantConditions")
-  public KilnTile() {
-    super(ModTiles.KILN.get(), ModRecipes.KILN_TYPE);
+  public KilnTile(TileEntityType<? extends KilnTile> type) {
+    super(type, ModRecipes.KILN_TYPE);
   }
 
   @Override

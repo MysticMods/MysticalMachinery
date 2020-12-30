@@ -1,6 +1,7 @@
 package noobanidus.mods.mysticalmachinery.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
@@ -9,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.IItemProvider;
@@ -40,12 +42,12 @@ public class ModRecipes {
     return hasItem(ItemPredicate.Builder.create().item(itemIn).build());
   }
 
-  protected static InventoryChangeTrigger.Instance hasItem(Tag<Item> tagIn) {
+  protected static InventoryChangeTrigger.Instance hasItem(ITag.INamedTag<Item> tagIn) {
     return hasItem(ItemPredicate.Builder.create().tag(tagIn).build());
   }
 
-  protected static InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicates) {
-    return new InventoryChangeTrigger.Instance(MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicates);
+  protected static InventoryChangeTrigger.Instance hasItem(ItemPredicate... predicate) {
+    return new InventoryChangeTrigger.Instance(EntityPredicate.AndPredicate.ANY_AND, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, MinMaxBounds.IntBound.UNBOUNDED, predicate);
   }
 
   protected static ResourceLocation safeId(ResourceLocation id) {
@@ -119,12 +121,12 @@ public class ModRecipes {
     KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source), result, 0.35f, 80).addCriterion("has_" + safeName(source.getRegistryName()), hasItem(source)).build(consumer, safeId(result) + "_from_kiln");
   }
 
-  protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(Tag<Item> source, T result, Consumer<IFinishedRecipe> consumer) {
-    KilnRecipeBuilder.kilnRecipe(Ingredient.fromTag(source), result, 0.35f, 80).addCriterion("has_" + safeName(source.getId()), hasItem(source)).build(consumer, safeId(result) + "_from_kiln");
+  protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(ITag.INamedTag<Item> source, T result, Consumer<IFinishedRecipe> consumer) {
+    KilnRecipeBuilder.kilnRecipe(Ingredient.fromTag(source), result, 0.35f, 80).addCriterion("has_" + safeName(source.getName()), hasItem(source)).build(consumer, safeId(result) + "_from_kiln");
   }
 
-  protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(Tag<Item> source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
-    KilnRecipeBuilder.kilnRecipe(Ingredient.fromTag(source), result.get(), 0.35f, 80).addCriterion("has_" + safeName(source.getId()), hasItem(source)).build(consumer, safeId(result.get()) + "_from_kiln");
+  protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(ITag.INamedTag<Item> source, Supplier<? extends T> result, Consumer<IFinishedRecipe> consumer) {
+    KilnRecipeBuilder.kilnRecipe(Ingredient.fromTag(source), result.get(), 0.35f, 80).addCriterion("has_" + safeName(source.getName()), hasItem(source)).build(consumer, safeId(result.get()) + "_from_kiln");
   }
 
   protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void kiln(Supplier<? extends T> source, T result, Consumer<IFinishedRecipe> consumer) {
@@ -135,12 +137,12 @@ public class ModRecipes {
     KilnRecipeBuilder.kilnRecipe(Ingredient.fromItems(source), result.get(), 0.35f, 80).addCriterion("has_" + safeName(source.getRegistryName()), hasItem(source)).build(consumer, safeId(result.get()) + "_from_kiln");
   }
 
-  protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Tag<Item> source, T result, int count, Consumer<IFinishedRecipe> consumer) {
-    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result, count, 0.35f, 30).addCriterion("has_" + safeName(source.getId()), hasItem(source)).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source.getId()));
+  protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(ITag.INamedTag<Item> source, T result, int count, Consumer<IFinishedRecipe> consumer) {
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result, count, 0.35f, 30).addCriterion("has_" + safeName(source.getName()), hasItem(source)).build(consumer, safeId(result) + "_from_sawmill_" + safeName(source.getName()));
   }
 
-  protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(Tag<Item> source, Supplier<? extends T> result, int count, Consumer<IFinishedRecipe> consumer) {
-    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result.get(), count, 0.35f, 30).addCriterion("has_" + safeName(source.getId()), hasItem(source)).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source.getId()));
+  protected static <T extends IItemProvider & IForgeRegistryEntry<?>> void sawmill(ITag.INamedTag<Item> source, Supplier<? extends T> result, int count, Consumer<IFinishedRecipe> consumer) {
+    SawmillRecipeBuilder.sawmillRecipe(Ingredient.fromTag(source), result.get(), count, 0.35f, 30).addCriterion("has_" + safeName(source.getName()), hasItem(source)).build(consumer, safeId(result.get()) + "_from_sawmill_" + safeName(source.getName()));
   }
 
   public static void load() {

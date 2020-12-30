@@ -1,6 +1,7 @@
 package noobanidus.mods.mysticalmachinery.init;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -18,11 +19,19 @@ import noobanidus.mods.mysticalmachinery.blocks.KilnBlock;
 import noobanidus.mods.mysticalmachinery.blocks.SawmillBlock;
 import noobanidus.mods.mysticalmachinery.recipes.CharcoalKilnRecipeBuilder;
 
+import java.util.function.ToIntFunction;
+
 import static noobanidus.mods.mysticalmachinery.MysticalMachinery.REGISTRATE;
 
 public class ModBlocks {
+  private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
+    return (state) -> {
+      return state.get(BlockStateProperties.LIT) ? lightValue : 0;
+    };
+  }
+
   public static RegistryEntry<KilnBlock> KILN = REGISTRATE.block("kiln", Material.ROCK, KilnBlock::new)
-      .properties((o) -> o.hardnessAndResistance(3.5F).lightValue(13))
+      .properties((o) -> o.hardnessAndResistance(3.5F).variableOpacity().setLightLevel(getLightValueLit(13)))
       .item()
       .model((ctx, p) -> p.blockItem(ModBlocks.KILN))
       .build()
@@ -42,7 +51,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<CharcoalKilnBlock> CHARCOAL_KILN = REGISTRATE.block("charcoal_kiln", Material.IRON, CharcoalKilnBlock::new)
-      .properties((o) -> o.hardnessAndResistance(3.5F).lightValue(13).notSolid())
+      .properties((o) -> o.hardnessAndResistance(3.5F).setLightLevel(getLightValueLit(13)).variableOpacity().notSolid())
       .blockstate((ctx, p) -> p.getVariantBuilder(ModBlocks.CHARCOAL_KILN.get()).forAllStates((state) -> {
         if (state.get(CharcoalKilnBlock.LIT)) {
           return ConfiguredModel.builder()
@@ -80,7 +89,7 @@ public class ModBlocks {
       .register();
 
   public static RegistryEntry<SawmillBlock> SAWMILL = REGISTRATE.block("sawmill", Material.ROCK, SawmillBlock::new)
-      .properties(o -> o.hardnessAndResistance(3.5f).lightValue(13))
+      .properties(o -> o.hardnessAndResistance(3.5f).setLightLevel(getLightValueLit(13)).variableOpacity())
       .blockstate((ctx, p) ->
           p.getVariantBuilder(ctx.getEntry())
               .forAllStates(state -> ConfiguredModel.builder()

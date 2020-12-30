@@ -15,6 +15,7 @@ import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
@@ -90,8 +91,8 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
     }
   };
 
-  public CharcoalKilnTile() {
-    super(ModTiles.CHARCOAL_KILN.get());
+  public CharcoalKilnTile(TileEntityType<? extends CharcoalKilnTile> type) {
+    super(type);
   }
 
   public boolean isBlocked() {
@@ -134,8 +135,8 @@ public class CharcoalKilnTile extends LockableTileEntity implements ISidedInvent
   }
 
   @Override
-  public void read(CompoundNBT compound) {
-    super.read(compound);
+  public void read(BlockState state, CompoundNBT compound) {
+    super.read(state, compound);
     this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
     ItemStackHelper.loadAllItems(compound, this.items);
     if (compound.contains("Blocked")) {

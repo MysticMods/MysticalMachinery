@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -21,8 +22,8 @@ import javax.annotation.Nullable;
 @SuppressWarnings("Duplicates")
 public class SawmillTile extends AbstractFastFurnaceTileEntity {
   @SuppressWarnings("ConstantConditions")
-  public SawmillTile() {
-    super(ModTiles.SAWMILL.get(), ModRecipes.SAWMILL_TYPE);
+  public SawmillTile(TileEntityType<? extends SawmillTile> type) {
+    super(type, ModRecipes.SAWMILL_TYPE);
   }
 
   @Override

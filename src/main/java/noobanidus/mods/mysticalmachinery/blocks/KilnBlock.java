@@ -17,6 +17,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.libs.noobutil.util.VoxelUtil;
 import noobanidus.mods.mysticalmachinery.init.ModSounds;
+import noobanidus.mods.mysticalmachinery.init.ModTiles;
 import noobanidus.mods.mysticalmachinery.tiles.KilnTile;
 
 import javax.annotation.Nullable;
@@ -54,7 +55,7 @@ public class KilnBlock extends AbstractFastFurnaceBlock {
   @Nullable
   @Override
   public TileEntity createNewTileEntity(IBlockReader worldIn) {
-    return new KilnTile();
+    return new KilnTile(ModTiles.KILN.get());
   }
 
   @Override

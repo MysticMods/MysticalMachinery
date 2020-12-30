@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import noobanidus.mods.mysticalmachinery.init.ModTiles;
 import noobanidus.mods.mysticalmachinery.tiles.SawmillTile;
 
 import javax.annotation.Nullable;
@@ -33,6 +34,6 @@ public class SawmillBlock extends AbstractFastFurnaceBlock {
   @Nullable
   @Override
   public TileEntity createNewTileEntity(IBlockReader worldIn) {
-    return new SawmillTile();
+    return new SawmillTile(ModTiles.SAWMILL.get());
   }
 }

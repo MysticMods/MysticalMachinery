@@ -1,5 +1,6 @@
 package noobanidus.mods.mysticalmachinery.integration.jei;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
@@ -49,15 +50,15 @@ public class CharcoalKilnCategory extends AbstractCookingCategory<CharcoalKilnRe
   }
 
   @Override
-  public void draw(CharcoalKilnRecipe recipe, double mouseX, double mouseY) {
-    super.draw(recipe, mouseX, mouseY);
+  public void draw(CharcoalKilnRecipe recipe, MatrixStack stack, double mouseX, double mouseY) {
+    super.draw(recipe, stack, mouseX, mouseY);
     int additional = recipe.getMaxAdditional();
     if (additional > 0) {
       String experienceString = I18n.format("mysticalmachinery.jei.charcoal_kiln.max_additional", additional);
       Minecraft minecraft = Minecraft.getInstance();
       FontRenderer fontRenderer = minecraft.fontRenderer;
       int stringWidth = fontRenderer.getStringWidth(experienceString);
-      fontRenderer.drawString(experienceString, (float) (this.getBackground().getWidth() - stringWidth), 45.0F, -8355712);
+      fontRenderer.drawString(stack, experienceString, (float) (this.getBackground().getWidth() - stringWidth), 45.0F, -8355712);
     }
   }
 }

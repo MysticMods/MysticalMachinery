@@ -3,6 +3,7 @@ package noobanidus.mods.mysticalmachinery.recipes;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.IRequirementsStrategy;
+import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger.Instance;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
@@ -43,7 +44,7 @@ public class KilnRecipeBuilder extends RecipeBuilder<KilnRecipe> {
   @Override
   public void build(Consumer<IFinishedRecipe> consumer, ResourceLocation resource) {
     this.validate(resource);
-    this.advancementBuilder.withParentId(new ResourceLocation("recipes/root")).withCriterion("has_the_recipe", new Instance(resource)).withRewards(net.minecraft.advancements.AdvancementRewards.Builder.recipe(resource)).withRequirementsStrategy(IRequirementsStrategy.OR);
+    this.advancementBuilder.withParentId(new ResourceLocation("recipes/root")).withCriterion("has_the_recipe", new Instance(EntityPredicate.AndPredicate.ANY_AND, resource)).withRewards(net.minecraft.advancements.AdvancementRewards.Builder.recipe(resource)).withRequirementsStrategy(IRequirementsStrategy.OR);
     consumer.accept(new Result(resource, this.group == null ? "" : this.group, this.ingredient, this.result, this.count, this.experience, this.cookingTime, this.advancementBuilder, new ResourceLocation(resource.getNamespace(), "recipes/" + this.result.getGroup().getPath() + "/" + resource.getPath()), getSerializer()));
   }
 

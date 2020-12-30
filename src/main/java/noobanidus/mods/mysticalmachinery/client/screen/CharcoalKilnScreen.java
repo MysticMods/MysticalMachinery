@@ -1,5 +1,6 @@
 package noobanidus.mods.mysticalmachinery.client.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -30,37 +31,29 @@ public class CharcoalKilnScreen extends ContainerScreen<CharcoalKilnContainer> {
   }
 
   @Override
-  public void render(int p1, int p2, float p3) {
+  public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
     this.timer.onDraw();
-    this.renderBackground();
-    this.drawGuiContainerBackgroundLayer(p3, p1, p2);
-    super.render(p1, p2, p3);
-    this.renderHoveredToolTip(p1, p2);
+    this.renderBackground(matrixStack);
+    super.render(matrixStack, mouseX, mouseY, partialTicks);
+    this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
   }
 
   @Override
-  protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-    String s = this.title.getFormattedText();
-    this.font.drawString(s, (float) (this.xSize / 2 - this.font.getStringWidth(s) / 2), 6.0F, 4210752);
-    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 96 + 2), 4210752);
-  }
-
-  @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+  protected void drawGuiContainerBackgroundLayer(MatrixStack m, float partialTicks, int mouseX, int mouseY) {
     RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
     Objects.requireNonNull(this.minecraft).getTextureManager().bindTexture(FURNACE_GUI_TEXTURES);
     int i = this.guiLeft;
     int j = this.guiTop;
-    this.blit(i, j, 0, 0, this.xSize, this.ySize);
+    this.blit(m, i, j, 0, 0, this.xSize, this.ySize);
     int l = this.container.getCookProgressionScaled();
-    this.blit(i + 79, j + 34, 176, 14, l + 1, 16);
+    this.blit(m, i + 79, j + 34, 176, 14, l + 1, 16);
     if (this.container.isBlocked()) {
-      this.blit(i + 77, j + 32, 176, 46, 28, 21);
+      this.blit(m, i + 77, j + 32, 176, 46, 28, 21);
     }
     if (this.container.isBurning()) {
-      this.blit(i + 56, j + 12 + 36 + 12 - 200, 176, 12 - 200, 14, 200 + 1);
+      this.blit(m, i + 56, j + 12 + 36 + 12 - 200, 176, 12 - 200, 14, 200 + 1);
     } else {
-      this.blit(i + 56, j + 46, 176, 31, 15, 15);
+      this.blit(m, i + 56, j + 46, 176, 31, 15, 15);
       Item item = timer.getCycledItem(MMTags.Items.FIRELIGHTERS.getAllElements());
       if (item != null) {
         ItemRenderer render = this.minecraft.getItemRenderer();
@@ -69,10 +62,5 @@ public class CharcoalKilnScreen extends ContainerScreen<CharcoalKilnContainer> {
         //RenderHelper.disableStandardItemLighting();
       }
     }
-  }
-
-  @Override
-  public void removed() {
-    super.removed();
   }
 }

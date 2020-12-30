@@ -7,7 +7,7 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
@@ -25,7 +25,7 @@ public class LogPlankLoader {
       RecipeManager manager = server.getRecipeManager();
       FakeCraftingInventory fake = new FakeCraftingInventory();
       fake.setInventorySlotContents(0, new ItemStack(logItem));
-      List<ICraftingRecipe> recipes = manager.getRecipes(IRecipeType.CRAFTING, fake, server.getWorld(DimensionType.OVERWORLD));
+      List<ICraftingRecipe> recipes = manager.getRecipes(IRecipeType.CRAFTING, fake, server.getWorld(World.OVERWORLD));
       for (ICraftingRecipe recipe : recipes) {
         ItemStack output = recipe.getRecipeOutput();
         if (output.getItem().isIn(ItemTags.PLANKS)) {

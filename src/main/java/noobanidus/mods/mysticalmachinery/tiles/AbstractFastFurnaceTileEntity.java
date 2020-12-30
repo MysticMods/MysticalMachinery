@@ -2,6 +2,7 @@ package noobanidus.mods.mysticalmachinery.tiles;
 
 import com.google.common.collect.Maps;
 import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IRecipeHelperPopulator;
 import net.minecraft.inventory.IRecipeHolder;
@@ -93,8 +94,8 @@ public abstract class AbstractFastFurnaceTileEntity extends LockableTileEntity i
   }
 
   @Override
-  public void read(CompoundNBT compound) {
-    super.read(compound);
+  public void read(BlockState state, CompoundNBT compound) {
+    super.read(state, compound);
     this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
     ItemStackHelper.loadAllItems(compound, this.items);
     this.burnTime = compound.getInt("BurnTime");

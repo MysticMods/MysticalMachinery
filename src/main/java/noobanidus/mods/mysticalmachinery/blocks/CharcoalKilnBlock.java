@@ -1,6 +1,9 @@
 package noobanidus.mods.mysticalmachinery.blocks;
 
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractFurnaceBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.RedstoneTorchBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -23,6 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import noobanidus.libs.noobutil.util.VoxelUtil;
 import noobanidus.mods.mysticalmachinery.MMTags;
 import noobanidus.mods.mysticalmachinery.init.ModSounds;
+import noobanidus.mods.mysticalmachinery.init.ModTiles;
 import noobanidus.mods.mysticalmachinery.tiles.CharcoalKilnTile;
 
 import javax.annotation.Nullable;
@@ -34,7 +38,7 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
   public static final BooleanProperty LIT = RedstoneTorchBlock.LIT;
   public static final BooleanProperty BLOCKED = BooleanProperty.create("blocked");
 
-  public static VoxelShape SHAPE = VoxelUtil.multiOr(Block.makeCuboidShape(1, 0, 1,15, 9, 15), Block.makeCuboidShape(6, 9, 1,10, 15, 5), Block.makeCuboidShape(6, 9, 11,10, 15, 15), Block.makeCuboidShape(1, 9, 6,5, 15, 10), Block.makeCuboidShape(11, 9, 6,15, 15, 10), Block.makeCuboidShape(9, 15, 1,10, 16, 5), Block.makeCuboidShape(9, 15, 11,10, 16, 15), Block.makeCuboidShape(6, 15, 1,7, 16, 5), Block.makeCuboidShape(6, 15, 11,7, 16, 15), Block.makeCuboidShape(7, 15, 1,9, 16, 2), Block.makeCuboidShape(7, 15, 11,9, 16, 12), Block.makeCuboidShape(7, 15, 4,9, 16, 5), Block.makeCuboidShape(7, 15, 14,9, 16, 15), Block.makeCuboidShape(1, 15, 9,5, 16, 10), Block.makeCuboidShape(11, 15, 9,15, 16, 10), Block.makeCuboidShape(1, 15, 7,2, 16, 9), Block.makeCuboidShape(11, 15, 7,12, 16, 9), Block.makeCuboidShape(4, 15, 7,5, 16, 9), Block.makeCuboidShape(14, 15, 7,15, 16, 9), Block.makeCuboidShape(1, 15, 6,5, 16, 7), Block.makeCuboidShape(11, 15, 6,15, 16, 7), Block.makeCuboidShape(0.5, 0, 6,1, 1, 10), Block.makeCuboidShape(15, 0, 6,15.5, 1, 10), Block.makeCuboidShape(0.5, 2, 6,1, 3, 10), Block.makeCuboidShape(15, 2, 6,15.5, 3, 10), Block.makeCuboidShape(9, 1, 0.5,10, 2, 1), Block.makeCuboidShape(9, 1, 15,10, 2, 15.5), Block.makeCuboidShape(6, 2, 0.5,10, 3, 1), Block.makeCuboidShape(6, 2, 15,10, 3, 15.5), Block.makeCuboidShape(6, 0, 0.5,10, 1, 1), Block.makeCuboidShape(6, 0, 15,10, 1, 15.5), Block.makeCuboidShape(6, 1, 0.5,7, 2, 1), Block.makeCuboidShape(6, 1, 15,7, 2, 15.5), Block.makeCuboidShape(0.5, 1, 6,1, 2, 7), Block.makeCuboidShape(15, 1, 6,15.5, 2, 7), Block.makeCuboidShape(0.5, 1, 9,1, 2, 10), Block.makeCuboidShape(15, 1, 9,15.5, 2, 10), Block.makeCuboidShape(2, 9, 2,14, 10, 14));
+  public static VoxelShape SHAPE = VoxelUtil.multiOr(Block.makeCuboidShape(1, 0, 1, 15, 9, 15), Block.makeCuboidShape(6, 9, 1, 10, 15, 5), Block.makeCuboidShape(6, 9, 11, 10, 15, 15), Block.makeCuboidShape(1, 9, 6, 5, 15, 10), Block.makeCuboidShape(11, 9, 6, 15, 15, 10), Block.makeCuboidShape(9, 15, 1, 10, 16, 5), Block.makeCuboidShape(9, 15, 11, 10, 16, 15), Block.makeCuboidShape(6, 15, 1, 7, 16, 5), Block.makeCuboidShape(6, 15, 11, 7, 16, 15), Block.makeCuboidShape(7, 15, 1, 9, 16, 2), Block.makeCuboidShape(7, 15, 11, 9, 16, 12), Block.makeCuboidShape(7, 15, 4, 9, 16, 5), Block.makeCuboidShape(7, 15, 14, 9, 16, 15), Block.makeCuboidShape(1, 15, 9, 5, 16, 10), Block.makeCuboidShape(11, 15, 9, 15, 16, 10), Block.makeCuboidShape(1, 15, 7, 2, 16, 9), Block.makeCuboidShape(11, 15, 7, 12, 16, 9), Block.makeCuboidShape(4, 15, 7, 5, 16, 9), Block.makeCuboidShape(14, 15, 7, 15, 16, 9), Block.makeCuboidShape(1, 15, 6, 5, 16, 7), Block.makeCuboidShape(11, 15, 6, 15, 16, 7), Block.makeCuboidShape(0.5, 0, 6, 1, 1, 10), Block.makeCuboidShape(15, 0, 6, 15.5, 1, 10), Block.makeCuboidShape(0.5, 2, 6, 1, 3, 10), Block.makeCuboidShape(15, 2, 6, 15.5, 3, 10), Block.makeCuboidShape(9, 1, 0.5, 10, 2, 1), Block.makeCuboidShape(9, 1, 15, 10, 2, 15.5), Block.makeCuboidShape(6, 2, 0.5, 10, 3, 1), Block.makeCuboidShape(6, 2, 15, 10, 3, 15.5), Block.makeCuboidShape(6, 0, 0.5, 10, 1, 1), Block.makeCuboidShape(6, 0, 15, 10, 1, 15.5), Block.makeCuboidShape(6, 1, 0.5, 7, 2, 1), Block.makeCuboidShape(6, 1, 15, 7, 2, 15.5), Block.makeCuboidShape(0.5, 1, 6, 1, 2, 7), Block.makeCuboidShape(15, 1, 6, 15.5, 2, 7), Block.makeCuboidShape(0.5, 1, 9, 1, 2, 10), Block.makeCuboidShape(15, 1, 9, 15.5, 2, 10), Block.makeCuboidShape(2, 9, 2, 14, 10, 14));
 
   public CharcoalKilnBlock(Properties properties) {
     super(properties);
@@ -44,11 +48,6 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
   @Override
   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
     return SHAPE;
-  }
-
-  @Override
-  public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos) {
-    return false;
   }
 
   @Override
@@ -83,7 +82,7 @@ public class CharcoalKilnBlock extends AbstractFastFurnaceBlock {
   @Nullable
   @Override
   public TileEntity createNewTileEntity(IBlockReader worldIn) {
-    return new CharcoalKilnTile();
+    return new CharcoalKilnTile(ModTiles.CHARCOAL_KILN.get());
   }
 
   @Override
