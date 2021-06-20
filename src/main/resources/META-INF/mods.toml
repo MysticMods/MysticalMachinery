@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/MysticMods/MysticalMachinery/issues"
 license="https://github.com/MysticMods/MysticalMachinery/blob/master/LICENSE"
 [[mods]]
 modId="mysticalmachinery"
-version="${file.jarVersion}"
+version="${version}"
 displayName="Mystical Machinery"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/mystical-machiner"
 credits=""
@@ -27,6 +27,6 @@ A small set of machines to liven up your world.
 [[dependencies.mysticalmachinery]]
     modId="mysticalworld"
     mandatory=true
-    versionRange="[1.16.4-0.3.1.3,)"
+    versionRange="[0.3.1.3,)"
     ordering="NONE"
     side="BOTH"

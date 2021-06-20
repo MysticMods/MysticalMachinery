@@ -1,10 +1,12 @@
 package noobanidus.mods.mysticalmachinery.init;
 
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -25,9 +27,7 @@ import static noobanidus.mods.mysticalmachinery.MysticalMachinery.REGISTRATE;
 
 public class ModBlocks {
   private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
-    return (state) -> {
-      return state.get(BlockStateProperties.LIT) ? lightValue : 0;
-    };
+    return (state) -> state.get(BlockStateProperties.LIT) ? lightValue : 0;
   }
 
   public static RegistryEntry<KilnBlock> KILN = REGISTRATE.block("kiln", Material.ROCK, KilnBlock::new)
@@ -42,9 +42,9 @@ public class ModBlocks {
             .patternLine(" X ")
             .patternLine("XFX")
             .patternLine(" X ")
-            .key('X', epicsquid.mysticalworld.init.ModBlocks.TERRACOTTA_BRICK.get())
+            .key('X', mysticmods.mysticalworld.init.ModBlocks.TERRACOTTA_BRICK.get())
             .key('F', Blocks.FURNACE)
-            .addCriterion("has_terracotta_bricks", p.hasItem(epicsquid.mysticalworld.init.ModBlocks.TERRACOTTA_BRICK.get()))
+            .addCriterion("has_terracotta_bricks", RegistrateRecipeProvider.hasItem(mysticmods.mysticalworld.init.ModBlocks.TERRACOTTA_BRICK.get()))
             .build(p);
         ModRecipes.kilnRecipes(p);
       })
@@ -80,11 +80,11 @@ public class ModBlocks {
             .patternLine("XFX")
             .patternLine(" X ")
             .key('F', ModBlocks.KILN.get())
-            .key('X', epicsquid.mysticalworld.init.ModBlocks.IRON_BRICK.get())
-            .addCriterion("has_iron_bricks", p.hasItem(epicsquid.mysticalworld.init.ModBlocks.IRON_BRICK.get()))
-            .addCriterion("has_kiln", p.hasItem(ModBlocks.KILN.get()))
+            .key('X', mysticmods.mysticalworld.init.ModBlocks.IRON_BRICK.get())
+            .addCriterion("has_iron_bricks", RegistrateRecipeProvider.hasItem(mysticmods.mysticalworld.init.ModBlocks.IRON_BRICK.get()))
+            .addCriterion("has_kiln", RegistrateRecipeProvider.hasItem(ModBlocks.KILN.get()))
             .build(p);
-        CharcoalKilnRecipeBuilder.charcoalKilnRecipe(new ItemStack(Items.CHARCOAL, 6), Ingredient.fromTag(ItemTags.LOGS), 4, 2, 3.5f, 550).addCriterion("has_logs", p.hasItem(ItemTags.LOGS)).build(p, "charcoal_from_charcoal_kiln");
+        CharcoalKilnRecipeBuilder.charcoalKilnRecipe(new ItemStack(Items.CHARCOAL, 6), Ingredient.fromTag(ItemTags.LOGS), 4, 2, 3.5f, 550).addCriterion("has_logs", RegistrateRecipeProvider.hasItem(ItemTags.LOGS)).build(p, "charcoal_from_charcoal_kiln");
       })
       .register();
 
@@ -110,16 +110,21 @@ public class ModBlocks {
             .key('L', ItemTags.LOGS)
             .key('S', Items.STONECUTTER)
             .key('F', Items.FURNACE)
-            .addCriterion("has_logs", p.hasItem(ItemTags.LOGS))
+            .addCriterion("has_logs", RegistrateRecipeProvider.hasItem(ItemTags.LOGS))
             .build(p);
 
-        ShapedRecipeBuilder.shapedRecipe(Items.PAPER, 4)
-            .patternLine("SSS")
-            .patternLine("S S")
-            .patternLine("SSS")
+        ShapedRecipeBuilder.shapedRecipe(Items.PAPER, 2)
+            .patternLine("SS")
+            .patternLine("SS")
             .key('S', MMTags.Items.SAWDUST)
-            .addCriterion("has_sawdust", p.hasItem(MMTags.Items.SAWDUST))
-            .build(p, new ResourceLocation(MysticalMachinery.MODID, "paper_from_sawdust"));
+            .addCriterion("has_sawdust", RegistrateRecipeProvider.hasItem(MMTags.Items.SAWDUST))
+            .build(p, new ResourceLocation(MysticalMachinery.MODID, "4_paper_from_sawdust"));
+
+        ShapelessRecipeBuilder.shapelessRecipe(Items.PAPER, 1)
+            .addIngredient(MMTags.Items.SAWDUST)
+            .addIngredient(MMTags.Items.SAWDUST)
+            .addCriterion("has_sawdust", RegistrateRecipeProvider.hasItem(MMTags.Items.SAWDUST))
+            .build(p, new ResourceLocation(MysticalMachinery.MODID, "2_paper_from_sawdust"));
 
         ModRecipes.sawmillRecipes(p);
       })

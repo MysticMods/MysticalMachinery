@@ -1,6 +1,6 @@
 package noobanidus.mods.mysticalmachinery;
 
-import epicsquid.mysticalworld.MysticalWorld;
+import mysticmods.mysticalworld.MysticalWorld;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +11,9 @@ import java.util.function.Function;
 
 public class MMTags {
   public static class Items extends MMTags {
-    public static ITag.INamedTag<Item> SAWDUST = compatTag("dusts/wooden");
+    public static ITag.INamedTag<Item> SAWDUST = compatTag("sawdust");
+    public static ITag.INamedTag<Item> SAWDUST1 = compatTag("dusts/wood");
+    public static ITag.INamedTag<Item> SAWDUST2 = compatTag("dusts/wooden");
     public static ITag.INamedTag<Item> FIRELIGHTERS = modTag("firelighters");
 
     static ITag.INamedTag<Item> modTag(String name) {

@@ -92,8 +92,8 @@ public class ModRecipes {
     kiln(Items.SANDSTONE_STAIRS, Items.SMOOTH_SANDSTONE_STAIRS, consumer);
     kiln(Items.RED_SANDSTONE_STAIRS, Items.SMOOTH_RED_SANDSTONE_STAIRS, consumer);
     kiln(Items.WET_SPONGE, Items.SPONGE, consumer);
-    kiln(epicsquid.mysticalworld.init.ModBlocks.WET_MUD_BLOCK, epicsquid.mysticalworld.init.ModBlocks.MUD_BLOCK, consumer);
-    kiln(epicsquid.mysticalworld.init.ModBlocks.WET_MUD_BRICK, epicsquid.mysticalworld.init.ModBlocks.MUD_BRICK, consumer);
+    kiln(mysticmods.mysticalworld.init.ModBlocks.WET_MUD_BLOCK, mysticmods.mysticalworld.init.ModBlocks.MUD_BLOCK, consumer);
+    kiln(mysticmods.mysticalworld.init.ModBlocks.WET_MUD_BRICK, mysticmods.mysticalworld.init.ModBlocks.MUD_BRICK, consumer);
 
     kiln(Items.BLACK_TERRACOTTA, Items.BLACK_GLAZED_TERRACOTTA, consumer);
     kiln(Items.BLUE_TERRACOTTA, Items.BLUE_GLAZED_TERRACOTTA, consumer);
